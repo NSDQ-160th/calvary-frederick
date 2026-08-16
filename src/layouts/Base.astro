@@ -1,6 +1,8 @@
 ---
+import Seo from '../components/Seo.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import { churchJsonLd } from '../data/schema';
 import '../styles/tokens.css';
 import '../styles/reset.css';
 import '../styles/motion.css';
@@ -10,13 +12,17 @@ interface Props {
   title: string;
   description?: string;
   current?: 'home' | 'visit' | 'watch' | 'give';
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title,
-  description = 'Calvary Chapel Frederick teaches the Bible verse by verse in downtown Frederick, MD. Sunday 9 & 11 AM, Wednesday 7 PM. Children’s ministry on Sunday and Wednesday.',
+  description = 'Calvary Chapel Frederick teaches the Bible verse by verse in downtown Frederick, MD. Sunday 9:00 & 11:00 AM, Wednesday 7:00 PM. Children’s ministry on Sunday and Wednesday.',
   current,
+  jsonLd = [],
 } = Astro.props;
+
+const extra = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
 ---
 
 <!doctype html>
@@ -26,7 +32,6 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/images/dove.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
     <link
       rel="preload"
       href="/fonts/oswald-500.woff2"
@@ -34,7 +39,7 @@ const {
       type="font/woff2"
       crossorigin
     />
-    <title>{title}</title>
+    <Seo title={title} description={description} jsonLd={[churchJsonLd(), ...extra]} />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>

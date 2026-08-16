@@ -1,0 +1,36 @@
+---
+import { SITE_ORIGIN } from '../data/schema';
+
+interface Props {
+  title: string;
+  description: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description, jsonLd = [] } = Astro.props;
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const canonical = `${SITE_ORIGIN}${path === '/' ? '/' : `${path}/`}`;
+const ogImage = `${SITE_ORIGIN}/images/hero-poster.jpg`;
+const blocks = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Calvary Chapel Frederick" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+{
+  blocks.map((block) => (
+    <script type="application/ld+json" set:html={JSON.stringify(block)} />
+  ))
+}

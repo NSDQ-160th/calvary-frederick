@@ -7,6 +7,7 @@ Marketing site for [calvaryfrederick.com](https://www.calvaryfrederick.com). Thr
 | [docs/website-rebrand-design.md](docs/website-rebrand-design.md) | Full design (IA, tokens, cutover, PR plan) |
 | [docs/subsplash-stay-vs-leave.md](docs/subsplash-stay-vs-leave.md) | Why we keep Subsplash for media/give/app, and how to push this brand into that dashboard |
 | [docs/workshop.md](docs/workshop.md) | PR 0 content checklist (parking, skyline license, …) — fill as answers arrive |
+| [docs/search-visibility.md](docs/search-visibility.md) | SEO / AEO / GEO / AI-search plan |
 
 ## Volunteer: weekly updates (this is the runbook)
 
@@ -84,8 +85,9 @@ Node 22+. Preview deploys will live on `*.pages.dev` until `www` is attached aft
 - [x] PR 3 — Watch (one Subsplash embed)
 - [x] PR 4 — Home
 - [x] PR 5 — Give + Visit + forms (presentation pass)
+- [x] Visit rebuild — two-column plan-a-visit + visual kids/ministries + FAQ
 - [ ] PR 6 — headers + cutover doc
-- [ ] PR 7 — SEO + redirects
+- [x] PR 7 (started) — titles, schema, FAQ, sitemap, robots, llms.txt; 301s still open
 - [ ] PR 8 — a11y / performance / launch freeze
 
 PR 0 (workshop answers, DNS dump, `/s/` bulletin copy) can land anytime; it does not block PRs 1–5 chrome and pages.

@@ -10,12 +10,19 @@ import ServiceTimesCard from '../components/ServiceTimesCard.astro';
 import WordRadio from '../components/WordRadio.astro';
 import Base from '../layouts/Base.astro';
 import { church } from '../data/church';
+import { faqJsonLd } from '../data/schema';
+import { siteFaqs } from '../data/faq';
 
 const description =
-  'Calvary Chapel Frederick teaches the Bible verse by verse in downtown Frederick, MD. Sunday 9 & 11 AM, Wednesday 7 PM. Children’s ministry on Sunday and Wednesday.';
+  'Calvary Chapel Frederick is a Bible-teaching church in downtown Frederick, MD. Sunday 9:00 & 11:00 AM, Wednesday 7:00 PM. Verse-by-verse teaching. Plan a visit.';
 ---
 
-<Base title={church.name} description={description} current="home">
+<Base
+  title="Calvary Chapel Frederick | Church in Downtown Frederick, MD"
+  description={description}
+  current="home"
+  jsonLd={faqJsonLd(siteFaqs)}
+>
   <Hero />
   <ServiceTimesCard />
   <ConnectBand />

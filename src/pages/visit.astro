@@ -1,107 +1,161 @@
 ---
 import BeliefAccordion from '../components/BeliefAccordion.astro';
+import FaqList from '../components/FaqList.astro';
+import MinistryGrid from '../components/MinistryGrid.astro';
 import PageHero from '../components/PageHero.astro';
 import PlanVisitForm from '../components/PlanVisitForm.astro';
 import VisitSteps from '../components/VisitSteps.astro';
 import Base from '../layouts/Base.astro';
-import { church, formatServiceTime } from '../data/church';
+import { church, formatPhone, formatServiceTime, mapsUrl, telHref } from '../data/church';
+import { visitFaqs } from '../data/faq';
+import { breadcrumbJsonLd, faqJsonLd } from '../data/schema';
 
 const sunday = church.services.sunday.map(formatServiceTime).join(' & ');
 const wednesday = formatServiceTime(church.services.wednesday);
+const title = `Plan a Visit — Calvary Chapel Frederick | Sunday 9 & 11, Downtown Frederick, MD`;
+const description = `Visit Calvary Chapel Frederick at 244A S Jefferson St in downtown Frederick, MD. Sunday ${sunday}, Wednesday ${wednesday}. Children’s ministry and verse-by-verse Bible teaching. Plan your visit.`;
 ---
 
-<Base title={`Plan a Visit — ${church.name}`} current="visit">
+<Base
+  title={title}
+  description={description}
+  current="visit"
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Plan a Visit', path: '/visit' },
+    ]),
+    faqJsonLd(visitFaqs),
+  ]}
+>
   <PageHero
-    eyebrow={church.name}
+    eyebrow="Welcome"
     title="Plan your visit"
-    lead="We’re glad you’re here. Come any Sunday or Wednesday — we would love to meet you."
+    lead="A Calvary Chapel in downtown Frederick, Maryland. Come any Sunday or Wednesday — we would love to meet you."
   />
 
-  <article class="visit wrap">
-    <nav class="sub" aria-label="On this page">
+  <nav class="sub" aria-label="On this page">
+    <div class="wrap sub__row">
+      <a href="#plan">Plan</a>
       <a href="#expect">Expect</a>
       <a href="#kids">Kids</a>
-      <a href="#plan">Plan</a>
+      <a href="#ministries">Ministries</a>
       <a href="#believe">Believe</a>
-    </nav>
+      <a href="#faq">Questions</a>
+    </div>
+  </nav>
 
-    <section>
-      <p class="meta">When we meet</p>
-      <p>Sunday {sunday}</p>
-      <p>Wednesday {wednesday}</p>
-    </section>
-
-    <VisitSteps />
-
-    <section id="kids">
-      <p class="meta">Kids & youth</p>
-      <h2>A place for your children</h2>
-      <p>
-        Sunday: {church.services.kidsSunday}. Wednesday children’s church {church.services.kidsWednesday}.
-        Middle school meets Sunday at 9 in the youth room. High school joins the main service.
-        Midweek, middle and high school meet together for Ignite.
-      </p>
-    </section>
-
-    <section id="ministries">
-      <p class="meta">Ministries</p>
-      <h2>Get connected</h2>
-      <p>Women — {church.emails.women}</p>
-      <p>Men — {church.emails.men}. {church.men.blurb}</p>
-      <p>Youth — {church.emails.youth}</p>
-      <p>To serve, email {church.email} or call the church office.</p>
-    </section>
-
-    <section id="gospel">
-      <p class="meta">Know God</p>
-      <h2>The best gift</h2>
-      <p>
-        Please feel welcome to join us any time. Bring a Bible if you have one; extras are
-        available. The good news is that God so loved the world that He gave His only Son.
-      </p>
-    </section>
-
-    <section id="prayer">
-      <p class="meta">Prayer & care</p>
-      <h2>We will pray with you</h2>
-      <p>
-        Call {church.phone.replace(/^\+1-/, '')} or email {church.email}. Care for those in need
-        is coordinated through the church office.
-      </p>
-    </section>
-
-    <PlanVisitForm />
-
-    <details class="more" id="more">
-      <summary>More about us</summary>
-      <div class="more__body">
+  <section class="intro" aria-labelledby="intro-heading">
+    <div class="wrap intro__grid">
+      <div>
+        <p class="meta">New here?</p>
+        <h2 id="intro-heading">We saved you a seat</h2>
         <p>
-          Pastor {church.pastor.name} came to faith at the U.S. Naval Academy, later served at
-          Cornerstone Chapel in Leesburg, and began teaching in Frederick in 2006.
+          Please feel welcome to join us any time. If you have a Bible you can bring it; if not,
+          we have extras. Services begin with prayer and worship, then the Word taught verse by
+          verse.
         </p>
+        <p class="intro__times">
+          <strong>Sunday</strong> {sunday}<br />
+          <strong>Wednesday</strong> {wednesday}<br />
+          <strong>Kids</strong> Sunday {church.services.kidsSunday}; Wednesday children’s church
+          {church.services.kidsWednesday}.
+        </p>
+        <p>
+          <a class="btn btn--primary" href={mapsUrl()} target="_blank" rel="noreferrer">Get directions</a>
+        </p>
+        <p class="intro__nap">
+          {church.address.line}, {church.address.city}, {church.address.region} {church.address.postal}
+          · <a href={telHref()}>{formatPhone()}</a>
+        </p>
+      </div>
+      <PlanVisitForm />
+    </div>
+  </section>
+
+  <section class="band" id="expect" aria-labelledby="expect-heading">
+    <div class="wrap">
+      <p class="meta">What to expect</p>
+      <h2 id="expect-heading">Your first Sunday</h2>
+      <VisitSteps />
+    </div>
+  </section>
+
+  <section class="kids" id="kids" aria-labelledby="kids-heading">
+    <div class="wrap kids__grid">
+      <img src="/images/ministries/children.jpg" alt="" width="1400" height="933" />
+      <div>
+        <p class="meta">Kids & youth</p>
+        <h2 id="kids-heading">A place for your children</h2>
+        <p>
+          Sunday: {church.services.kidsSunday}. Wednesday children’s church {church.services.kidsWednesday}.
+          We teach the Bible with crafts and games at their age.
+        </p>
+        <p>
+          Middle school meets Sunday at 9:00 AM in the youth room. High school joins the main
+          service. Midweek, middle and high school meet together for Ignite.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div id="ministries">
+    <MinistryGrid heading="Something for everyone" id="ministries-heading" />
+  </div>
+
+  <section class="gospel" id="gospel" aria-labelledby="gospel-heading">
+    <div class="wrap gospel__narrow">
+      <p class="meta">Know God</p>
+      <h2 id="gospel-heading">The best gift</h2>
+      <p>
+        God so loved the world that He gave His only Son. You are welcome here whether you have
+        walked with Jesus for years or you are still asking questions.
+      </p>
+    </div>
+  </section>
+
+  <section class="prayer" id="prayer" aria-labelledby="prayer-heading">
+    <div class="wrap gospel__narrow">
+      <p class="meta">Prayer & care</p>
+      <h2 id="prayer-heading">We will pray with you</h2>
+      <p>
+        Call <a href={telHref()}>{formatPhone()}</a> or email
+        <a href={`mailto:${church.email}`}>{church.email}</a>. Care for those in need is
+        coordinated through the church office.
+      </p>
+    </div>
+  </section>
+
+  <section class="faith" id="believe" aria-labelledby="believe-heading">
+    <div class="wrap gospel__narrow">
+      <p class="meta" id="faith">What we believe</p>
+      <h2 id="believe-heading">Statement of faith</h2>
+      <p>
+        Pastor {church.pastor.name} came to faith at the U.S. Naval Academy, later served at
+        Cornerstone Chapel in Leesburg, and began teaching in Frederick in 2006.
+      </p>
+      <div id="more">
         <BeliefAccordion />
       </div>
-    </details>
-  </article>
+    </div>
+  </section>
+
+  <FaqList items={visitFaqs} />
 </Base>
 
 <style>
-  .visit {
-    padding: var(--space-12) 0 var(--space-16);
-    max-width: 48rem;
-    display: grid;
-    gap: var(--space-12);
+  .sub {
+    position: sticky;
+    top: 4.75rem;
+    z-index: 30;
+    background: var(--cream);
+    border-bottom: 1px solid var(--rule);
   }
 
-  .sub {
+  .sub__row {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-5);
-    position: sticky;
-    top: 4.75rem;
-    background: var(--cream);
-    padding: var(--space-3) 0;
-    z-index: 5;
   }
 
   .sub a {
@@ -111,31 +165,104 @@ const wednesday = formatServiceTime(church.services.wednesday);
     font-size: 0.8rem;
     text-decoration: none;
     color: var(--forest-deep);
-    min-height: 44px;
+    min-height: 48px;
     display: inline-flex;
     align-items: center;
   }
 
-  .meta {
+  .intro {
+    padding: var(--space-16) 0;
+  }
+
+  .intro__grid {
+    display: grid;
+    gap: var(--space-10);
+    align-items: start;
+  }
+
+  .intro .meta {
     margin-bottom: var(--space-3);
     color: var(--ink-soft);
   }
 
-  h2 {
-    margin: var(--space-3) 0 var(--space-4);
+  .intro h2 {
+    margin-bottom: var(--space-4);
   }
 
-  .more summary {
-    font-family: var(--font-display);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    cursor: pointer;
-    min-height: 44px;
+  .intro__times {
+    margin: var(--space-6) 0;
+    line-height: 1.8;
   }
 
-  .more__body {
+  .intro__nap {
+    margin-top: var(--space-4);
+    color: var(--ink-soft);
+    font-size: var(--step--1);
+  }
+
+  .band {
+    background: var(--paper);
+    padding: var(--space-16) 0;
+  }
+
+  .band .meta,
+  .kids .meta,
+  .gospel .meta,
+  .prayer .meta,
+  .faith .meta {
+    margin-bottom: var(--space-3);
+    color: var(--ink-soft);
+  }
+
+  .kids {
+    padding: var(--space-16) 0;
+  }
+
+  .kids__grid {
     display: grid;
-    gap: var(--space-6);
-    padding-top: var(--space-6);
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .kids img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .gospel,
+  .prayer,
+  .faith {
+    padding: var(--space-12) 0;
+  }
+
+  .gospel {
+    background: var(--forest-deep);
+    color: var(--cream);
+  }
+
+  .gospel .meta {
+    color: rgb(246 241 232 / 0.7);
+  }
+
+  .gospel__narrow {
+    max-width: 42rem;
+  }
+
+  .prayer a,
+  .intro a:not(.btn) {
+    color: var(--forest-deep);
+  }
+
+  .gospel a {
+    color: var(--cream);
+  }
+
+  @media (min-width: 900px) {
+    .intro__grid,
+    .kids__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+    }
   }
 </style>
