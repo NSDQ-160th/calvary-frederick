@@ -44,8 +44,12 @@ sermon:
   series: Hebrews
   title: ""
   speaker: Pastor David Ochoa
-  image: /images/sermon-fallback.jpg
+  image: /images/sermon-fallback.svg
   href: /watch
+
+routes:
+  give: false
+  visit: false
 
 men:
   asOf: 2026-08

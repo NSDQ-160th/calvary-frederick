@@ -81,6 +81,10 @@ export type ChurchSpec = {
     israel2027: boolean;
     vbs2026: boolean;
   };
+  routes: {
+    give: boolean;
+    visit: boolean;
+  };
   live: {
     url: string;
     start: string | null;

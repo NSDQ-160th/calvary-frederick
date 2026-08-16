@@ -1,0 +1,31 @@
+---
+import { church, collectionUrl } from '../data/church';
+---
+
+<section class="word wrap">
+  <p class="meta">Word & radio</p>
+  <p>
+    <a href={collectionUrl(church.media.radio)} target="_blank" rel="noreferrer">Truth with Grace</a>
+    <span aria-hidden="true"> · </span>
+    <a href={`https://podcasts.apple.com/us/podcast/id${church.podcasts.sunday}`} target="_blank" rel="noreferrer">
+      Apple Podcasts
+    </a>
+  </p>
+</section>
+
+<style>
+  .word {
+    padding: var(--space-8) 0;
+    max-width: 40rem;
+  }
+
+  .meta {
+    margin-bottom: var(--space-3);
+    color: var(--ink-soft);
+  }
+
+  a {
+    color: var(--forest-deep);
+    font-weight: 600;
+  }
+</style>

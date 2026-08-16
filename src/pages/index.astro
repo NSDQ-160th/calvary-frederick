@@ -1,67 +1,26 @@
 ---
+import AppStrip from '../components/AppStrip.astro';
+import BulletinCard from '../components/BulletinCard.astro';
+import GiveTeaser from '../components/GiveTeaser.astro';
+import Hero from '../components/Hero.astro';
+import SermonCard from '../components/SermonCard.astro';
+import ServiceTimesCard from '../components/ServiceTimesCard.astro';
+import VisitTeaser from '../components/VisitTeaser.astro';
+import WordRadio from '../components/WordRadio.astro';
 import Base from '../layouts/Base.astro';
-import { church, formatServiceTime, mapsUrl } from '../data/church';
+import { church } from '../data/church';
 
-const sunday = church.services.sunday.map(formatServiceTime).join(' & ');
-const wednesday = formatServiceTime(church.services.wednesday);
+const description =
+  'Calvary Chapel Frederick teaches the Bible verse by verse in downtown Frederick, MD. Sunday 9 & 11 AM, Wednesday 7 PM. Children’s ministry on Sunday and Wednesday.';
 ---
 
-<Base title={church.name} current="home">
-  <section class="intro wrap enter">
-    <p class="meta">{church.name}</p>
-    <h1>{church.tagline}</h1>
-    <p class="lead">A Calvary Chapel in downtown Frederick.</p>
-    <p>Sunday {sunday} · Wednesday {wednesday}</p>
-    <p>
-      Kids: Sunday {church.services.kidsSunday}; Wednesday children’s church {church.services.kidsWednesday}.
-    </p>
-    <p>
-      <a href={mapsUrl()}>{church.address.line}, {church.address.city}, {church.address.region} {church.address.postal}</a>
-    </p>
-    <p class="intro__cta">
-      <a class="btn btn--primary" href="/visit#plan">Plan a Visit</a>
-      <a class="btn btn--secondary" href="/watch">Watch a Message</a>
-    </p>
-    <p class="note">
-      Chrome from PR 2. Watch is live. Full Home, Visit, and Give land next. Giving, sermons, and the app stay on Subsplash.
-    </p>
-  </section>
+<Base title={church.name} description={description} current="home">
+  <Hero />
+  <ServiceTimesCard />
+  <VisitTeaser />
+  <SermonCard />
+  <BulletinCard />
+  <WordRadio />
+  <GiveTeaser />
+  <AppStrip />
 </Base>
-
-<style>
-  .intro {
-    padding: var(--space-16) 0;
-    max-width: 42rem;
-  }
-
-  .meta {
-    margin-bottom: var(--space-4);
-    color: var(--ink-soft);
-  }
-
-  h1 {
-    margin-bottom: var(--space-4);
-  }
-
-  .lead {
-    margin-bottom: var(--space-8);
-  }
-
-  .intro__cta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    margin-top: var(--space-8);
-  }
-
-  .note {
-    margin-top: var(--space-10);
-    color: var(--ink-soft);
-    font-size: var(--step--1);
-    line-height: var(--step--1-lh);
-  }
-
-  a:not(.btn) {
-    color: var(--forest-deep);
-  }
-</style>

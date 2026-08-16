@@ -1,0 +1,49 @@
+---
+import { church } from '../data/church';
+
+const href = church.routes.give ? '/give' : church.giving.subsplashEmbed;
+const label = church.routes.give ? 'Give' : 'Give on Subsplash';
+const external = !church.routes.give;
+---
+
+<section class="give wrap">
+  <p class="meta">Give</p>
+  <h2>A cheerful giver</h2>
+  <p>
+    We do not pass a plate. Giving is an act of worship between you and the Lord — cheerful, not
+    under compulsion (2 Corinthians 9:7). Jesus taught us to give in secret (Matthew 6:3–4).
+    Offering boxes are in the sanctuary. You may also give online, or by bill-pay and check to
+    the church, if you want to avoid card fees. If you are visiting, please feel no pressure to
+    give.
+  </p>
+  <p>
+    <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>
+      {label}
+    </a>
+  </p>
+</section>
+
+<style>
+  .give {
+    padding: var(--space-12) 0;
+    max-width: 40rem;
+  }
+
+  .meta {
+    margin-bottom: var(--space-4);
+    color: var(--ink-soft);
+  }
+
+  h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  p + p {
+    margin-top: var(--space-4);
+  }
+
+  a {
+    color: var(--forest-deep);
+    font-weight: 600;
+  }
+</style>

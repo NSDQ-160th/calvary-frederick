@@ -1,0 +1,95 @@
+---
+import { church } from '../data/church';
+
+const title = church.sermon.title.trim() || 'Latest Sunday message';
+---
+
+<section class="sermon wrap" aria-labelledby="sermon-heading">
+  <p class="meta">Latest teaching</p>
+  <h2 id="sermon-heading">{church.sermon.series}</h2>
+  <a class="sermon__card" href={church.sermon.href}>
+    <img
+      src={church.sermon.image}
+      alt=""
+      width="1600"
+      height="900"
+    />
+    <span class="sermon__body">
+      <span class="meta">{church.sermon.series}</span>
+      <span class="sermon__title">{title}</span>
+      <span class="sermon__speaker">{church.sermon.speaker}</span>
+    </span>
+  </a>
+  <p class="sermon__more">
+    <a href="/watch">Browse the archive</a>
+  </p>
+</section>
+
+<style>
+  .sermon {
+    padding: var(--space-12) 0;
+  }
+
+  .meta {
+    margin-bottom: var(--space-4);
+    color: var(--ink-soft);
+  }
+
+  h2 {
+    margin-bottom: var(--space-6);
+  }
+
+  .sermon__card {
+    display: grid;
+    text-decoration: none;
+    color: inherit;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: var(--forest-deep);
+  }
+
+  .sermon__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-6);
+  }
+
+  .sermon__title {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 500;
+    line-height: var(--step-2-lh);
+  }
+
+  .sermon__speaker {
+    color: var(--ink-soft);
+  }
+
+  .sermon__more {
+    margin-top: var(--space-5);
+  }
+
+  .sermon__more a {
+    color: var(--forest-deep);
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    .sermon__card {
+      grid-template-columns: 1.4fr 1fr;
+      align-items: stretch;
+    }
+
+    img {
+      height: 100%;
+    }
+  }
+</style>

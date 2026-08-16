@@ -16,7 +16,7 @@ You need a GitHub login and access to this repository. You do **not** need to in
 
 1. Open [`src/data/church.yaml`](src/data/church.yaml) on GitHub.
 2. Click the pencil (**Edit**).
-3. Find `sermon:` and change `title:` to this week’s message title. Leave `series:` as `Hebrews` until the series changes.
+3. Find `sermon:` and change `title:` to this week’s message title. Leave it empty to show “Latest Sunday message.” Leave `series:` as `Hebrews` until the series changes.
 4. Commit directly to `main` (or open a pull request if that is how the church prefers).
 
 The video itself is uploaded in the **Subsplash dashboard**, same as today. The `/watch` page updates itself. Only the homepage card reads this YAML file.
@@ -78,7 +78,7 @@ Node 22+. Preview deploys will live on `*.pages.dev` until `www` is attached aft
 - [x] PR 1 — scaffold, tokens, `church.yaml`, volunteer README
 - [x] PR 2 — header, footer, type, icons, 404
 - [x] PR 3 — Watch (one Subsplash embed)
-- [ ] PR 4 — Home
+- [x] PR 4 — Home
 - [ ] PR 5 — Give + Visit + forms
 - [ ] PR 6 — headers + cutover doc
 - [ ] PR 7 — SEO + redirects

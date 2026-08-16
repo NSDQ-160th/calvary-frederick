@@ -1,0 +1,80 @@
+---
+import { church } from '../data/church';
+---
+
+<section class="hero" data-hero>
+  <div class="hero__inner wrap">
+    <p class="meta hero__kicker">{church.name}</p>
+    <h1>{church.tagline}</h1>
+    <p class="lead">A Calvary Chapel in downtown Frederick.</p>
+    <p class="hero__cta">
+      <a class="btn btn--primary" href="/visit#plan">Plan a Visit</a>
+      <a class="btn btn--secondary" href="/watch">Watch a Message</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 88vh;
+    margin-top: -4.5rem;
+    padding: 8rem var(--page-margin) 7rem;
+    display: flex;
+    align-items: flex-end;
+    background:
+      linear-gradient(180deg, rgb(42 67 51 / 0.15) 0%, rgb(42 67 51 / 0.4) 55%, rgb(42 67 51 / 1) 100%),
+      var(--forest-deep);
+    color: var(--cream);
+  }
+
+  .hero__inner {
+    width: 100%;
+    padding-bottom: var(--space-10);
+  }
+
+  .hero__kicker {
+    margin-bottom: var(--space-4);
+    color: rgb(246 241 232 / 0.78);
+  }
+
+  h1 {
+    max-width: 14ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .lead {
+    max-width: 22rem;
+    margin-bottom: var(--space-8);
+    color: rgb(246 241 232 / 0.92);
+  }
+
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .hero :global(.btn--primary) {
+    background: var(--cream);
+    color: var(--forest-deep);
+    border-color: var(--cream);
+  }
+
+  .hero :global(.btn--primary:hover),
+  .hero :global(.btn--primary:focus-visible) {
+    background: var(--paper);
+    border-color: var(--paper);
+    color: var(--forest-deep);
+  }
+
+  .hero :global(.btn--secondary) {
+    color: var(--cream);
+    border-color: var(--cream);
+  }
+
+  .hero :global(.btn--secondary:hover),
+  .hero :global(.btn--secondary:focus-visible) {
+    background: var(--cream);
+    color: var(--forest-deep);
+  }
+</style>

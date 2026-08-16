@@ -1,0 +1,40 @@
+---
+import { church } from '../data/church';
+---
+
+<section class="visit wrap">
+  <p class="meta">I'm New</p>
+  <h2>Encounter. Equipped. Engage.</h2>
+  <p>
+    {church.vision}
+  </p>
+  <p>
+    <a href="/visit">Plan a visit</a>
+    — we would love to meet you.
+  </p>
+</section>
+
+<style>
+  .visit {
+    padding: var(--space-16) 0 var(--space-12);
+    max-width: 40rem;
+  }
+
+  .meta {
+    margin-bottom: var(--space-4);
+    color: var(--ink-soft);
+  }
+
+  h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  p + p {
+    margin-top: var(--space-4);
+  }
+
+  a {
+    color: var(--forest-deep);
+    font-weight: 600;
+  }
+</style>
