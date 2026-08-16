@@ -8,6 +8,7 @@ Marketing site for [calvaryfrederick.com](https://www.calvaryfrederick.com). Thr
 | [docs/subsplash-stay-vs-leave.md](docs/subsplash-stay-vs-leave.md) | Why we keep Subsplash for media/give/app, and how to push this brand into that dashboard |
 | [docs/workshop.md](docs/workshop.md) | PR 0 content checklist (parking, skyline license, …) — fill as answers arrive |
 | [docs/search-visibility.md](docs/search-visibility.md) | SEO / AEO / GEO / AI-search plan |
+| [docs/holding-site-scan.md](docs/holding-site-scan.md) | Their SnapPages holding site — what is real vs template |
 
 ## Volunteer: weekly updates (this is the runbook)
 

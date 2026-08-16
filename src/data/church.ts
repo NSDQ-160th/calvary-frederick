@@ -23,6 +23,11 @@ export type ChurchSpec = {
     wednesday: string;
     kidsSunday: string;
     kidsWednesday: string;
+    middayPrayer: {
+      days: string;
+      start: string;
+      end: string;
+    };
   };
   youth: {
     sunday: string;

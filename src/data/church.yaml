@@ -32,6 +32,11 @@ services:
   wednesday: "19:00"
   kidsSunday: infants through 5th grade
   kidsWednesday: ages 3–11
+  # Footer on their SnapPages holding site (16 Aug 2026). Not on old Squarespace.
+  middayPrayer:
+    days: Mon, Wed, Fri
+    start: "12:15"
+    end: "12:45"
 
 youth:
   sunday: Middle school at 9:00, youth room
@@ -47,8 +52,8 @@ bulletin:
   label: This week
 
 sermon:
-  series: Hebrews
-  title: ""
+  series: Acts
+  title: "Acts 21:18-25"
   speaker: Pastor David Ochoa
   image: /images/sermon-fallback.svg
   href: /watch

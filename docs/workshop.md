@@ -28,5 +28,5 @@ Fill these as the church answers them. **Do not block PRs 1–5 on empty rows.**
 ## Subsplash access (see stay-vs-leave doc)
 
 - [ ] Who has App Dashboard login
+- [x] Do they already pay for a SnapPages / Websites seat they are not using? **Yes.** Holding site: https://calvarychapelfrederick1.snappages.site (see `docs/holding-site-scan.md`)
 - [ ] Who has Giving Dashboard login
-- [ ] Do they already pay for a SnapPages / Websites seat they are not using?

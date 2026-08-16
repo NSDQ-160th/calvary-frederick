@@ -58,6 +58,10 @@ const description = `Visit Calvary Chapel Frederick at 244A S Jefferson St in do
         <p class="intro__times">
           <strong>Sunday</strong> {sunday}<br />
           <strong>Wednesday</strong> {wednesday}<br />
+          <strong>Prayer</strong> {church.services.middayPrayer.days}
+          {' '}
+          {formatServiceTime(church.services.middayPrayer.start)}–{formatServiceTime(church.services.middayPrayer.end)}
+          <br />
           <strong>Kids</strong> Sunday {church.services.kidsSunday}; Wednesday children’s church
           {church.services.kidsWednesday}.
         </p>

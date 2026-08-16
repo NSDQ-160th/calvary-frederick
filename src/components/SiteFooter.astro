@@ -35,6 +35,14 @@ const year = new Date().getFullYear();
           <span>Wednesday {wednesday}</span>
         </li>
         <li>
+          <Icon name="heart" />
+          <span>
+            Prayer {church.services.middayPrayer.days}
+            {' '}
+            {formatServiceTime(church.services.middayPrayer.start)}–{formatServiceTime(church.services.middayPrayer.end)}
+          </span>
+        </li>
+        <li>
           <Icon name="pin" />
           <a href={mapsUrl()} target="_blank" rel="noreferrer">
             {church.address.line}<br />

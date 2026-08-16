@@ -7,7 +7,7 @@ const wednesday = formatServiceTime(church.services.wednesday);
 export const visitFaqs = [
   {
     q: 'What time is church at Calvary Chapel Frederick?',
-    a: `Sunday services are at ${sunday}. Midweek Bible study is Wednesday at ${wednesday}.`,
+    a: `Sunday services are at ${sunday}. Midweek Bible study is Wednesday at ${wednesday}. Midday prayer is ${church.services.middayPrayer.days} from ${formatServiceTime(church.services.middayPrayer.start)} to ${formatServiceTime(church.services.middayPrayer.end)}.`,
   },
   {
     q: 'Where is Calvary Chapel Frederick located?',
