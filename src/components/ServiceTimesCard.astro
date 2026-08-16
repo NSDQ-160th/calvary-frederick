@@ -1,6 +1,5 @@
 ---
 import { church, formatServiceTime, mapsUrl } from '../data/church';
-import Icon from './Icon.astro';
 
 const sunday = church.services.sunday.map(formatServiceTime).join(' & ');
 const wednesday = formatServiceTime(church.services.wednesday);
@@ -11,103 +10,88 @@ const calendars = [
 ];
 ---
 
-<section class="times wrap" aria-labelledby="times-heading">
-  <div class="times__card">
-    <h2 id="times-heading" class="meta">Join us</h2>
-    <ul>
-      <li>
-        <Icon name="clock" />
-        <div>
-          <p>Sunday {sunday}</p>
-          <p class="times__sub">Wednesday {wednesday}</p>
-        </div>
-      </li>
-      <li>
-        <Icon name="child" />
+<section class="location" id="location" aria-labelledby="location-heading">
+  <div class="wrap">
+    <p class="meta">Join us</p>
+    <h2 id="location-heading">Location & Services</h2>
+    <div class="location__grid">
+      <div>
+        <h3 class="meta">Location</h3>
         <p>
+          {church.name}<br />
+          {church.address.line}<br />
+          {church.address.city}, {church.address.region} {church.address.postal}
+        </p>
+        <p>
+          <a class="btn btn--secondary" href={mapsUrl()} target="_blank" rel="noreferrer">Get directions</a>
+        </p>
+      </div>
+      <div>
+        <h3 class="meta">Service times</h3>
+        <p>Sunday {sunday}</p>
+        <p>Wednesday {wednesday}</p>
+        <p class="location__kids">
           Kids: Sunday {church.services.kidsSunday}; Wednesday children’s church {church.services.kidsWednesday}.
         </p>
-      </li>
-      <li>
-        <Icon name="pin" />
-        <p>
-          <a href={mapsUrl()} target="_blank" rel="noreferrer">
-            {church.address.line}, {church.address.city}, {church.address.region} {church.address.postal}
-          </a>
-          <span class="times__sub">Get directions</span>
+        <p class="location__cal-label meta">Add to calendar</p>
+        <p class="location__cal">
+          {calendars.map((item) => <a href={item.href}>{item.label}</a>)}
         </p>
-      </li>
-    </ul>
-    <p class="meta times__cal-label">Add to calendar</p>
-    <p class="times__cal">
-      {
-        calendars.map((item) => (
-          <a href={item.href}>{item.label}</a>
-        ))
-      }
-    </p>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-  .times {
-    position: relative;
-    z-index: 2;
-    margin-top: -3rem;
-  }
-
-  .times__card {
+  .location {
     background: var(--paper);
-    color: var(--ink);
-    padding: var(--space-8);
-    box-shadow: 0 16px 40px rgb(28 26 23 / 0.08);
-    border: 1px solid var(--rule);
+    padding: var(--space-16) 0;
+    text-align: center;
   }
 
-  h2 {
-    margin-bottom: var(--space-6);
-    color: var(--ink-soft);
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-  }
-
-  li {
-    display: flex;
-    gap: var(--space-3);
-    align-items: flex-start;
-  }
-
-  .times__sub {
-    display: block;
-    color: var(--ink-soft);
-    font-size: var(--step--1);
-    line-height: var(--step--1-lh);
-    margin-top: 0.15rem;
-  }
-
-  a {
-    color: var(--forest-deep);
-  }
-
-  .times__cal-label {
-    margin-top: var(--space-6);
+  .meta {
     margin-bottom: var(--space-3);
     color: var(--ink-soft);
   }
 
-  .times__cal {
+  h2 {
+    margin-bottom: var(--space-12);
+  }
+
+  .location__grid {
+    display: grid;
+    gap: var(--space-12);
+    text-align: left;
+    max-width: 52rem;
+    margin: 0 auto;
+  }
+
+  h3 {
+    margin-bottom: var(--space-4);
+    color: var(--ink-soft);
+  }
+
+  p + p {
+    margin-top: var(--space-3);
+  }
+
+  .location__kids {
+    color: var(--ink-soft);
+    font-size: var(--step--1);
+    line-height: var(--step--1-lh);
+  }
+
+  .location__cal-label {
+    margin-top: var(--space-6);
+  }
+
+  .location__cal {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-3);
   }
 
-  .times__cal a {
+  .location__cal a {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
@@ -115,21 +99,22 @@ const calendars = [
     border: 1.5px solid var(--forest);
     color: var(--forest);
     text-decoration: none;
-    font-weight: 600;
-    font-size: var(--step--1);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
-  .times__cal a:hover,
-  .times__cal a:focus-visible {
+  .location__cal a:hover,
+  .location__cal a:focus-visible {
     background: var(--forest);
     color: var(--cream);
   }
 
   @media (min-width: 768px) {
-    ul {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
-      gap: var(--space-6);
+    .location__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
     }
   }
 </style>

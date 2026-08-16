@@ -1,0 +1,73 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+}
+
+const { eyebrow, title, lead } = Astro.props;
+---
+
+<header class="page-hero" data-hero>
+  <div class="page-hero__media" aria-hidden="true">
+    <img src="/images/hero-frederick.jpg" alt="" width="2000" height="1500" />
+  </div>
+  <div class="page-hero__inner wrap">
+    {eyebrow && <p class="meta">{eyebrow}</p>}
+    <h1>{title}</h1>
+    {lead && <p class="lead">{lead}</p>}
+  </div>
+</header>
+
+<style>
+  .page-hero {
+    position: relative;
+    min-height: 46vh;
+    display: flex;
+    align-items: flex-end;
+    color: var(--cream);
+    overflow: hidden;
+  }
+
+  .page-hero__media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .page-hero__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+  }
+
+  .page-hero__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(28 26 23 / 0.25), rgb(42 67 51 / 0.72));
+  }
+
+  .page-hero__inner {
+    position: relative;
+    z-index: 1;
+    padding: 8rem 0 3rem;
+  }
+
+  .meta {
+    margin-bottom: var(--space-3);
+    color: rgb(246 241 232 / 0.8);
+  }
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  .lead {
+    margin-top: var(--space-4);
+    max-width: 34rem;
+    letter-spacing: 0;
+    text-transform: none;
+    font-family: var(--font-ui);
+  }
+</style>

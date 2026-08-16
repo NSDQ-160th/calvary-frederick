@@ -1,0 +1,110 @@
+---
+import { church } from '../data/church';
+
+const basin = import.meta.env.PUBLIC_BASIN_VISIT as string | undefined;
+---
+
+<form class="form" id="plan" method="post" action={basin || undefined} data-plan-form>
+  <p class="meta">See you soon</p>
+  <h2>Plan a visit</h2>
+  <p class="form__intro">
+    Please feel welcome to join us any time — we would love to meet you. If you have a Bible you
+    can bring it; if not, we have extras.
+  </p>
+  <label>
+    Name
+    <input type="text" name="name" autocomplete="name" required />
+  </label>
+  <label>
+    Email
+    <input type="email" name="email" autocomplete="email" required />
+  </label>
+  <label>
+    Which service
+    <select name="service" required>
+      <option value="Sunday 9:00 AM">Sunday 9:00 AM</option>
+      <option value="Sunday 11:00 AM">Sunday 11:00 AM</option>
+      <option value="Wednesday 7:00 PM">Wednesday 7:00 PM</option>
+    </select>
+  </label>
+  <label>
+    Kids’ ages <span>(optional)</span>
+    <input type="text" name="kids" autocomplete="off" />
+  </label>
+  <label>
+    Notes
+    <textarea name="notes" rows="3"></textarea>
+  </label>
+  <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <button class="btn btn--primary" type="submit">Send</button>
+  <p class="form__ok" hidden>
+    We’ll look for you this Sunday. If you have questions before then, call {church.phone.replace(/^\+1-/, '')}.
+  </p>
+</form>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-plan-form]');
+  form?.addEventListener('submit', (event) => {
+    if (form.getAttribute('action')) return;
+    event.preventDefault();
+    const ok = form.querySelector<HTMLElement>('.form__ok');
+    if (ok) ok.hidden = false;
+    form.reset();
+  });
+</script>
+
+<style>
+  .form {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: var(--space-8);
+  }
+
+  .meta {
+    margin-bottom: var(--space-3);
+    color: var(--ink-soft);
+  }
+
+  h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  .form__intro {
+    margin-bottom: var(--space-6);
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: var(--space-4);
+    font-weight: 600;
+  }
+
+  label span {
+    font-weight: 400;
+    color: var(--ink-soft);
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    font-weight: 400;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid var(--rule);
+    background: #fff;
+    min-height: 44px;
+  }
+
+  .hp {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .form__ok {
+    margin-top: var(--space-4);
+    color: var(--forest-deep);
+    font-weight: 600;
+  }
+</style>

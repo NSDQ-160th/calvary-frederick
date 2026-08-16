@@ -48,8 +48,8 @@ sermon:
   href: /watch
 
 routes:
-  give: false
-  visit: false
+  give: true
+  visit: true
 
 men:
   asOf: 2026-08

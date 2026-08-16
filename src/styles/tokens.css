@@ -59,8 +59,9 @@
   --page-margin: 1.5rem;
   --header-offset: 6rem;
 
-  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-display: "Oswald", "Arial Narrow", "Helvetica Neue", sans-serif;
   --font-ui: "Source Sans 3", "Source Sans Pro", "Helvetica Neue", sans-serif;
+  --font-scripture: "Newsreader", "Iowan Old Style", Georgia, serif;
 }
 
 @media (max-width: 767px) {

@@ -43,14 +43,21 @@ if (!header) {
     }
   });
 
+  const setSolid = (solid: boolean) => {
+    header.classList.toggle('is-solid', solid);
+    const logo = header.querySelector('.logo');
+    logo?.classList.toggle('logo--inverse', !solid);
+  };
+
   if (hero) {
     const sync = () => {
-      const top = hero.getBoundingClientRect().top;
       const bottom = hero.getBoundingClientRect().bottom;
-      header.classList.toggle('is-over-hero', top < 72 && bottom > 0);
+      setSolid(bottom <= 72);
     };
     sync();
     window.addEventListener('scroll', sync, { passive: true });
     window.addEventListener('resize', sync);
+  } else {
+    setSolid(true);
   }
 }

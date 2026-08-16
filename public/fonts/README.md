@@ -1,8 +1,7 @@
-Self-hosted, four files only (design budget):
+Self-hosted, four files only:
 
-- Newsreader 500 roman — SIL OFL (Google Fonts / Production Type)
-- Newsreader 400 italic — SIL OFL
-- Source Sans 3 400 — SIL OFL (Adobe)
-- Source Sans 3 600 — SIL OFL
+- Oswald 500 — display / section titles (Calvary NM template pattern)
+- Newsreader 400 italic — scripture
+- Source Sans 3 400 — body
+- Source Sans 3 600 — UI emphasis
 
-Latin subset. Do not add a 700 file; synthesize bold from 600.

@@ -1,0 +1,114 @@
+---
+import BeliefAccordion from '../components/BeliefAccordion.astro';
+import PageHero from '../components/PageHero.astro';
+import PlanVisitForm from '../components/PlanVisitForm.astro';
+import VisitSteps from '../components/VisitSteps.astro';
+import Base from '../layouts/Base.astro';
+import { church, formatServiceTime } from '../data/church';
+
+const sunday = church.services.sunday.map(formatServiceTime).join(' & ');
+const wednesday = formatServiceTime(church.services.wednesday);
+---
+
+<Base title={`Plan a Visit — ${church.name}`} current="visit">
+  <PageHero
+    eyebrow={church.name}
+    title="Plan your visit"
+    lead="We’re glad you’re here. Come any Sunday or Wednesday — we would love to meet you."
+  />
+
+  <article class="visit wrap">
+    <nav class="sub" aria-label="On this page">
+      <a href="#expect">Expect</a>
+      <a href="#kids">Kids</a>
+      <a href="#plan">Plan</a>
+      <a href="#believe">Believe</a>
+    </nav>
+
+    <section>
+      <p class="meta">When we meet</p>
+      <p>Sunday {sunday}</p>
+      <p>Wednesday {wednesday}</p>
+    </section>
+
+    <VisitSteps />
+
+    <section id="kids">
+      <p class="meta">Kids & youth</p>
+      <h2>A place for your children</h2>
+      <p>
+        Sunday: {church.services.kidsSunday}. Wednesday children’s church {church.services.kidsWednesday}.
+        Middle school meets Sunday at 9 in the youth room. High school joins the main service.
+        Midweek, middle and high school meet together for Ignite.
+      </p>
+    </section>
+
+    <PlanVisitForm />
+
+    <details class="more" id="more">
+      <summary>More about us</summary>
+      <div class="more__body">
+        <p>
+          Pastor {church.pastor.name} came to faith at the U.S. Naval Academy, later served at
+          Cornerstone Chapel in Leesburg, and began teaching in Frederick in 2006.
+        </p>
+        <BeliefAccordion />
+      </div>
+    </details>
+  </article>
+</Base>
+
+<style>
+  .visit {
+    padding: var(--space-12) 0 var(--space-16);
+    max-width: 48rem;
+    display: grid;
+    gap: var(--space-12);
+  }
+
+  .sub {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+    position: sticky;
+    top: 4.75rem;
+    background: var(--cream);
+    padding: var(--space-3) 0;
+    z-index: 5;
+  }
+
+  .sub a {
+    font-family: var(--font-display);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--forest-deep);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .meta {
+    margin-bottom: var(--space-3);
+    color: var(--ink-soft);
+  }
+
+  h2 {
+    margin: var(--space-3) 0 var(--space-4);
+  }
+
+  .more summary {
+    font-family: var(--font-display);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    min-height: 44px;
+  }
+
+  .more__body {
+    display: grid;
+    gap: var(--space-6);
+    padding-top: var(--space-6);
+  }
+</style>

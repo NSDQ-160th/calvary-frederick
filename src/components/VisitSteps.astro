@@ -1,0 +1,70 @@
+---
+import { church } from '../data/church';
+
+const steps = [
+  {
+    title: 'Arrive',
+    body: `${church.address.line}, downtown Frederick. Come a few minutes early.`,
+  },
+  {
+    title: 'Kids',
+    body: `Sunday: ${church.services.kidsSunday}. Wednesday: children’s church ${church.services.kidsWednesday}. Middle school meets Sunday at 9 in the youth room. High school joins the main service.`,
+  },
+  {
+    title: 'The service',
+    body: 'Prayer and worship, then the Word taught verse by verse, chapter by chapter.',
+  },
+  {
+    title: 'Stay after',
+    body: 'Stay for coffee and fellowship. Introduce yourself to a greeter or to Pastor David and Michelle.',
+  },
+];
+---
+
+<ol class="expect" id="expect">
+  {
+    steps.map((step, index) => (
+      <li>
+        <span class="expect__n">{String(index + 1).padStart(2, '0')}</span>
+        <h3>{step.title}</h3>
+        <p>{step.body}</p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .expect {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-8);
+    margin: var(--space-10) 0;
+  }
+
+  li {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .expect__n {
+    font-family: var(--font-display);
+    letter-spacing: 0.16em;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+  }
+
+  @media (min-width: 768px) {
+    .expect {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+    }
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+const items = [
+  {
+    heading: 'God',
+    body: 'We believe there is one living and true God, eternally existing in three persons: the Father, the Son, and the Holy Spirit, equal in power and glory; that this triune God created all, upholds all, and governs all.',
+  },
+  {
+    heading: 'Bible',
+    body: 'We believe that all the Scriptures of the Old and New Testaments are the Word of God, fully inspired and without error in the original manuscripts, and that they are the infallible rule of faith and practice.',
+  },
+  {
+    heading: 'Man',
+    body: 'We believe all people are by nature separated from God and responsible for their own sin, but that salvation, redemption, and forgiveness are freely offered to all by the grace of our Lord Jesus Christ.',
+  },
+  {
+    heading: 'The Church',
+    body: 'We believe in the universal Church, in the living spiritual body, of which Christ is the head and all regenerated persons are members.',
+  },
+];
+---
+
+<div class="beliefs" id="believe">
+  {
+    items.map((item) => (
+      <details>
+        <summary>{item.heading}</summary>
+        <p>{item.body}</p>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .beliefs {
+    display: grid;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  details {
+    background: var(--paper);
+    padding: 0 var(--space-5);
+  }
+
+  summary {
+    font-family: var(--font-display);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  p {
+    padding-bottom: var(--space-5);
+    max-width: 62ch;
+  }
+</style>

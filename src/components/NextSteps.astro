@@ -1,0 +1,126 @@
+---
+import Icon from './Icon.astro';
+import type { IconName } from './icons';
+
+const steps: { href: string; icon: IconName; label: string; text: string }[] = [
+  {
+    href: '/visit',
+    icon: 'pin',
+    label: 'Visit',
+    text: 'Plan a Sunday or Wednesday with us.',
+  },
+  {
+    href: '/watch',
+    icon: 'play',
+    label: 'Watch',
+    text: 'Hear the Word taught verse by verse.',
+  },
+  {
+    href: '/give',
+    icon: 'gift',
+    label: 'Give',
+    text: 'Offering boxes and online giving.',
+  },
+];
+---
+
+<section class="steps" aria-labelledby="steps-heading">
+  <div class="wrap">
+    <p class="meta">Get connected</p>
+    <h2 id="steps-heading">Next Steps</h2>
+    <ul>
+      {
+        steps.map((step) => (
+          <li>
+            <a href={step.href}>
+              <span class="steps__icon">
+                <Icon name={step.icon} />
+              </span>
+              <span class="steps__label">{step.label}</span>
+              <span class="steps__text">{step.text}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .steps {
+    background: var(--forest-deep);
+    color: var(--cream);
+    padding: var(--space-16) 0;
+    text-align: center;
+  }
+
+  .meta {
+    margin-bottom: var(--space-3);
+    color: rgb(246 241 232 / 0.7);
+  }
+
+  h2 {
+    margin-bottom: var(--space-12);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    min-height: 220px;
+    padding: var(--space-8) var(--space-6);
+    color: inherit;
+    text-decoration: none;
+    border: 1px solid rgb(246 241 232 / 0.18);
+    transition: background-color var(--duration-enter) var(--ease-enter),
+      border-color var(--duration-enter) var(--ease-enter);
+  }
+
+  a:hover,
+  a:focus-visible {
+    background: rgb(246 241 232 / 0.06);
+    border-color: var(--cream);
+  }
+
+  .steps__icon {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    border: 1.5px solid var(--cream);
+  }
+
+  .steps__icon :global(svg) {
+    width: 32px;
+    height: 32px;
+  }
+
+  .steps__label {
+    font-family: var(--font-display);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 1.15rem;
+  }
+
+  .steps__text {
+    font-family: var(--font-ui);
+    letter-spacing: 0;
+    text-transform: none;
+    color: rgb(246 241 232 / 0.78);
+    max-width: 16rem;
+  }
+
+  @media (min-width: 768px) {
+    ul {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

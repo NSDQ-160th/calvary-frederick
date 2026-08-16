@@ -79,7 +79,7 @@ Node 22+. Preview deploys will live on `*.pages.dev` until `www` is attached aft
 - [x] PR 2 — header, footer, type, icons, 404
 - [x] PR 3 — Watch (one Subsplash embed)
 - [x] PR 4 — Home
-- [ ] PR 5 — Give + Visit + forms
+- [x] PR 5 — Give + Visit + forms (presentation pass)
 - [ ] PR 6 — headers + cutover doc
 - [ ] PR 7 — SEO + redirects
 - [ ] PR 8 — a11y / performance / launch freeze

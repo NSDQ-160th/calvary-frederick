@@ -16,7 +16,7 @@ const links = [
 
 <header class="header" data-header>
   <div class="header__bar wrap">
-    <Logo />
+    <Logo inverse />
     <nav class="header__nav" aria-label="Primary">
       {
         links.map((link) => (
@@ -26,7 +26,7 @@ const links = [
         ))
       }
     </nav>
-    <a class="btn btn--primary header__cta" href="/visit#plan">Plan a Visit</a>
+    <a class="btn btn--primary header__cta" href="/visit#plan">Plan Your Visit</a>
     <button
       class="header__toggle"
       type="button"
@@ -48,7 +48,7 @@ const links = [
           </a>
         ))
       }
-      <a class="btn btn--primary" href="/visit#plan">Plan a Visit</a>
+      <a class="btn btn--primary" href="/visit#plan">Plan Your Visit</a>
     </nav>
   </div>
 </header>
@@ -59,23 +59,31 @@ const links = [
 
 <style>
   .header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 40;
-    background: var(--cream);
-    color: var(--ink);
-    border-bottom: 1px solid var(--rule);
+    background: transparent;
+    color: var(--cream);
+    border-bottom: 1px solid transparent;
     transition: background-color var(--duration-enter) var(--ease-enter),
       color var(--duration-enter) var(--ease-enter),
       border-color var(--duration-enter) var(--ease-enter),
       backdrop-filter var(--duration-enter) var(--ease-enter);
   }
 
+  .header.is-solid {
+    background: var(--cream);
+    color: var(--ink);
+    border-bottom-color: var(--rule);
+  }
+
   .header__bar {
     display: flex;
     align-items: center;
     gap: var(--space-6);
-    min-height: 4.5rem;
+    min-height: 4.75rem;
   }
 
   .header__nav {
@@ -87,18 +95,34 @@ const links = [
 
   .header__nav a {
     text-decoration: none;
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.82rem;
     min-height: 44px;
     display: inline-flex;
     align-items: center;
   }
 
   .header__nav a[aria-current='page'] {
-    box-shadow: inset 0 -2px 0 var(--forest);
+    box-shadow: inset 0 -2px 0 currentColor;
   }
 
   .header__cta {
     display: none;
+  }
+
+  .header.is-solid :global(.btn--primary) {
+    background: var(--forest);
+    color: var(--cream);
+    border-color: var(--forest);
+  }
+
+  .header:not(.is-solid) :global(.btn--primary) {
+    background: var(--cream);
+    color: var(--forest-deep);
+    border-color: var(--cream);
   }
 
   .header__toggle {
@@ -146,29 +170,15 @@ const links = [
   }
 
   .sheet__nav a:not(.btn) {
-    font-size: 1.375rem;
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
     text-decoration: none;
     min-height: 44px;
     display: inline-flex;
     align-items: center;
-  }
-
-  .header.is-over-hero {
-    background: rgb(42 67 51 / 0.8);
-    color: var(--cream);
-    border-bottom-color: transparent;
-    backdrop-filter: blur(12px);
-  }
-
-  .header.is-over-hero .header__nav a[aria-current='page'] {
-    box-shadow: inset 0 -2px 0 var(--cream);
-  }
-
-  .header.is-over-hero .btn--primary {
-    background: var(--cream);
-    color: var(--forest-deep);
-    border-color: var(--cream);
   }
 
   @media (min-width: 768px) {
