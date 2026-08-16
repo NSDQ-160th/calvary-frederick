@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import PodcastLinks from '../components/PodcastLinks.astro';
+import SubsplashEmbed from '../components/SubsplashEmbed.astro';
+import { church, collectionUrl } from '../data/church';
+
+const chips = [
+  { id: church.media.sunday, label: 'Sunday' },
+  { id: church.media.midweek, label: 'Midweek' },
+  { id: church.media.archive, label: 'Archive' },
+  { id: church.media.radio, label: 'Radio' },
+];
+
+const title = `Watch — ${church.name}`;
+const description =
+  'Watch Calvary Chapel Frederick teach the Bible verse by verse. Sunday, midweek, and the archive on Subsplash.';
+---
+
+<Base title={title} description={description} current="watch">
+  <article class="watch wrap enter">
+    <p class="meta">{church.name}</p>
+    <h1>Watch</h1>
+    <p class="lead">Sunday, midweek, and the archive — taught verse by verse.</p>
+
+    <nav class="chips" aria-label="Collections">
+      {
+        chips.map((chip) => (
+          <a href={collectionUrl(chip.id)} target="_blank" rel="noreferrer">
+            {chip.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <SubsplashEmbed path={church.media.messagesEmbed} />
+
+    <p class="caption-help">Turn on captions in the player.</p>
+
+    <p class="live" id="app">
+      Watch with us live on
+      <a href={church.media.youtube} target="_blank" rel="noreferrer">YouTube</a>
+      or in the
+      <a href={church.media.app} target="_blank" rel="noreferrer">church app</a>.
+    </p>
+
+    <PodcastLinks />
+  </article>
+</Base>
+
+<style>
+  .watch {
+    padding: var(--space-16) 0;
+    max-width: 56rem;
+  }
+
+  .meta {
+    margin-bottom: var(--space-4);
+    color: var(--ink-soft);
+  }
+
+  h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .lead {
+    margin-bottom: var(--space-8);
+    max-width: 36rem;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+
+  .chips a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 1rem;
+    border: 1.5px solid var(--forest);
+    color: var(--forest);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .chips a:hover,
+  .chips a:focus-visible {
+    background: var(--forest);
+    color: var(--cream);
+  }
+
+  .caption-help {
+    margin-top: var(--space-4);
+    color: var(--ink-soft);
+    font-size: var(--step--1);
+    line-height: var(--step--1-lh);
+  }
+
+  .live {
+    margin: var(--space-10) 0;
+  }
+
+  .live a {
+    color: var(--forest-deep);
+  }
+</style>

@@ -12,7 +12,8 @@ import Logo from './Logo.astro';
 
 const sunday = church.services.sunday.map(formatServiceTime).join(' & ');
 const wednesday = formatServiceTime(church.services.wednesday);
-const appHref = Astro.url.pathname === '/' ? '#app' : '/#app';
+const onAppPage = Astro.url.pathname === '/' || Astro.url.pathname === '/watch';
+const appHref = onAppPage ? '#app' : '/#app';
 const year = new Date().getFullYear();
 ---
 

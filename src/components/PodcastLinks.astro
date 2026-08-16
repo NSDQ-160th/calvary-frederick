@@ -1,0 +1,60 @@
+---
+import { church } from '../data/church';
+
+const items = [
+  { id: church.podcasts.sunday, label: 'Sunday' },
+  { id: church.podcasts.wednesday, label: 'Wednesday' },
+  { id: church.podcasts.radio, label: 'Truth with Grace' },
+];
+---
+
+<nav class="podcasts" aria-label="Podcasts">
+  <p class="meta">Listen on Apple Podcasts</p>
+  <ul>
+    {
+      items.map((item) => (
+        <li>
+          <a
+            href={`https://podcasts.apple.com/us/podcast/id${item.id}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .podcasts .meta {
+    margin-bottom: var(--space-3);
+    color: var(--ink-soft);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 0.9rem;
+    border: 1.5px solid var(--forest);
+    color: var(--forest);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover,
+  a:focus-visible {
+    background: var(--forest);
+    color: var(--cream);
+  }
+</style>

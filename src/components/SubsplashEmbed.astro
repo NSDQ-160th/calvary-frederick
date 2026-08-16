@@ -1,0 +1,62 @@
+---
+interface Props {
+  path: string;
+  frameId?: string;
+}
+
+const { path, frameId = 'subsplash-embed-8shrrvh' } = Astro.props;
+const fallbackHref = `https://subsplash.com/${path.split('?')[0].replace('/lb/', '/media/')}`;
+---
+
+<div class="embed">
+  <div
+    id={frameId}
+    class="embed__frame"
+    role="region"
+    aria-label="Sermon library"
+  >
+  </div>
+  <p class="embed__fallback">
+    <a href={fallbackHref} target="_blank" rel="noreferrer">Open this library on Subsplash</a>
+  </p>
+</div>
+
+<script is:inline define:vars={{ path, frameId }}>
+  (function () {
+    var target = document.getElementById(frameId);
+    if (!target || !target.parentElement) return;
+    var script = document.createElement('script');
+    script.src =
+      'https://dashboard.static.subsplash.com/production/web-client/external/embed-1.1.0.js';
+    script.onload = function () {
+      if (typeof window.subsplashEmbed === 'function') {
+        window.subsplashEmbed(path, 'https://subsplash.com/', frameId);
+      }
+    };
+    target.parentElement.insertBefore(script, target);
+  })();
+</script>
+
+<style>
+  .embed {
+    width: 100%;
+  }
+
+  .embed__frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--forest-deep);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .embed__fallback {
+    margin-top: var(--space-3);
+    font-size: var(--step--1);
+    line-height: var(--step--1-lh);
+  }
+
+  .embed__fallback a {
+    color: var(--forest-deep);
+  }
+</style>
