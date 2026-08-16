@@ -76,7 +76,7 @@ Node 22+. Preview deploys will live on `*.pages.dev` until `www` is attached aft
 ## PR status
 
 - [x] PR 1 — scaffold, tokens, `church.yaml`, volunteer README
-- [ ] PR 2 — header, footer, type, icons, 404
+- [x] PR 2 — header, footer, type, icons, 404
 - [ ] PR 3 — Watch (one Subsplash embed)
 - [ ] PR 4 — Home
 - [ ] PR 5 — Give + Visit + forms

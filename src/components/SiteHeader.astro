@@ -1,0 +1,185 @@
+---
+import Logo from './Logo.astro';
+
+interface Props {
+  current?: 'home' | 'visit' | 'watch' | 'give';
+}
+
+const { current } = Astro.props;
+
+const links = [
+  { href: '/visit', id: 'visit', label: 'Visit' },
+  { href: '/watch', id: 'watch', label: 'Watch' },
+  { href: '/give', id: 'give', label: 'Give' },
+] as const;
+---
+
+<header class="header" data-header>
+  <div class="header__bar wrap">
+    <Logo />
+    <nav class="header__nav" aria-label="Primary">
+      {
+        links.map((link) => (
+          <a href={link.href} aria-current={current === link.id ? 'page' : undefined}>
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+    <a class="btn btn--primary header__cta" href="/visit#plan">Plan a Visit</a>
+    <button
+      class="header__toggle"
+      type="button"
+      data-menu-toggle
+      aria-expanded="false"
+      aria-controls="site-menu"
+    >
+      <span class="header__bun"></span>
+      <span class="header__bun"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+  </div>
+  <div class="sheet" id="site-menu" data-menu hidden>
+    <nav class="sheet__nav" aria-label="Mobile">
+      {
+        links.map((link) => (
+          <a href={link.href} aria-current={current === link.id ? 'page' : undefined}>
+            {link.label}
+          </a>
+        ))
+      }
+      <a class="btn btn--primary" href="/visit#plan">Plan a Visit</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  import '../scripts/header.ts';
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--cream);
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    transition: background-color var(--duration-enter) var(--ease-enter),
+      color var(--duration-enter) var(--ease-enter),
+      border-color var(--duration-enter) var(--ease-enter),
+      backdrop-filter var(--duration-enter) var(--ease-enter);
+  }
+
+  .header__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    min-height: 4.5rem;
+  }
+
+  .header__nav {
+    display: none;
+    align-items: center;
+    gap: var(--space-6);
+    margin-left: auto;
+  }
+
+  .header__nav a {
+    text-decoration: none;
+    font-weight: 600;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .header__nav a[aria-current='page'] {
+    box-shadow: inset 0 -2px 0 var(--forest);
+  }
+
+  .header__cta {
+    display: none;
+  }
+
+  .header__toggle {
+    margin-left: auto;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .header__bun {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: currentColor;
+    border-radius: 1px;
+  }
+
+  .sheet {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: var(--cream);
+    color: var(--ink);
+    padding: 6rem var(--page-margin) var(--space-10);
+  }
+
+  .sheet[hidden] {
+    display: none;
+  }
+
+  .sheet__nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    max-width: 24rem;
+  }
+
+  .sheet__nav a:not(.btn) {
+    font-size: 1.375rem;
+    font-weight: 600;
+    text-decoration: none;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .header.is-over-hero {
+    background: rgb(42 67 51 / 0.8);
+    color: var(--cream);
+    border-bottom-color: transparent;
+    backdrop-filter: blur(12px);
+  }
+
+  .header.is-over-hero .header__nav a[aria-current='page'] {
+    box-shadow: inset 0 -2px 0 var(--cream);
+  }
+
+  .header.is-over-hero .btn--primary {
+    background: var(--cream);
+    color: var(--forest-deep);
+    border-color: var(--cream);
+  }
+
+  @media (min-width: 768px) {
+    .header__nav,
+    .header__cta {
+      display: inline-flex;
+    }
+
+    .header__toggle,
+    .sheet {
+      display: none;
+    }
+  }
+</style>

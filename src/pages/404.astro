@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import { church } from '../data/church';
+---
+
+<Base title={`Page not found — ${church.name}`}>
+  <section class="missing wrap enter">
+    <p class="meta">{church.name}</p>
+    <h1>We cannot find that page.</h1>
+    <p class="lead">
+      It may have moved when we rebuilt the site. Try home, plan a visit, or a recent message.
+    </p>
+    <p class="missing__links">
+      <a class="btn btn--primary" href="/">Home</a>
+      <a class="btn btn--secondary" href="/visit">Visit</a>
+      <a class="btn btn--secondary" href="/watch">Watch</a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .missing {
+    padding: var(--space-16) 0;
+    max-width: 40rem;
+  }
+
+  .meta {
+    margin-bottom: var(--space-4);
+    color: var(--ink-soft);
+  }
+
+  h1 {
+    margin-bottom: var(--space-6);
+  }
+
+  .lead {
+    margin-bottom: var(--space-8);
+    max-width: 36rem;
+  }
+
+  .missing__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+</style>

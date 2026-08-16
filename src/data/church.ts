@@ -68,6 +68,10 @@ export type ChurchSpec = {
     app: string;
     youtube: string;
   };
+  social: {
+    instagram: string;
+    facebook: string;
+  };
   podcasts: {
     sunday: string;
     wednesday: string;
@@ -95,4 +99,16 @@ export function formatServiceTime(hhmm: string): string {
   const suffix = h >= 12 ? 'PM' : 'AM';
   const hour = h % 12 || 12;
   return m === 0 ? `${hour}:00 ${suffix}` : `${hour}:${String(m).padStart(2, '0')} ${suffix}`;
+}
+
+export function formatPhone(): string {
+  return church.phone.replace(/^\+1-/, '');
+}
+
+export function telHref(): string {
+  return `tel:${church.phone.replace(/[^\d+]/g, '')}`;
+}
+
+export function collectionUrl(listId: string): string {
+  return `https://subsplash.com/${church.media.org}/media/li/${listId}`;
 }

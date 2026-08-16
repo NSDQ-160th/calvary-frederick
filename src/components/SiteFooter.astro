@@ -1,0 +1,166 @@
+---
+import {
+  church,
+  collectionUrl,
+  formatPhone,
+  formatServiceTime,
+  mapsUrl,
+  telHref,
+} from '../data/church';
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+
+const sunday = church.services.sunday.map(formatServiceTime).join(' & ');
+const wednesday = formatServiceTime(church.services.wednesday);
+const appHref = Astro.url.pathname === '/' ? '#app' : '/#app';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap footer__brand">
+    <Logo inverse />
+    <p class="footer__tag">{church.tagline}</p>
+  </div>
+  <div class="wrap footer__grid">
+    <div>
+      <h2 class="meta footer__h">Visit</h2>
+      <ul>
+        <li>
+          <Icon name="clock" />
+          <span>Sunday {sunday}</span>
+        </li>
+        <li>
+          <Icon name="clock" />
+          <span>Wednesday {wednesday}</span>
+        </li>
+        <li>
+          <Icon name="pin" />
+          <a href={mapsUrl()} target="_blank" rel="noreferrer">
+            {church.address.line}<br />
+            {church.address.city}, {church.address.region} {church.address.postal}
+          </a>
+        </li>
+        <li>
+          <a href={telHref()}>{formatPhone()}</a>
+        </li>
+        <li>
+          <a href={`mailto:${church.email}`}>{church.email}</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="meta footer__h">Watch</h2>
+      <ul>
+        <li>
+          <Icon name="play" />
+          <a href="/watch">Watch a Message</a>
+        </li>
+        <li>
+          <Icon name="book" />
+          <a href={collectionUrl(church.media.sunday)} target="_blank" rel="noreferrer">Sunday teaching</a>
+        </li>
+        <li>
+          <Icon name="headphones" />
+          <a href={collectionUrl(church.media.radio)} target="_blank" rel="noreferrer">Truth with Grace</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="meta footer__h">Connect</h2>
+      <ul>
+        <li>
+          <a href={appHref}>Church app</a>
+        </li>
+        <li>
+          <a href={church.social.instagram} target="_blank" rel="noreferrer">Instagram</a>
+        </li>
+        <li>
+          <a href={church.social.facebook} target="_blank" rel="noreferrer">Facebook</a>
+        </li>
+        <li>
+          <a href={church.media.youtube} target="_blank" rel="noreferrer">YouTube</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="meta footer__h">Give</h2>
+      <ul>
+        <li>
+          <Icon name="gift" />
+          <a href="/give">Give</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <p class="wrap footer__legal">
+    © {year} {church.name} · {church.tagline}
+  </p>
+</footer>
+
+<style>
+  .footer {
+    background: var(--forest-deep);
+    color: var(--cream);
+    padding: var(--space-16) 0 var(--space-10);
+    margin-top: auto;
+  }
+
+  .footer__brand {
+    margin-bottom: var(--space-10);
+  }
+
+  .footer__grid {
+    display: grid;
+    gap: var(--space-10);
+  }
+
+  .footer__tag {
+    margin-top: var(--space-4);
+    max-width: 20rem;
+    color: rgb(246 241 232 / 0.82);
+  }
+
+  .footer__h {
+    margin-bottom: var(--space-4);
+    color: var(--gold-bright);
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+  }
+
+  a {
+    color: var(--cream);
+    text-decoration: none;
+    min-height: 24px;
+  }
+
+  a:hover,
+  a:focus-visible {
+    text-decoration: underline;
+  }
+
+  .footer__legal {
+    margin-top: var(--space-12);
+    font-size: var(--step--1);
+    line-height: var(--step--1-lh);
+    color: rgb(246 241 232 / 0.7);
+  }
+
+  @media (min-width: 768px) {
+    .footer__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>
