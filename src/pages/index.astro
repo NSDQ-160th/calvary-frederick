@@ -1,0 +1,98 @@
+---
+import '../styles/tokens.css';
+import '../styles/reset.css';
+import '../styles/motion.css';
+import { church, formatServiceTime, mapsUrl } from '../data/church';
+
+const sunday = church.services.sunday.map(formatServiceTime).join(' & ');
+const wednesday = formatServiceTime(church.services.wednesday);
+const title = `${church.name}`;
+const description =
+  'Calvary Chapel Frederick teaches the Bible verse by verse in downtown Frederick, MD. Sunday 9 & 11 AM, Wednesday 7 PM. Children’s ministry on Sunday and Wednesday.';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <main id="main" class="shell enter">
+      <p class="kicker">{church.name}</p>
+      <h1>{church.tagline}</h1>
+      <p class="lead">A Calvary Chapel in downtown Frederick.</p>
+      <p>
+        Sunday {sunday} · Wednesday {wednesday}
+      </p>
+      <p>
+        Kids: Sunday {church.services.kidsSunday}; Wednesday children’s church {church.services.kidsWednesday}.
+      </p>
+      <p>
+        <a href={mapsUrl()}>{church.address.line}, {church.address.city}, {church.address.region} {church.address.postal}</a>
+      </p>
+      <p class="note">
+        Scaffold only (PR 1). Visit, Watch, and Give pages land in later PRs. Giving, sermons, and the app stay on Subsplash.
+      </p>
+    </main>
+  </body>
+</html>
+
+<style>
+  .skip {
+    position: absolute;
+    left: var(--space-4);
+    top: -3rem;
+    padding: var(--space-2) var(--space-3);
+    background: var(--forest);
+    color: var(--cream);
+    text-decoration: none;
+  }
+
+  .skip:focus {
+    top: var(--space-4);
+  }
+
+  .shell {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: var(--space-16) var(--page-margin);
+  }
+
+  .kicker {
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: none;
+    color: var(--ink-soft);
+    margin-bottom: var(--space-4);
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: var(--step-4);
+    font-weight: 500;
+    line-height: var(--step-4-lh);
+    margin-bottom: var(--space-4);
+  }
+
+  .lead {
+    font-size: var(--step-1);
+    line-height: var(--step-1-lh);
+    margin-bottom: var(--space-8);
+  }
+
+  .note {
+    margin-top: var(--space-10);
+    color: var(--ink-soft);
+    font-size: var(--step--1);
+    line-height: var(--step--1-lh);
+  }
+
+  a {
+    color: var(--forest-deep);
+  }
+</style>

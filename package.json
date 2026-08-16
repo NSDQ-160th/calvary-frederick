@@ -1,0 +1,23 @@
+{
+  "name": "calvary-frederick",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Calvary Chapel Frederick marketing site — Home, Visit, Watch. Subsplash remains giving/media/app.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.13.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-yaml": "^4.1.2",
+    "typescript": "^5.9.2"
+  }
+}

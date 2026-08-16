@@ -1,0 +1,87 @@
+# src/data/church.yaml  — volunteer-editable
+# How to update: see the README in the repo root (GitHub web editor).
+
+name: Calvary Chapel Frederick
+tagline: Simply Teaching The Word Simply
+vision: >-
+  A community where you will encounter the love of Jesus,
+  be equipped for life in Jesus, and engage a lost world with Jesus.
+
+address:
+  line: 244A S Jefferson St
+  city: Frederick
+  region: MD
+  postal: "21701"
+  mapsQuery: "244A S Jefferson St, Frederick, MD 21701"
+
+phone: "+1-301-663-4485"
+email: info@calvaryfrederick.com
+emails:
+  youth: youth@calvaryfrederick.com
+  women: women@calvaryfrederick.com
+  men: men@calvaryfrederick.com
+
+services:
+  sunday: ["09:00", "11:00"]
+  wednesday: "19:00"
+  kidsSunday: infants through 5th grade
+  kidsWednesday: ages 3–11
+
+youth:
+  sunday: Middle school at 9:00, youth room
+  wednesday: Middle and High School, 19:00, Ignite
+  highSchoolSunday: Attends main service
+
+pastor:
+  name: David Ochoa
+  spouse: Michelle
+
+bulletin:
+  file: /files/Bulletin-08-16-26-pdf.pdf
+  label: This week
+
+sermon:
+  series: Hebrews
+  title: ""
+  speaker: Pastor David Ochoa
+  image: /images/sermon-fallback.jpg
+  href: /watch
+
+men:
+  asOf: 2026-08
+  blurb: >-
+    2nd and 4th Thursday of the month at either 10am or 7pm,
+    inductive study on the Gospel of Mark.
+
+giving:
+  platePassed: false
+  boxes: Sanctuary offering boxes
+  subsplashEmbed: https://wallet.subsplash.com/ui/embed/ZZ5DWR
+  fees:
+    card: 2.3% + $0.30
+    ach: 1.0% + $0.30
+    verifiedOn: 2026-08-16
+
+media:
+  org: "+8361"
+  messagesEmbed: "+8361/lb/li/+8shrrvh?embed&branding"
+  sunday: "+gymzjvw"
+  midweek: "+w6wz2sw"
+  radio: "+hb4hczq"
+  archive: "+bd45vsp"
+  app: https://get.theapp.co/8361/
+  youtube: https://www.youtube.com/channel/UCZG6R1UGPL4Eo07ghop7gJA
+
+podcasts:
+  sunday: "212993025"
+  wednesday: "389963244"
+  radio: "1378653159"
+
+flags:
+  israel2027: false
+  vbs2026: false
+
+live:
+  url: ""
+  start: null
+  end: null

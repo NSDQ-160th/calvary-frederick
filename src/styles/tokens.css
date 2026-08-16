@@ -1,0 +1,82 @@
+/* Proposed brand tokens — not sampled from dove+logo+inverted.png.
+   Forest is a proposal for brand-lock. Gold type on cream is not AA. */
+
+:root {
+  /* Core — proposed */
+  --forest: #3b5d46;
+  --forest-deep: #2a4333;
+  --cream: #f6f1e8;
+  --paper: #fffcf7;
+  --ink: #1c1a17;
+  --ink-soft: #5c574f;
+
+  /* Place */
+  --brick: #8e3d32;
+  --gold: #c4a36a;
+  --gold-bright: #edc482;
+
+  /* System */
+  --rule: #e3d9c8;
+  --focus: #2a4333;
+  --live: #b42318; /* reserved; unused in v1 */
+
+  /* Semantic */
+  --bg: var(--cream);
+  --bg-inverse: var(--forest-deep);
+  --text: var(--ink);
+  --text-inverse: var(--cream);
+  --action: var(--forest);
+  --action-hover: var(--forest-deep);
+
+  /* Type scale — desktop */
+  --step-4: 4rem;
+  --step-4-lh: 4.25rem;
+  --step-3: 2.5rem;
+  --step-3-lh: 2.875rem;
+  --step-2: 1.75rem;
+  --step-2-lh: 2.125rem;
+  --step-1: 1.375rem;
+  --step-1-lh: 2rem;
+  --step-0: 1.125rem;
+  --step-0-lh: 1.875rem;
+  --step--1: 0.875rem;
+  --step--1-lh: 1.25rem;
+
+  /* Space: 4 → 96 */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 6rem;
+
+  --page-max: 75rem;
+  --gutter: 1.5rem;
+  --page-margin: 1.5rem;
+  --header-offset: 6rem;
+
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-ui: "Source Sans 3", "Source Sans Pro", "Helvetica Neue", sans-serif;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --step-4: 2.25rem;
+    --step-4-lh: 2.5rem;
+    --step-3: 1.75rem;
+    --step-3-lh: 2.125rem;
+    --step-2: 1.375rem;
+    --step-2-lh: 1.75rem;
+    --step-1: 1.125rem;
+    --step-1-lh: 1.75rem;
+    --step-0: 1.0625rem;
+    --step-0-lh: 1.75rem;
+    --step--1: 0.8125rem;
+    --step--1-lh: 1.25rem;
+    --page-margin: 1rem;
+  }
+}
