@@ -48,6 +48,10 @@ flags:
 
 Times are 24-hour (`19:00` = 7:00 PM).
 
+### Hero video
+
+Replace [`public/videos/hero.mp4`](public/videos/hero.mp4) with any MP4. Or set `hero.video` in `church.yaml`. Leave `hero.video` empty to use the still only.
+
 ### What you do *not* edit here
 
 | Job | Where |

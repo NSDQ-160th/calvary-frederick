@@ -33,6 +33,10 @@ export type ChurchSpec = {
     name: string;
     spouse: string;
   };
+  hero: {
+    video: string;
+    poster: string;
+  };
   bulletin: {
     file: string;
     label: string;

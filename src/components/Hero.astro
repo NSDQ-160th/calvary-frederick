@@ -1,11 +1,31 @@
 ---
 import { church } from '../data/church';
+
+const videoSrc = church.hero.video.trim();
+const poster = church.hero.poster;
 ---
 
 <section class="hero" data-hero>
   <div class="hero__media" aria-hidden="true">
+    {
+      videoSrc ? (
+        <video
+          class="hero__video"
+          data-hero-video
+          poster={poster}
+          muted
+          loop
+          playsinline
+          autoplay
+          preload="metadata"
+        >
+          <source src={videoSrc} type="video/mp4" />
+        </video>
+      ) : null
+    }
     <img
-      src="/images/hero-frederick.jpg"
+      class:list={['hero__poster', { 'hero__poster--only': !videoSrc }]}
+      src={poster}
       alt=""
       width="2000"
       height="1500"
@@ -25,6 +45,30 @@ import { church } from '../data/church';
   </a>
 </section>
 
+<script>
+  const video = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+  if (video) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const apply = () => {
+      if (reduce.matches) {
+        video.pause();
+        video.classList.add('is-paused');
+      } else {
+        video.classList.remove('is-paused');
+        void video.play().catch(() => {
+          /* autoplay blocked — poster remains visible */
+        });
+      }
+    };
+    apply();
+    reduce.addEventListener('change', apply);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) video.pause();
+      else apply();
+    });
+  }
+</script>
+
 <style>
   .hero {
     position: relative;
@@ -40,27 +84,44 @@ import { church } from '../data/church';
     position: absolute;
     inset: 0;
     overflow: hidden;
+    background: var(--forest-deep);
   }
 
-  .hero__media img {
-    width: 112%;
-    height: 112%;
+  .hero__video,
+  .hero__poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center 40%;
-    animation: ken 28s var(--ease-enter) infinite alternate;
+  }
+
+  .hero__video {
+    z-index: 1;
+  }
+
+  .hero__video.is-paused {
+    visibility: hidden;
+  }
+
+  .hero__poster {
+    z-index: 0;
   }
 
   .hero__media::after {
     content: "";
     position: absolute;
     inset: 0;
+    z-index: 2;
     background:
       linear-gradient(180deg, rgb(28 26 23 / 0.35) 0%, rgb(42 67 51 / 0.45) 45%, rgb(28 26 23 / 0.72) 100%);
+    pointer-events: none;
   }
 
   .hero__inner {
     position: relative;
-    z-index: 1;
+    z-index: 3;
     text-align: center;
     padding: 8rem 0 6rem;
   }
@@ -103,7 +164,7 @@ import { church } from '../data/church';
     position: absolute;
     bottom: 1.6rem;
     left: 50%;
-    z-index: 1;
+    z-index: 3;
     width: 28px;
     height: 44px;
     transform: translateX(-50%);
@@ -120,15 +181,6 @@ import { church } from '../data/church';
     animation: bounce 1.8s var(--ease-enter) infinite;
   }
 
-  @keyframes ken {
-    from {
-      transform: scale(1) translate(0, 0);
-    }
-    to {
-      transform: scale(1.08) translate(-3%, -2%);
-    }
-  }
-
   @keyframes bounce {
     0%,
     100% {
@@ -142,7 +194,10 @@ import { church } from '../data/church';
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero__media img,
+    .hero__video {
+      visibility: hidden;
+    }
+
     .hero__scroll span {
       animation: none;
     }
