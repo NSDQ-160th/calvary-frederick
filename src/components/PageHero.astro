@@ -3,14 +3,15 @@ interface Props {
   eyebrow?: string;
   title: string;
   lead?: string;
+  image?: string;
 }
 
-const { eyebrow, title, lead } = Astro.props;
+const { eyebrow, title, lead, image = '/images/hero-frederick.jpg' } = Astro.props;
 ---
 
 <header class="page-hero" data-hero>
   <div class="page-hero__media" aria-hidden="true">
-    <img src="/images/hero-frederick.jpg" alt="" width="2000" height="1500" />
+    <img src={image} alt="" width="2000" height="1500" />
   </div>
   <div class="page-hero__inner wrap">
     {eyebrow && <p class="meta">{eyebrow}</p>}

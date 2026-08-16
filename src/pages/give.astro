@@ -2,46 +2,65 @@
 import PageHero from '../components/PageHero.astro';
 import Base from '../layouts/Base.astro';
 import { church } from '../data/church';
+import { breadcrumbJsonLd } from '../data/schema';
 ---
 
-<Base title={`Give — ${church.name}`} current="give">
-  <PageHero eyebrow={church.name} title="Give" lead="We do not pass a plate. Giving is worship, between you and the Lord." />
+<Base
+  title={`Give — Calvary Chapel Frederick`}
+  description="Give to Calvary Chapel Frederick. No plate is passed. Offering boxes in the sanctuary, or give online. Downtown Frederick, MD."
+  current="give"
+  jsonLd={breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Give', path: '/give' },
+  ])}
+>
+  <PageHero
+    eyebrow={church.name}
+    title="Give"
+    lead="We do not pass a plate. Giving is worship, between you and the Lord."
+    image="/images/ministries/serve.jpg"
+  />
 
   <article class="give wrap">
-    <p class="scripture">
-      Each one must give as he has decided in his heart, not reluctantly or under compulsion, for
-      God loves a cheerful giver. — 2 Corinthians 9:7
-    </p>
-    <p>
-      Jesus taught us to give in secret (Matthew 6:3–4). Offering boxes are in the sanctuary. You
-      may also give online here, or by bill-pay and check to {church.address.line}, {church.address.city},
-      {church.address.region} {church.address.postal}, if you want to avoid card fees.
-    </p>
-    <p class="fees">
-      Published online fees (re-verify at launch): card {church.giving.fees.card}; ACH {church.giving.fees.ach}.
-    </p>
-    <iframe
-      title="Give to Calvary Chapel Frederick"
-      src={church.giving.subsplashEmbed}
-      width="100%"
-      style="border:0;overflow:hidden;height:min(630px,80vh)"
-      loading="eager"
-    ></iframe>
-    <p>
-      <a href={church.giving.subsplashEmbed} target="_blank" rel="noreferrer">Open giving on Subsplash</a>
-    </p>
+    <div>
+      <p class="scripture">
+        Each one must give as he has decided in his heart, not reluctantly or under compulsion, for
+        God loves a cheerful giver. — 2 Corinthians 9:7
+      </p>
+      <p>
+        Jesus taught us to give in secret (Matthew 6:3–4). Offering boxes are in the sanctuary. You
+        may also give online here, or by bill-pay and check to {church.address.line}, {church.address.city},
+        {church.address.region} {church.address.postal}, if you want to avoid card fees.
+      </p>
+      <p class="fees">
+        Published online fees (re-verify at launch): card {church.giving.fees.card}; ACH {church.giving.fees.ach}.
+      </p>
+    </div>
+    <div>
+      <iframe
+        title="Give to Calvary Chapel Frederick"
+        src={church.giving.subsplashEmbed}
+        width="100%"
+        style="border:0;overflow:hidden;height:min(630px,80vh)"
+        loading="eager"
+      ></iframe>
+      <p>
+        <a href={church.giving.subsplashEmbed} target="_blank" rel="noreferrer">Open giving on Subsplash</a>
+      </p>
+    </div>
   </article>
 </Base>
 
 <style>
   .give {
-    padding: var(--space-12) 0 var(--space-16);
-    max-width: 42rem;
+    padding: var(--space-16) 0;
     display: grid;
-    gap: var(--space-6);
+    gap: var(--space-10);
+    align-items: start;
   }
 
   .fees {
+    margin-top: var(--space-6);
     color: var(--ink-soft);
     font-size: var(--step--1);
   }
@@ -49,5 +68,16 @@ import { church } from '../data/church';
   a {
     color: var(--forest-deep);
     font-weight: 600;
+  }
+
+  iframe {
+    background: var(--paper);
+  }
+
+  @media (min-width: 900px) {
+    .give {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+    }
   }
 </style>

@@ -86,6 +86,7 @@ Node 22+. Preview deploys will live on `*.pages.dev` until `www` is attached aft
 - [x] PR 4 — Home
 - [x] PR 5 — Give + Visit + forms (presentation pass)
 - [x] Visit rebuild — two-column plan-a-visit + visual kids/ministries + FAQ
+- [x] Watch visual pass — cinema player, collection tiles, listen band
 - [ ] PR 6 — headers + cutover doc
 - [x] PR 7 (started) — titles, schema, FAQ, sitemap, robots, llms.txt; 301s still open
 - [ ] PR 8 — a11y / performance / launch freeze
