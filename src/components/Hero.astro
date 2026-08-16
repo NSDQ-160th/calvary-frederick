@@ -12,25 +12,18 @@ const poster = church.hero.poster;
         <video
           class="hero__video"
           data-hero-video
-          poster={poster}
           muted
           loop
           playsinline
           autoplay
-          preload="metadata"
+          preload="auto"
         >
           <source src={videoSrc} type="video/mp4" />
         </video>
-      ) : null
+      ) : (
+        <img src={poster} alt="" width="2000" height="1500" fetchpriority="high" />
+      )
     }
-    <img
-      class:list={['hero__poster', { 'hero__poster--only': !videoSrc }]}
-      src={poster}
-      alt=""
-      width="2000"
-      height="1500"
-      fetchpriority="high"
-    />
   </div>
   <div class="hero__inner wrap">
     <p class="meta">{church.name}</p>
@@ -56,7 +49,7 @@ const poster = church.hero.poster;
       } else {
         video.classList.remove('is-paused');
         void video.play().catch(() => {
-          /* autoplay blocked — poster remains visible */
+          /* autoplay blocked — video stays on first frame */
         });
       }
     };
@@ -88,7 +81,7 @@ const poster = church.hero.poster;
   }
 
   .hero__video,
-  .hero__poster {
+  .hero__media img {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -99,14 +92,7 @@ const poster = church.hero.poster;
 
   .hero__video {
     z-index: 1;
-  }
-
-  .hero__video.is-paused {
-    visibility: hidden;
-  }
-
-  .hero__poster {
-    z-index: 0;
+    background: var(--forest-deep);
   }
 
   .hero__media::after {
@@ -194,10 +180,6 @@ const poster = church.hero.poster;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero__video {
-      visibility: hidden;
-    }
-
     .hero__scroll span {
       animation: none;
     }

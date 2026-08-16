@@ -43,6 +43,33 @@ const wednesday = formatServiceTime(church.services.wednesday);
       </p>
     </section>
 
+    <section id="ministries">
+      <p class="meta">Ministries</p>
+      <h2>Get connected</h2>
+      <p>Women — {church.emails.women}</p>
+      <p>Men — {church.emails.men}. {church.men.blurb}</p>
+      <p>Youth — {church.emails.youth}</p>
+      <p>To serve, email {church.email} or call the church office.</p>
+    </section>
+
+    <section id="gospel">
+      <p class="meta">Know God</p>
+      <h2>The best gift</h2>
+      <p>
+        Please feel welcome to join us any time. Bring a Bible if you have one; extras are
+        available. The good news is that God so loved the world that He gave His only Son.
+      </p>
+    </section>
+
+    <section id="prayer">
+      <p class="meta">Prayer & care</p>
+      <h2>We will pray with you</h2>
+      <p>
+        Call {church.phone.replace(/^\+1-/, '')} or email {church.email}. Care for those in need
+        is coordinated through the church office.
+      </p>
+    </section>
+
     <PlanVisitForm />
 
     <details class="more" id="more">

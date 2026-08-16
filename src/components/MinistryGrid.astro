@@ -1,0 +1,158 @@
+---
+const ministries = [
+  {
+    href: '/visit#kids',
+    image: '/images/ministries/children.jpg',
+    title: 'Children’s Ministry',
+    text: 'Safe, Bible-based teaching for infants through 5th grade.',
+  },
+  {
+    href: '/visit#kids',
+    image: '/images/ministries/youth.jpg',
+    title: 'Youth & Ignite',
+    text: 'Middle and high school discipleship on Sunday and Wednesday.',
+  },
+  {
+    href: '/visit#ministries',
+    image: '/images/ministries/women.jpg',
+    title: 'Women’s Ministry',
+    text: 'Women growing together in the Word.',
+  },
+  {
+    href: '/visit#ministries',
+    image: '/images/ministries/men.jpg',
+    title: 'Men’s Ministry',
+    text: 'Inductive study in Mark — 2nd and 4th Thursdays.',
+  },
+  {
+    href: '/visit#ministries',
+    image: '/images/ministries/serve.jpg',
+    title: 'Serve',
+    text: 'Greeting, kids, A/V, coffee, and more.',
+  },
+  {
+    href: '/visit#prayer',
+    image: '/images/ministries/prayer.jpg',
+    title: 'Prayer & Care',
+    text: 'We want to pray with you and walk alongside you.',
+  },
+];
+---
+
+<section class="everyone" aria-labelledby="everyone-heading">
+  <div class="wrap">
+    <p class="meta">Ministries</p>
+    <h2 id="everyone-heading">Something for everyone</h2>
+    <ul>
+      {
+        ministries.map((item) => (
+          <li>
+            <a href={item.href}>
+              <img src={item.image} alt="" width="1400" height="933" />
+              <span class="everyone__shade"></span>
+              <span class="everyone__copy">
+                <span class="everyone__title">{item.title}</span>
+                <span class="everyone__text">{item.text}</span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .everyone {
+    padding: var(--space-16) 0;
+    text-align: center;
+  }
+
+  .meta {
+    margin-bottom: var(--space-3);
+    color: var(--ink-soft);
+  }
+
+  h2 {
+    margin-bottom: var(--space-10);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  a {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    color: var(--cream);
+    text-decoration: none;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 600ms var(--ease-enter);
+  }
+
+  a:hover img,
+  a:focus-visible img {
+    transform: scale(1.06);
+  }
+
+  .everyone__shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(28 26 23 / 0.05) 20%, rgb(42 67 51 / 0.78) 100%);
+  }
+
+  .everyone__copy {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: var(--space-6);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .everyone__title {
+    font-family: var(--font-display);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 1.15rem;
+  }
+
+  .everyone__text {
+    font-family: var(--font-ui);
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: 0.95rem;
+    color: rgb(246 241 232 / 0.88);
+  }
+
+  @media (min-width: 640px) {
+    ul {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    ul {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    img {
+      transition: none;
+    }
+  }
+</style>

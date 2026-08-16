@@ -1,0 +1,95 @@
+---
+import { church } from '../data/church';
+
+const newHere = [
+  { href: '/visit#plan', label: 'Plan a Visit' },
+  { href: '/visit#believe', label: 'What we believe' },
+  { href: '/visit#gospel', label: 'Know God' },
+  { href: '/#location', label: 'Service times' },
+];
+
+const involved = [
+  { href: '/visit#ministries', label: 'Ministries' },
+  { href: church.bulletin.file, label: 'This week’s bulletin' },
+  { href: '/visit#ministries', label: 'Sign up to serve' },
+  { href: '/#app', label: 'Church app' },
+];
+---
+
+<section class="band" aria-label="New here and get involved">
+  <div class="wrap band__grid">
+    <div>
+      <h2>New Here?</h2>
+      <p>
+        Whether you are looking for answers or a place to grow — we are glad you are here.
+      </p>
+      <p class="band__links">
+        {newHere.map((item) => (
+          <a class="btn btn--secondary" href={item.href}>{item.label}</a>
+        ))}
+      </p>
+    </div>
+    <div>
+      <h2>Get Involved</h2>
+      <p>
+        Discover how to get your family plugged into the community at Calvary Chapel Frederick.
+      </p>
+      <p class="band__links">
+        {involved.map((item) => (
+          <a class="btn btn--secondary" href={item.href}>{item.label}</a>
+        ))}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .band {
+    background: var(--forest-deep);
+    color: var(--cream);
+    padding: var(--space-16) 0;
+  }
+
+  .band__grid {
+    display: grid;
+    gap: var(--space-12);
+  }
+
+  h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  p {
+    max-width: 32rem;
+    letter-spacing: 0;
+    text-transform: none;
+    font-family: var(--font-ui);
+    color: rgb(246 241 232 / 0.88);
+  }
+
+  .band__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+    max-width: none;
+  }
+
+  .band :global(.btn--secondary) {
+    color: var(--cream);
+    border-color: var(--cream);
+  }
+
+  .band :global(.btn--secondary:hover),
+  .band :global(.btn--secondary:focus-visible) {
+    background: var(--cream);
+    color: var(--forest-deep);
+  }
+
+  @media (min-width: 768px) {
+    .band__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+    }
+  }
+</style>
