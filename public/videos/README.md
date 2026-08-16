@@ -6,4 +6,4 @@ The homepage plays `hero.mp4` full-bleed behind the headline, the same way [calv
 
 The still at `/images/hero-frederick.jpg` is the poster while the file loads, and the fallback if video is empty or motion is reduced.
 
-The file in this folder now is a temporary Ken Burns of their Frederick skyline — not a finished church video.
+The file in this folder now is a temporary royalty-free rocky-beach clip (Pexels, waves at golden hour) so the church can see real motion. Replace it with a Frederick/congregation video before launch.
