@@ -9,16 +9,16 @@ const newHere = [
 ];
 
 const involved = [
-  { href: '/visit#ministries', label: 'Ministries' },
-  { href: '/visit#ministries', label: 'Small groups' },
-  { href: '/visit#ministries', label: 'Volunteer' },
+  { href: '/ministries', label: 'Ministries' },
+  { href: '/ministries/small-groups', label: 'Small groups' },
+  { href: '/ministries/volunteer', label: 'Volunteer' },
   { href: church.bulletin.file, label: 'This week’s bulletin' },
 ];
 ---
 
 <section class="band" aria-label="New here and get involved">
   <div class="wrap band__grid">
-    <div>
+    <div class="band__col">
       <h2>New Here?</h2>
       <p>
         Whether you are looking for answers or a place to grow — we are glad you are here.
@@ -29,7 +29,7 @@ const involved = [
         ))}
       </p>
     </div>
-    <div>
+    <div class="band__col">
       <h2>Get Involved</h2>
       <p>
         Discover how to get your family plugged into the community at Calvary Chapel Frederick.
@@ -47,12 +47,19 @@ const involved = [
   .band {
     background: var(--forest-deep);
     color: var(--cream);
-    padding: var(--space-16) 0;
+    padding: var(--space-14) 0;
   }
 
   .band__grid {
     display: grid;
     gap: var(--space-12);
+    align-items: stretch;
+  }
+
+  .band__col {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
   }
 
   h2 {
@@ -64,15 +71,22 @@ const involved = [
     letter-spacing: 0;
     text-transform: none;
     font-family: var(--font-ui);
-    color: rgb(246 241 232 / 0.88);
+    color: var(--inverse-muted);
   }
 
   .band__links {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
     gap: var(--space-3);
-    margin-top: var(--space-6);
+    margin-top: auto;
+    padding-top: var(--space-6);
     max-width: none;
+  }
+
+  .band__links :global(.btn) {
+    width: 100%;
+    justify-content: center;
   }
 
   .band :global(.btn--secondary) {

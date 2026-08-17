@@ -4,10 +4,13 @@ import { ministryTiles } from '../data/ministries';
 interface Props {
   heading?: string;
   id?: string;
+  exclude?: string;
 }
 
-const { heading = 'Something for everyone', id = 'everyone-heading' } = Astro.props;
-const ministries = ministryTiles;
+const { heading = 'Something for everyone', id = 'everyone-heading', exclude } = Astro.props;
+const ministries = exclude
+  ? ministryTiles.filter((item) => item.href !== `/ministries/${exclude}`)
+  : ministryTiles;
 ---
 
 <section class="everyone" aria-labelledby={id}>
@@ -79,7 +82,7 @@ const ministries = ministryTiles;
   .everyone__shade {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgb(28 26 23 / 0.05) 20%, rgb(42 67 51 / 0.78) 100%);
+    background: linear-gradient(180deg, rgb(10 48 64 / 0.05) 20%, rgb(10 48 64 / 0.78) 100%);
   }
 
   .everyone__copy {
@@ -87,18 +90,18 @@ const ministries = ministryTiles;
     left: 0;
     right: 0;
     bottom: 0;
-    padding: var(--space-6);
+    padding: var(--space-5);
     text-align: left;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.3rem;
   }
 
   .everyone__title {
     font-family: var(--font-display);
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    font-size: 1.15rem;
+    font-size: 1.08rem;
   }
 
   .everyone__text {
@@ -106,7 +109,7 @@ const ministries = ministryTiles;
     letter-spacing: 0;
     text-transform: none;
     font-size: 0.95rem;
-    color: rgb(246 241 232 / 0.88);
+    color: var(--inverse-muted);
   }
 
   @media (min-width: 640px) {

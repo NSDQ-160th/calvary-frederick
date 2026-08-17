@@ -46,8 +46,17 @@ const fallbackHref = `https://subsplash.com/${path.split('?')[0].replace('/lb/',
     width: 100%;
     aspect-ratio: 16 / 9;
     background: var(--forest-deep);
-    border-radius: 2px;
     overflow: hidden;
+    border: 8px solid var(--cream);
+    box-shadow:
+      0 0 0 1px var(--gold),
+      0 22px 48px rgb(10 48 64 / 0.2);
+  }
+
+  @media (max-width: 767px) {
+    .embed__frame {
+      border-width: 5px;
+    }
   }
 
   .embed__fallback {

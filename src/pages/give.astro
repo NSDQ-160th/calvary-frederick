@@ -1,13 +1,36 @@
 ---
+import Icon from '../components/Icon.astro';
+import type { IconName } from '../components/icons';
 import PageHero from '../components/PageHero.astro';
 import Base from '../layouts/Base.astro';
 import { church } from '../data/church';
 import { breadcrumbJsonLd } from '../data/schema';
+
+const address = `${church.address.line}, ${church.address.city}, ${church.address.region} ${church.address.postal}`;
+const wallet = church.giving.subsplashEmbed;
+
+const ways: { icon: IconName; title: string; text: string }[] = [
+  {
+    icon: 'heart',
+    title: 'Sanctuary boxes',
+    text: church.giving.boxes + '. We do not pass a plate.',
+  },
+  {
+    icon: 'gift',
+    title: 'Online',
+    text: 'Give by card or ACH in the form on this page, or in the church app. The same Subsplash wallet as the app.',
+  },
+  {
+    icon: 'pin',
+    title: 'Bill-pay or check',
+    text: `Mail or bill-pay to ${address} if you want to avoid card fees.`,
+  },
+];
 ---
 
 <Base
-  title={`Give — Calvary Chapel Frederick`}
-  description="Give to Calvary Chapel Frederick. No plate is passed. Offering boxes in the sanctuary, or give online. Downtown Frederick, MD."
+  title="Give — Calvary Chapel Frederick"
+  description="Give to Calvary Chapel Frederick. No plate is passed. Offering boxes in the sanctuary, online, or by bill-pay and check. Downtown Frederick, MD."
   current="give"
   jsonLd={breadcrumbJsonLd([
     { name: 'Home', path: '/' },
@@ -21,63 +44,242 @@ import { breadcrumbJsonLd } from '../data/schema';
     image="/images/ministries/serve.jpg"
   />
 
-  <article class="give wrap">
-    <div>
-      <p class="scripture">
-        Each one must give as he has decided in his heart, not reluctantly or under compulsion, for
-        God loves a cheerful giver. — 2 Corinthians 9:7
-      </p>
-      <p>
-        Jesus taught us to give in secret (Matthew 6:3–4). Offering boxes are in the sanctuary. You
-        may also give online here, or by bill-pay and check to {church.address.line}, {church.address.city},
-        {church.address.region} {church.address.postal}, if you want to avoid card fees.
-      </p>
-      <p class="fees">
-        Published online fees (re-verify at launch): card {church.giving.fees.card}; ACH {church.giving.fees.ach}.
+  <nav class="sub" aria-label="On this page">
+    <div class="wrap sub__row">
+      <a href="#ways">Ways</a>
+      <a href="#online">Online</a>
+      <a href="#fees">Fees</a>
+    </div>
+  </nav>
+
+  <section class="intro wrap" aria-labelledby="give-heading">
+    <p class="meta">Worship</p>
+    <h2 id="give-heading">A cheerful giver</h2>
+    <p class="scripture">
+      Each one must give as he has decided in his heart, not reluctantly or under compulsion, for
+      God loves a cheerful giver. — 2 Corinthians 9:7
+    </p>
+    <p>
+      Jesus taught us to give in secret (Matthew 6:3–4). If you are visiting, please feel no
+      pressure to give.
+    </p>
+  </section>
+
+  <section class="ways" id="ways" aria-labelledby="ways-heading">
+    <div class="wrap">
+      <p class="meta">How to give</p>
+      <h2 id="ways-heading">Three paths</h2>
+      <ul>
+        {
+          ways.map((item) => (
+            <li>
+              <span class="ways__icon">
+                <Icon name={item.icon} />
+              </span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="wallet" id="online" aria-labelledby="online-heading">
+    <div class="wrap wallet__inner">
+      <p class="meta">Online</p>
+      <h2 id="online-heading">Give here</h2>
+      <p class="wallet__by">The same Subsplash wallet as the church app.</p>
+      <div class="wallet__frame">
+        <iframe
+          title="Give to Calvary Chapel Frederick"
+          src={wallet}
+          width="100%"
+          height="630"
+          loading="eager"
+        ></iframe>
+      </div>
+      <p class="wallet__open">
+        <a href={wallet} target="_blank" rel="noreferrer">Open giving on Subsplash</a>
       </p>
     </div>
-    <div>
-      <iframe
-        title="Give to Calvary Chapel Frederick"
-        src={church.giving.subsplashEmbed}
-        width="100%"
-        style="border:0;overflow:hidden;height:min(630px,80vh)"
-        loading="eager"
-      ></iframe>
+  </section>
+
+  <section class="fees" id="fees" aria-labelledby="fees-heading">
+    <div class="wrap fees__inner">
+      <p class="meta">Online fees</p>
+      <h2 id="fees-heading">Published rates</h2>
       <p>
-        <a href={church.giving.subsplashEmbed} target="_blank" rel="noreferrer">Open giving on Subsplash</a>
+        Card {church.giving.fees.card}. ACH {church.giving.fees.ach}. Re-verify at launch — Subsplash
+        can change these. Bill-pay and check to {address} avoid those fees.
       </p>
     </div>
-  </article>
+  </section>
 </Base>
 
 <style>
-  .give {
-    padding: var(--space-16) 0;
-    display: grid;
-    gap: var(--space-10);
-    align-items: start;
+  .sub {
+    position: sticky;
+    top: 4.75rem;
+    z-index: 30;
+    background: var(--cream);
+    border-bottom: 1px solid var(--rule);
   }
 
-  .fees {
-    margin-top: var(--space-6);
-    color: var(--ink-soft);
-    font-size: var(--step--1);
+  .sub__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
   }
 
-  a {
+  .sub a {
+    font-family: var(--font-display);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    text-decoration: none;
     color: var(--forest-deep);
-    font-weight: 600;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .intro {
+    padding: var(--space-14) 0;
+    max-width: 42rem;
+  }
+
+  .intro .meta,
+  .ways .meta,
+  .fees .meta {
+    margin-bottom: var(--space-3);
+    color: var(--ink-soft);
+  }
+
+  .intro h2,
+  .ways h2,
+  .fees h2 {
+    margin-bottom: var(--space-6);
+  }
+
+  .intro .scripture {
+    margin-bottom: var(--space-6);
+  }
+
+  .ways {
+    padding: var(--space-14) 0;
+    background: var(--paper);
+    text-align: center;
+  }
+
+  .ways ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .ways li {
+    padding: var(--space-8) var(--space-6);
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    text-align: left;
+  }
+
+  .ways__icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: var(--space-4);
+    border: 1.5px solid var(--forest);
+    color: var(--forest);
+  }
+
+  .ways h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 1.05rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .ways p {
+    color: var(--ink);
+  }
+
+  .wallet {
+    background: var(--forest-deep);
+    color: var(--cream);
+    padding: var(--space-14) 0;
+  }
+
+  .wallet__inner {
+    max-width: 48rem;
+  }
+
+  .wallet .meta {
+    margin-bottom: var(--space-3);
+    color: var(--inverse-muted);
+  }
+
+  .wallet h2 {
+    margin-bottom: var(--space-3);
+  }
+
+  .wallet__by {
+    margin-bottom: var(--space-8);
+    font-family: var(--font-ui);
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--inverse-muted);
+  }
+
+  .wallet__frame {
+    background: var(--forest-deep);
+    border: 8px solid var(--cream);
+    box-shadow:
+      0 0 0 1px var(--gold),
+      0 22px 48px rgb(10 48 64 / 0.28);
+    overflow: hidden;
   }
 
   iframe {
+    display: block;
+    width: 100%;
+    height: min(630px, 80vh);
+    border: 0;
     background: var(--paper);
   }
 
-  @media (min-width: 900px) {
-    .give {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-16);
+  .wallet__open {
+    margin-top: var(--space-4);
+    font-size: var(--step--1);
+  }
+
+  .wallet__open a {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  .fees {
+    padding: var(--space-14) 0 var(--space-16);
+  }
+
+  .fees__inner {
+    max-width: 40rem;
+  }
+
+  @media (max-width: 767px) {
+    .wallet__frame {
+      border-width: 5px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .ways ul {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-5);
     }
   }
 </style>

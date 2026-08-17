@@ -2,14 +2,15 @@
 import Logo from './Logo.astro';
 
 interface Props {
-  current?: 'home' | 'visit' | 'watch' | 'give';
+  current?: 'home' | 'visit' | 'watch' | 'give' | 'ministries' | 'media';
 }
 
 const { current } = Astro.props;
 
 const links = [
   { href: '/visit', id: 'visit', label: 'Visit' },
-  { href: '/watch', id: 'watch', label: 'Watch' },
+  { href: '/ministries', id: 'ministries', label: 'Ministries' },
+  { href: '/media', id: 'media', label: 'Media' },
   { href: '/give', id: 'give', label: 'Give' },
 ] as const;
 ---
@@ -181,7 +182,7 @@ const links = [
     align-items: center;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 900px) {
     .header__nav,
     .header__cta {
       display: inline-flex;

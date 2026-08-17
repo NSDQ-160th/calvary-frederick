@@ -1,0 +1,28 @@
+---
+import MinistryGrid from '../../components/MinistryGrid.astro';
+import PageHero from '../../components/PageHero.astro';
+import Base from '../../layouts/Base.astro';
+import { church } from '../../data/church';
+import { breadcrumbJsonLd } from '../../data/schema';
+
+const title = 'Ministries — Calvary Chapel Frederick';
+const description = `Ministries at Calvary Chapel Frederick: preschool, children, students, young adults, women, men, small groups, and volunteer. Downtown Frederick, MD. Sunday ${church.services.sunday.join(' & ')}.`;
+---
+
+<Base
+  title={title}
+  description={description}
+  current="ministries"
+  jsonLd={breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Ministries', path: '/ministries' },
+  ])}
+>
+  <PageHero
+    eyebrow={church.name}
+    title="Ministries"
+    lead="Something for everyone — kids, students, men, women, groups, and a place to serve."
+    image="/images/ministries/groups.jpg"
+  />
+  <MinistryGrid heading="Something for everyone" id="everyone-heading" />
+</Base>

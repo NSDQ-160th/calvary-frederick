@@ -94,10 +94,16 @@ const description = `Visit Calvary Chapel Frederick at 244A S Jefferson St in do
         <p>
           Sunday: {church.services.kidsSunday}. Wednesday children’s church {church.services.kidsWednesday}.
           We teach the Bible with crafts and games at their age.
+          {' '}
+          <a href="/ministries/preschool">Preschool</a>
+          {' · '}
+          <a href="/ministries/children">Children</a>
         </p>
         <p>
           Middle school meets Sunday at 9:00 AM in the youth room. High school joins the main
           service. Midweek, middle and high school meet together for Ignite.
+          {' '}
+          <a href="/ministries/students">Students</a>
         </p>
       </div>
     </div>
@@ -175,7 +181,7 @@ const description = `Visit Calvary Chapel Frederick at 244A S Jefferson St in do
   }
 
   .intro {
-    padding: var(--space-16) 0;
+    padding: var(--space-14) 0;
   }
 
   .intro__grid {
@@ -206,7 +212,7 @@ const description = `Visit Calvary Chapel Frederick at 244A S Jefferson St in do
 
   .band {
     background: var(--paper);
-    padding: var(--space-16) 0;
+    padding: var(--space-14) 0;
   }
 
   .band .meta,
@@ -219,7 +225,7 @@ const description = `Visit Calvary Chapel Frederick at 244A S Jefferson St in do
   }
 
   .kids {
-    padding: var(--space-16) 0;
+    padding: var(--space-14) 0;
   }
 
   .kids__grid {
@@ -232,6 +238,10 @@ const description = `Visit Calvary Chapel Frederick at 244A S Jefferson St in do
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
+    border: 8px solid var(--cream);
+    box-shadow:
+      0 0 0 1px var(--gold),
+      0 18px 40px rgb(10 48 64 / 0.12);
   }
 
   .gospel,
@@ -246,7 +256,7 @@ const description = `Visit Calvary Chapel Frederick at 244A S Jefferson St in do
   }
 
   .gospel .meta {
-    color: rgb(246 241 232 / 0.7);
+    color: var(--inverse-muted);
   }
 
   .gospel__narrow {
@@ -254,6 +264,7 @@ const description = `Visit Calvary Chapel Frederick at 244A S Jefferson St in do
   }
 
   .prayer a,
+  .kids a,
   .intro a:not(.btn) {
     color: var(--forest-deep);
   }

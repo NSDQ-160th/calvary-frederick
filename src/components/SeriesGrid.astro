@@ -1,0 +1,153 @@
+---
+import type { Series } from '../data/media';
+import { seriesPath } from '../data/media';
+
+interface Props {
+  series: Series[];
+  heading?: string;
+  id?: string;
+}
+
+const { series, heading = 'Series', id = 'series-heading' } = Astro.props;
+---
+
+<section class="series" aria-labelledby={id}>
+  <div class="wrap">
+    <p class="meta">Teachings</p>
+    <h2 id={id}>{heading}</h2>
+    <ul>
+      {
+        series.map((item) => (
+          <li>
+            <a href={seriesPath(item)}>
+              {item.cover ? (
+                <img src={item.cover} alt="" width="1400" height="788" />
+              ) : (
+                <span class="series__blank" aria-hidden="true">
+                  <span>{item.title}</span>
+                </span>
+              )}
+              <span class="series__shade"></span>
+              <span class="series__copy">
+                <span class="series__title">{item.title}</span>
+                <span class="series__text">
+                  {item.collection === 'radio' ? 'Truth with Grace' : 'Series'}
+                  {item.teachings.length
+                    ? ` · ${item.teachings.length}${item.more ? '+' : ''} teachings`
+                    : ''}
+                </span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .series {
+    padding: var(--space-14) 0;
+    text-align: center;
+  }
+
+  .meta {
+    margin-bottom: var(--space-3);
+    color: var(--ink-soft);
+  }
+
+  h2 {
+    margin-bottom: var(--space-10);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  a {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    color: var(--cream);
+    text-decoration: none;
+    background: var(--forest-deep);
+  }
+
+  img,
+  .series__blank {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 600ms var(--ease-enter);
+  }
+
+  .series__blank {
+    display: grid;
+    place-items: center;
+    padding: var(--space-5);
+    font-family: var(--font-display);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 1.05rem;
+  }
+
+  a:hover img,
+  a:focus-visible img {
+    transform: scale(1.04);
+  }
+
+  .series__shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(10 48 64 / 0.05) 20%, rgb(10 48 64 / 0.82) 100%);
+  }
+
+  .series__copy {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: var(--space-5);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .series__title {
+    font-family: var(--font-display);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 1.02rem;
+  }
+
+  .series__text {
+    font-family: var(--font-ui);
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: 0.95rem;
+    color: var(--inverse-muted);
+  }
+
+  @media (min-width: 640px) {
+    ul {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    ul {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    img {
+      transition: none;
+    }
+  }
+</style>

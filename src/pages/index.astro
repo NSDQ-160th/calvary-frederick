@@ -1,15 +1,11 @@
 ---
-import AppStrip from '../components/AppStrip.astro';
-import BulletinCard from '../components/BulletinCard.astro';
 import ConnectBand from '../components/ConnectBand.astro';
-import GiveTeaser from '../components/GiveTeaser.astro';
 import Hero from '../components/Hero.astro';
+import HomeExtras from '../components/HomeExtras.astro';
 import MinistryGrid from '../components/MinistryGrid.astro';
 import SermonCard from '../components/SermonCard.astro';
 import ServiceTimesCard from '../components/ServiceTimesCard.astro';
-import WordRadio from '../components/WordRadio.astro';
 import Base from '../layouts/Base.astro';
-import { church } from '../data/church';
 import { faqJsonLd } from '../data/schema';
 import { siteFaqs } from '../data/faq';
 
@@ -28,8 +24,5 @@ const description =
   <ConnectBand />
   <MinistryGrid />
   <SermonCard />
-  <BulletinCard />
-  <WordRadio />
-  <GiveTeaser />
-  <AppStrip />
+  <HomeExtras />
 </Base>

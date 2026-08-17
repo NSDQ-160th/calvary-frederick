@@ -1,98 +1,198 @@
 ---
+import Icon from './Icon.astro';
 import { church } from '../data/church';
+import {
+  latestSeries,
+  media,
+  recentTeachings,
+  seriesPath,
+  snapTeachingUrl,
+} from '../data/media';
 
-const title = church.sermon.title.trim() || 'Latest Sunday message';
+const latest = media.latest;
+const series = latestSeries();
+const cover = series?.cover || church.sermon.image;
+const title = latest.title.trim() || church.sermon.title;
+const recent = recentTeachings(4);
 ---
 
-<section class="sermon wrap" aria-labelledby="sermon-heading">
-  <p class="meta">Latest teaching</p>
-  <h2 id="sermon-heading">{church.sermon.series}</h2>
-  <a class="sermon__card" href={church.sermon.href}>
-    <img
-      src={church.sermon.image}
-      alt=""
-      width="1600"
-      height="900"
-    />
-    <span class="sermon__body">
-      <span class="meta">{church.sermon.series}</span>
-      <span class="sermon__title">{title}</span>
-      <span class="sermon__speaker">{church.sermon.speaker}</span>
-    </span>
-  </a>
-  <p class="sermon__more">
-    <a href="/watch">Browse the archive</a>
-  </p>
+<section class="watch" aria-labelledby="sermon-heading">
+  <div class="wrap">
+    <p class="meta">Watch our latest message</p>
+    <div class="watch__feature">
+      <a class="watch__stage" href={snapTeachingUrl(latest)} target="_blank" rel="noreferrer">
+        <img src={cover} alt="" width="1600" height="900" />
+        <span class="watch__play" aria-hidden="true">
+          <Icon name="play" />
+        </span>
+      </a>
+      <div class="watch__copy">
+        {series && <p class="watch__series">{series.title}</p>}
+        <h2 id="sermon-heading">{title}</h2>
+        <p class="watch__by">
+          {latest.date}
+          {latest.speaker ? ` · ${latest.speaker}` : ''}
+        </p>
+        <p class="watch__cta">
+          <a class="btn btn--primary" href={snapTeachingUrl(latest)} target="_blank" rel="noreferrer">
+            Watch now
+          </a>
+          {series && <a class="btn btn--secondary" href={seriesPath(series)}>View series</a>}
+        </p>
+      </div>
+    </div>
+    {
+      recent.length > 1 && (
+        <ul class="watch__recent">
+          {recent.map((item) => (
+            <li>
+              <a href={snapTeachingUrl(item)} target="_blank" rel="noreferrer">
+                <img src={cover} alt="" width="800" height="450" />
+                <span class="watch__recent-title">{item.title}</span>
+                <span class="watch__recent-meta">{item.date}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
 </section>
 
 <style>
-  .sermon {
-    padding: var(--space-16) 0;
-    text-align: center;
+  .watch {
+    background: var(--forest-deep);
+    color: var(--cream);
+    padding: var(--space-14) 0;
   }
 
   .meta {
-    margin-bottom: var(--space-4);
-    color: var(--ink-soft);
-  }
-
-  h2 {
     margin-bottom: var(--space-6);
+    color: var(--gold-bright);
   }
 
-  .sermon__card {
+  .watch__feature {
     display: grid;
-    text-decoration: none;
-    color: inherit;
-    background: var(--paper);
-    border: 1px solid var(--rule);
-    overflow: hidden;
+    gap: var(--space-6);
   }
 
-  img {
-    width: 100%;
+  .watch__stage {
+    position: relative;
+    display: block;
     aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--forest);
+    color: var(--cream);
+  }
+
+  .watch__stage img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    background: var(--forest-deep);
   }
 
-  .sermon__body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    padding: var(--space-6);
-    text-align: left;
+  .watch__play {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: rgb(10 48 64 / 0.28);
   }
 
-  .sermon__title {
-    font-family: var(--font-display);
-    font-size: var(--step-2);
-    font-weight: 500;
-    line-height: var(--step-2-lh);
+  .watch__play :global(.icon) {
+    width: 72px;
+    height: 72px;
+    padding: 1.1rem;
+    border: 2px solid var(--cream);
+    background: rgb(0 127 167 / 0.85);
+  }
+
+  .watch__copy h2 {
+    margin-bottom: var(--space-3);
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
     letter-spacing: 0.08em;
   }
 
-  .sermon__speaker {
-    color: var(--ink-soft);
+  .watch__series {
+    margin-bottom: var(--space-3);
+    font-family: var(--font-display);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: var(--gold-bright);
   }
 
-  .sermon__more {
-    margin-top: var(--space-5);
+  .watch__by {
+    color: var(--inverse-muted);
+    margin-bottom: var(--space-6);
   }
 
-  .sermon__more a {
+  .watch__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .watch :global(.btn--primary) {
+    background: var(--gold);
+    border-color: var(--gold);
     color: var(--forest-deep);
+  }
+
+  .watch :global(.btn--secondary) {
+    color: var(--cream);
+    border-color: var(--cream);
+  }
+
+  .watch :global(.btn--secondary:hover),
+  .watch :global(.btn--secondary:focus-visible) {
+    background: var(--cream);
+    color: var(--forest-deep);
+  }
+
+  .watch__recent {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-10) 0 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .watch__recent a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    text-decoration: none;
+    color: var(--cream);
+  }
+
+  .watch__recent img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: var(--forest);
+  }
+
+  .watch__recent-title {
     font-weight: 600;
   }
 
-  @media (min-width: 768px) {
-    .sermon__card {
-      grid-template-columns: 1.4fr 1fr;
-      align-items: stretch;
-    }
+  .watch__recent-meta {
+    color: var(--inverse-muted);
+    font-size: var(--step--1);
+  }
 
-    img {
-      height: 100%;
+  @media (min-width: 768px) {
+    .watch__recent {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .watch__feature {
+      grid-template-columns: 1.65fr 1fr;
+      gap: var(--space-10);
+      align-items: center;
     }
   }
 </style>

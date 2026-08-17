@@ -1,0 +1,93 @@
+---
+import PageHero from '../../../../components/PageHero.astro';
+import SeriesGrid from '../../../../components/SeriesGrid.astro';
+import TeachingList from '../../../../components/TeachingList.astro';
+import Base from '../../../../layouts/Base.astro';
+import {
+  featuredSeries,
+  media,
+  seriesById,
+  snapSeriesUrl,
+  subsplashSeriesUrl,
+} from '../../../../data/media';
+import { breadcrumbJsonLd } from '../../../../data/schema';
+
+export function getStaticPaths() {
+  return media.series.map((item) => ({
+    params: { id: item.id, slug: item.slug },
+  }));
+}
+
+const { id } = Astro.params;
+const series = seriesById(id ?? '');
+if (!series) {
+  throw new Error(`Unknown series: ${id}`);
+}
+
+const moreHref = series.more ? snapSeriesUrl(series) : undefined;
+const others = featuredSeries(8).filter((item) => item.id !== series.id);
+const title = `${series.title} — Media — Calvary Chapel Frederick`;
+const description = series.teachings.length
+  ? `${series.title} at Calvary Chapel Frederick.${series.collection === 'radio' ? ' Truth with Grace.' : ''} ${series.teachings[0].title} (${series.teachings[0].date}) and more.`
+  : `${series.title} at Calvary Chapel Frederick. Teachings hosted on Subsplash.`;
+---
+
+<Base
+  title={title}
+  description={description}
+  current="media"
+  jsonLd={breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Media', path: '/media' },
+    { name: series.title, path: `/media/series/${series.id}/${series.slug}` },
+  ])}
+>
+  <PageHero
+    eyebrow={series.collection === 'radio' ? 'Truth with Grace' : 'Series'}
+    title={series.title}
+    lead={
+      series.teachings.length
+        ? `${series.teachings.length}${series.more ? '+' : ''} published teachings in this series.`
+        : 'This series is in the church media library on Subsplash.'
+    }
+    image={series.cover || '/images/ministries/prayer.jpg'}
+  />
+
+  <article class="body wrap">
+    {
+      series.teachings.length > 0 ? (
+        <TeachingList teachings={series.teachings} more={series.more} moreHref={moreHref} />
+      ) : (
+        <p>
+          This series is in the church library. Open it on Subsplash or the media site to watch
+          or listen.
+        </p>
+      )
+    }
+    <p class="cta">
+      <a class="btn btn--primary" href={subsplashSeriesUrl(series.id)} target="_blank" rel="noreferrer">
+        Open on Subsplash
+      </a>
+      <a class="btn btn--secondary" href={snapSeriesUrl(series)} target="_blank" rel="noreferrer">
+        Open on the media site
+      </a>
+      <a class="btn btn--ghost" href="/media#all">All series</a>
+    </p>
+  </article>
+
+  {others.length > 0 && <SeriesGrid series={others} heading="More series" id="more-series" />}
+</Base>
+
+<style>
+  .body {
+    padding: var(--space-14) 0 var(--space-16);
+    max-width: 42rem;
+  }
+
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-10);
+  }
+</style>

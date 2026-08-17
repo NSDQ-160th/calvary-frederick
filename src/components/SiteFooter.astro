@@ -12,7 +12,11 @@ import Logo from './Logo.astro';
 
 const sunday = church.services.sunday.map(formatServiceTime).join(' & ');
 const wednesday = formatServiceTime(church.services.wednesday);
-const onAppPage = Astro.url.pathname === '/' || Astro.url.pathname === '/watch';
+const onAppPage =
+  Astro.url.pathname === '/' ||
+  Astro.url.pathname === '/watch' ||
+  Astro.url.pathname === '/media' ||
+  Astro.url.pathname.startsWith('/media/');
 const appHref = onAppPage ? '#app' : '/#app';
 const year = new Date().getFullYear();
 ---
@@ -58,11 +62,11 @@ const year = new Date().getFullYear();
       </ul>
     </div>
     <div>
-      <h2 class="meta footer__h">Watch</h2>
+      <h2 class="meta footer__h">Media</h2>
       <ul>
         <li>
           <Icon name="play" />
-          <a href="/watch">Watch a Message</a>
+          <a href="/media">Teachings</a>
         </li>
         <li>
           <Icon name="book" />
@@ -77,6 +81,9 @@ const year = new Date().getFullYear();
     <div>
       <h2 class="meta footer__h">Connect</h2>
       <ul>
+        <li>
+          <a href="/ministries">Ministries</a>
+        </li>
         <li>
           <a href={appHref}>Church app</a>
         </li>
@@ -126,7 +133,7 @@ const year = new Date().getFullYear();
   .footer__tag {
     margin-top: var(--space-4);
     max-width: 20rem;
-    color: rgb(246 241 232 / 0.82);
+    color: var(--inverse-muted);
   }
 
   .footer__h {
@@ -164,7 +171,7 @@ const year = new Date().getFullYear();
     margin-top: var(--space-12);
     font-size: var(--step--1);
     line-height: var(--step--1-lh);
-    color: rgb(246 241 232 / 0.7);
+    color: var(--inverse-muted);
   }
 
   @media (min-width: 768px) {

@@ -1,0 +1,121 @@
+---
+import { church, collectionUrl } from '../data/church';
+
+const href = church.routes.give ? '/give' : church.giving.subsplashEmbed;
+const tiles = [
+  {
+    meta: church.bulletin.label,
+    title: 'This week',
+    text: 'Download the bulletin for gathering notes and announcements.',
+    href: church.bulletin.file,
+    label: 'Bulletin',
+    external: false,
+  },
+  {
+    meta: 'Radio',
+    title: 'Truth with Grace',
+    text: 'Daily verse-by-verse teaching to take with you.',
+    href: collectionUrl(church.media.radio),
+    label: 'Listen',
+    external: true,
+  },
+  {
+    meta: 'Give',
+    title: 'A cheerful giver',
+    text: 'No plate is passed. Boxes in the sanctuary, or give online.',
+    href,
+    label: 'Give',
+    external: !church.routes.give,
+  },
+  {
+    meta: 'App',
+    title: 'Take the Word with you',
+    text: 'Messages, giving, and updates in the church app.',
+    href: church.media.app,
+    label: 'Get the app',
+    external: true,
+  },
+];
+---
+
+<section class="extras" id="app" aria-label="Bulletin, radio, give, and app">
+  <div class="wrap">
+    <ul>
+      {
+        tiles.map((item) => (
+          <li>
+            <p class="meta">{item.meta}</p>
+            <h2>{item.title}</h2>
+            <p>{item.text}</p>
+            <p>
+              <a
+                class="btn btn--secondary"
+                href={item.href}
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noreferrer' : undefined}
+              >
+                {item.label}
+              </a>
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .extras {
+    background: var(--paper);
+    padding: var(--space-14) 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: var(--space-8) var(--space-6);
+    background: var(--cream);
+    border: 1px solid var(--rule);
+  }
+
+  .meta {
+    margin-bottom: var(--space-3);
+    color: var(--ink-soft);
+  }
+
+  h2 {
+    font-size: var(--step-2);
+    line-height: var(--step-2-lh);
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-4);
+  }
+
+  p {
+    color: var(--ink);
+  }
+
+  li > p:last-child {
+    margin-top: auto;
+    padding-top: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    ul {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    ul {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,430 @@
+---
+import Icon from '../../components/Icon.astro';
+import PageHero from '../../components/PageHero.astro';
+import PodcastLinks from '../../components/PodcastLinks.astro';
+import SeriesGrid from '../../components/SeriesGrid.astro';
+import SubsplashEmbed from '../../components/SubsplashEmbed.astro';
+import Base from '../../layouts/Base.astro';
+import { church, collectionUrl } from '../../data/church';
+import {
+  featuredSeries,
+  media,
+  mediaCollections,
+  seriesById,
+  seriesPath,
+  snapTeachingUrl,
+} from '../../data/media';
+import { breadcrumbJsonLd } from '../../data/schema';
+
+const latest = media.latest;
+const latestSeries = seriesById(latest.seriesId);
+const current = featuredSeries(8);
+const directory = media.series;
+const title = `Media & Teachings — Calvary Chapel Frederick | Verse by Verse`;
+const description = `Watch and listen to Calvary Chapel Frederick. Latest: ${latest.title}, ${latest.date}, ${latest.speaker}. Sunday, midweek, Truth with Grace, and ${directory.length} series.`;
+---
+
+<Base
+  title={title}
+  description={description}
+  current="media"
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: 'Home', path: '/' },
+      { name: 'Media', path: '/media' },
+    ]),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Media — Calvary Chapel Frederick',
+      description,
+      url: 'https://www.calvaryfrederick.com/media/',
+      isPartOf: { '@id': 'https://www.calvaryfrederick.com/#church' },
+    },
+  ]}
+>
+  <PageHero
+    eyebrow="Media"
+    title="Teachings"
+    lead="The Word taught verse by verse — Sunday, midweek, Truth with Grace, and the archive."
+    image="/images/ministries/prayer.jpg"
+  />
+
+  <nav class="sub" aria-label="In media">
+    <div class="wrap sub__row">
+      <a href="#latest">Latest</a>
+      <a href="#series">Series</a>
+      <a href="#all">All series</a>
+      <a href="#listen">Listen</a>
+    </div>
+  </nav>
+
+  <section class="latest" id="latest" aria-labelledby="latest-heading">
+    <div class="wrap">
+      <p class="meta">Watch our latest message</p>
+      <div class="latest__feature">
+        <div class="latest__stage">
+          <SubsplashEmbed path={church.media.messagesEmbed} />
+        </div>
+        <div class="latest__copy">
+          {latestSeries && <p class="latest__series">{latestSeries.title}</p>}
+          <h2 id="latest-heading">{latest.title}</h2>
+          <p class="latest__by">
+            {latest.date}
+            {latest.speaker ? ` · ${latest.speaker}` : ''}
+          </p>
+          {
+            latestSeries && (
+              <p>
+                From <a href={seriesPath(latestSeries)}>{latestSeries.title}</a>
+                {latestSeries.collection === 'radio' ? ' · Truth with Grace' : ''}.
+              </p>
+            )
+          }
+          <p class="latest__cta">
+            <a class="btn btn--primary" href={snapTeachingUrl(latest)} target="_blank" rel="noreferrer">
+              Watch now
+            </a>
+            {latestSeries && (
+              <a class="btn btn--secondary" href={seriesPath(latestSeries)}>View series</a>
+            )}
+          </p>
+          <p class="caption-help">Turn on captions in the player.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="collections wrap" aria-labelledby="browse-heading">
+    <p class="meta">Browse</p>
+    <h2 id="browse-heading">Sunday, midweek, radio</h2>
+    <ul>
+      {
+        mediaCollections.map((item) => (
+          <li>
+            <a href={collectionUrl(item.id)} target="_blank" rel="noreferrer">
+              <span class="collections__icon">
+                <Icon name={item.icon} />
+              </span>
+              <span class="collections__label">{item.label}</span>
+              <span class="collections__text">{item.text}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <div id="series">
+    <SeriesGrid series={current} heading="Current series" id="series-heading" />
+  </div>
+
+  <section class="directory" id="all" aria-labelledby="all-heading">
+    <div class="wrap">
+      <p class="meta">Catalog</p>
+      <h2 id="all-heading">All series</h2>
+      <p class="directory__lead">
+        {directory.length} series from the church media library. Teachings stay on Subsplash.
+      </p>
+      <ul>
+        {
+          directory.map((item) => (
+            <li>
+              <a href={seriesPath(item)}>
+                <span class="directory__title">{item.title}</span>
+                <span class="directory__tag">
+                  {item.collection === 'radio' ? 'Radio · ' : ''}
+                  {item.teachings.length
+                    ? `${item.teachings.length}${item.more ? '+' : ''}`
+                    : 'Library'}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="listen" id="listen" aria-labelledby="listen-heading">
+    <div class="wrap listen__grid">
+      <div>
+        <p class="meta">Listen</p>
+        <h2 id="listen-heading">Take the Word with you</h2>
+        <p>
+          Watch on
+          <a href={church.media.youtube} target="_blank" rel="noreferrer">YouTube</a>
+          or in the
+          <a href={church.media.app} target="_blank" rel="noreferrer">church app</a>.
+        </p>
+      </div>
+      <PodcastLinks />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .sub {
+    position: sticky;
+    top: 4.75rem;
+    z-index: 30;
+    background: var(--cream);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .sub__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+  }
+
+  .sub a {
+    font-family: var(--font-display);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--forest-deep);
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .latest {
+    background: var(--forest-deep);
+    color: var(--cream);
+    padding: var(--space-14) 0;
+  }
+
+  .latest .meta {
+    margin-bottom: var(--space-6);
+    color: var(--gold-bright);
+  }
+
+  .collections .meta,
+  .directory .meta,
+  .listen .meta {
+    margin-bottom: var(--space-3);
+    color: var(--ink-soft);
+  }
+
+  .latest__feature {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .latest h2 {
+    margin-bottom: var(--space-3);
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+    letter-spacing: 0.08em;
+  }
+
+  .latest__series {
+    margin-bottom: var(--space-3);
+    font-family: var(--font-display);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: var(--gold-bright);
+  }
+
+  .latest__by {
+    margin-bottom: var(--space-5);
+    color: var(--inverse-muted);
+  }
+
+  .latest a:not(.btn) {
+    color: var(--gold-bright);
+    font-weight: 600;
+  }
+
+  .latest__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .latest :global(.btn--primary) {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--forest-deep);
+  }
+
+  .latest :global(.btn--secondary) {
+    color: var(--cream);
+    border-color: var(--cream);
+  }
+
+  .latest :global(.btn--secondary:hover),
+  .latest :global(.btn--secondary:focus-visible) {
+    background: var(--cream);
+    color: var(--forest-deep);
+  }
+
+  .caption-help {
+    margin-top: var(--space-4);
+    color: var(--inverse-muted);
+    font-size: var(--step--1);
+  }
+
+  .latest :global(.embed__fallback a) {
+    color: var(--cream);
+  }
+
+  .collections {
+    padding: var(--space-14) 0;
+    text-align: center;
+  }
+
+  .collections h2 {
+    margin-bottom: var(--space-10);
+  }
+
+  .collections ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .collections a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 176px;
+    padding: var(--space-6) var(--space-4);
+    text-decoration: none;
+    color: var(--forest-deep);
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    transition: border-color var(--duration-enter) var(--ease-enter),
+      background-color var(--duration-enter) var(--ease-enter);
+  }
+
+  .collections a:hover,
+  .collections a:focus-visible {
+    border-color: var(--forest);
+    background: var(--cream);
+  }
+
+  .collections__icon {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border: 1.5px solid var(--forest);
+    color: var(--forest);
+  }
+
+  .collections__label {
+    font-family: var(--font-display);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+  }
+
+  .collections__text {
+    font-family: var(--font-ui);
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink-soft);
+  }
+
+  .directory {
+    background: var(--paper);
+    padding: var(--space-14) 0;
+  }
+
+  .directory h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  .directory__lead {
+    max-width: 36rem;
+    margin-bottom: var(--space-10);
+    color: var(--ink-soft);
+  }
+
+  .directory ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .directory li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: 48px;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--forest-deep);
+  }
+
+  .directory__title {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .directory__tag {
+    font-size: var(--step--1);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .listen {
+    padding: var(--space-14) 0;
+  }
+
+  .listen__grid {
+    display: grid;
+    gap: var(--space-10);
+    align-items: start;
+  }
+
+  .listen h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  .listen p {
+    max-width: 32rem;
+  }
+
+  .listen a {
+    color: var(--forest-deep);
+    font-weight: 600;
+  }
+
+  @media (min-width: 900px) {
+    .latest__feature {
+      grid-template-columns: 1.65fr 1fr;
+      gap: var(--space-10);
+      align-items: center;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .collections ul {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .directory ul {
+      grid-template-columns: 1fr 1fr;
+      gap: 0 var(--space-10);
+    }
+
+    .listen__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+    }
+  }
+</style>

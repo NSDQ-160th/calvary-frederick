@@ -35,7 +35,7 @@ export const siteFaqs = [
   ...visitFaqs,
   {
     q: 'How can I watch a sermon from Calvary Chapel Frederick?',
-    a: 'Watch on-demand messages at calvaryfrederick.com/watch, on YouTube, or in the church app. Sunday, midweek, archive, and Truth with Grace radio are on Subsplash.',
+    a: 'Watch on-demand messages at calvaryfrederick.com/media, on YouTube, or in the church app. Sunday, midweek, archive, and Truth with Grace radio are on Subsplash.',
   },
   {
     q: 'How do I give to Calvary Chapel Frederick?',

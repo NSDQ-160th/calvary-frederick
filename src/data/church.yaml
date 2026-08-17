@@ -55,8 +55,8 @@ sermon:
   series: Acts
   title: "Acts 21:18-25"
   speaker: Pastor David Ochoa
-  image: /images/sermon-fallback.svg
-  href: /watch
+  image: /images/media/acts.jpg
+  href: /media
 
 routes:
   give: true

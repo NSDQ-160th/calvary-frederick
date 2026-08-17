@@ -1,0 +1,84 @@
+---
+interface Props {
+  src: string;
+  poster?: string;
+  label?: string;
+}
+
+const { src, poster, label = 'Ministry video' } = Astro.props;
+---
+
+<figure class="frame">
+  <div class="frame__mat">
+    <video
+      class="frame__video"
+      data-frame-video
+      muted
+      loop
+      playsinline
+      autoplay
+      preload="metadata"
+      poster={poster}
+      aria-label={label}
+    >
+      <source src={src} type="video/mp4" />
+    </video>
+  </div>
+</figure>
+
+<script>
+  const videos = document.querySelectorAll<HTMLVideoElement>('[data-frame-video]');
+  if (videos.length) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const apply = () => {
+      videos.forEach((video) => {
+        if (reduce.matches) {
+          video.pause();
+          video.classList.add('is-paused');
+        } else {
+          video.classList.remove('is-paused');
+          void video.play().catch(() => {
+            /* autoplay blocked — first frame stays */
+          });
+        }
+      });
+    };
+    apply();
+    reduce.addEventListener('change', apply);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) videos.forEach((video) => video.pause());
+      else apply();
+    });
+  }
+</script>
+
+<style>
+  .frame {
+    margin: 0;
+  }
+
+  .frame__mat {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--forest-deep);
+    border: 8px solid var(--cream);
+    box-shadow:
+      0 0 0 1px var(--gold),
+      0 22px 48px rgb(10 48 64 / 0.2);
+  }
+
+  .frame__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    background: var(--forest-deep);
+  }
+
+  @media (max-width: 767px) {
+    .frame__mat {
+      border-width: 5px;
+    }
+  }
+</style>
