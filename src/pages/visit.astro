@@ -4,7 +4,7 @@ import FaqList from '../components/FaqList.astro';
 import MinistryGrid from '../components/MinistryGrid.astro';
 import PageHero from '../components/PageHero.astro';
 import PlanVisitForm from '../components/PlanVisitForm.astro';
-import VisitSteps from '../components/VisitSteps.astro';
+import GatheringLook from '../components/GatheringLook.astro';
 import Base from '../layouts/Base.astro';
 import { church, formatPhone, formatServiceTime, mapsUrl, telHref } from '../data/church';
 import { visitFaqs } from '../data/faq';
@@ -57,7 +57,8 @@ const description = `Visit Calvary Chapel Frederick at 244A S Jefferson St in do
         </p>
         <p class="intro__times">
           <strong>Sunday</strong> {sunday}<br />
-          <strong>Wednesday</strong> {wednesday}<br />
+          <strong>Wednesday</strong> {formatServiceTime(church.services.fellowshipDinner.time)}{' '}
+          fellowship dinner, then {wednesday} Bible study<br />
           <strong>Prayer</strong> {church.services.middayPrayer.days}
           {' '}
           {formatServiceTime(church.services.middayPrayer.start)}–{formatServiceTime(church.services.middayPrayer.end)}
@@ -77,13 +78,10 @@ const description = `Visit Calvary Chapel Frederick at 244A S Jefferson St in do
     </div>
   </section>
 
-  <section class="band" id="expect" aria-labelledby="expect-heading">
-    <div class="wrap">
-      <p class="meta">What to expect</p>
-      <h2 id="expect-heading">Your first Sunday</h2>
-      <VisitSteps />
-    </div>
-  </section>
+  <div id="expect">
+    <GatheringLook gathering="sunday" />
+    <GatheringLook gathering="wednesday" />
+  </div>
 
   <section class="kids" id="kids" aria-labelledby="kids-heading">
     <div class="wrap kids__grid">
@@ -156,7 +154,7 @@ const description = `Visit Calvary Chapel Frederick at 244A S Jefferson St in do
 <style>
   .sub {
     position: sticky;
-    top: 4.75rem;
+    top: 5.25rem;
     z-index: 30;
     background: var(--cream);
     border-bottom: 1px solid var(--rule);

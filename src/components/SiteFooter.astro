@@ -36,10 +36,13 @@ const year = new Date().getFullYear();
         </li>
         <li>
           <Icon name="clock" />
-          <span>Wednesday {wednesday}</span>
+          <span>
+            Wednesday {formatServiceTime(church.services.fellowshipDinner.time)} dinner · {wednesday}{' '}
+            study
+          </span>
         </li>
         <li>
-          <Icon name="heart" />
+          <Icon name="pray" />
           <span>
             Prayer {church.services.middayPrayer.days}
             {' '}

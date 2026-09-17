@@ -22,7 +22,7 @@ const tiles = [
   {
     meta: 'Give',
     title: 'A cheerful giver',
-    text: 'No plate is passed. Boxes in the sanctuary, or give online.',
+    text: 'Offering boxes in the sanctuary and by the book wall, or give online.',
     href,
     label: 'Give',
     external: !church.routes.give,
@@ -44,6 +44,15 @@ const tiles = [
       {
         tiles.map((item) => (
           <li>
+            {item.meta === 'Radio' && (
+              <img
+                class="extras__logo"
+                src="/images/media/truth-with-grace.jpg"
+                alt="Truth with Grace"
+                width="120"
+                height="120"
+              />
+            )}
             <p class="meta">{item.meta}</p>
             <h2>{item.title}</h2>
             <p>{item.text}</p>
@@ -84,6 +93,13 @@ const tiles = [
     padding: var(--space-8) var(--space-6);
     background: var(--cream);
     border: 1px solid var(--rule);
+  }
+
+  .extras__logo {
+    width: 4.5rem;
+    height: 4.5rem;
+    object-fit: cover;
+    margin-bottom: var(--space-4);
   }
 
   .meta {

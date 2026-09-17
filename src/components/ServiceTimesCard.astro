@@ -38,7 +38,11 @@ const calendars = [
       <div class="location__times">
         <h3 class="meta">Service times</h3>
         <p>Sunday {sunday}</p>
-        <p>Wednesday {wednesday}</p>
+        <p>
+          Wednesday {formatServiceTime(church.services.fellowshipDinner.time)} fellowship dinner,
+          {' '}
+          {wednesday} Bible study
+        </p>
         <p>
           Prayer {church.services.middayPrayer.days}
           {' '}

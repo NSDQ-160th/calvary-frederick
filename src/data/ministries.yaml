@@ -169,6 +169,7 @@
   video: /videos/ministries/small-groups.mp4
   poster: /images/ministries/groups.jpg
   emailKey: info
+  form: groups
   lead: Grow in faith and community through the week.
   description: >-
     Small groups at Calvary Chapel Frederick. Grow in faith and community through
@@ -179,33 +180,152 @@
       neglecting to meet together.
     ref: Hebrews 10:24–25
   paragraphs:
-    - Small groups help people grow in faith and community through the week.
-    - Email {{infoEmail}} if you want to get connected with a group.
+    - >-
+      Small groups meet in homes and around town through the week. We do not
+      list street addresses here — if you want to join a group, tell us a little
+      about yourself and we will help you find a fit.
+    - >-
+      Expect Bible study, prayer, and fellowship. Use the form below or email
+      {{infoEmail}}.
   facts:
+    - label: Where
+      value: Homes and around Frederick — ask us for the next opening
+    - label: What to expect
+      value: Word, prayer, and fellowship
     - label: Contact
       value: "{{infoEmail}}"
 
 - slug: volunteer
   title: Volunteer
-  text: Greeting, kids, A/V, coffee, and more.
+  text: Worship, kids, coffee, greeting, ushering, and more.
   image: /images/ministries/serve.jpg
   video: /videos/ministries/volunteer.mp4
   poster: /images/ministries/serve.jpg
   emailKey: info
-  lead: Greeting, kids, A/V, coffee, and more.
+  form: volunteer
+  lead: A place to serve.
   description: >-
-    Volunteer at Calvary Chapel Frederick. Serve in greeting, kids, A/V, coffee,
-    and more. Downtown Frederick, MD.
+    Volunteer at Calvary Chapel Frederick. Serve in worship, children’s ministry,
+    coffee, greeting, ushering, and more. Downtown Frederick, MD.
   scripture:
-    text: For even the Son of Man came not to be served but to serve.
-    ref: Mark 10:45
+    text: >-
+      There are diversities of gifts, but the same Spirit. There are differences
+      of ministries, but the same Lord. And there are diversities of activities,
+      but it is the same God who works all in all.
+    ref: 1 Corinthians 12:4–6
   paragraphs:
-    - There is a place to serve — greeting, kids, A/V, coffee, and more.
     - >-
-      Email {{infoEmail}} if you want to help. Stay after a service and introduce
-      yourself to a greeter.
+      There is a place to serve. Choose an area below, or use the form and we
+      will follow up. Stay after a service and introduce yourself to a greeter.
   facts:
     - label: Teams
-      value: Greeting, kids, A/V, coffee, and more
+      value: Worship, children’s, coffee, greeting, ushering, A/V
+    - label: Contact
+      value: "{{infoEmail}}"
+  areas:
+    - id: worship
+      title: Worship
+      text: Serve with the worship team. Tell us if you sing or play, and we will follow up.
+    - id: children
+      title: Children’s ministry
+      text: >-
+        Teachers, helpers, and substitutes for Sunday and Wednesday. Teachers
+        must be at least 18; helpers at least 13 with a parent’s permission.
+        Curriculum and training are provided.
+    - id: coffee
+      title: Coffee
+      text: Help with coffee and fellowship after we gather.
+    - id: greeting
+      title: Greeting
+      text: Welcome people at the door and help first-time guests find a seat.
+    - id: ushering
+      title: Ushering
+      text: Help people find a seat and keep the gathering orderly.
+    - id: av
+      title: A/V
+      text: Sound, screens, and recording. Training is available.
+
+- slug: school-of-ministry
+  title: School of Ministry
+  text: Equipping people to serve.
+  image: /images/ministries/serve.jpg
+  video: ""
+  poster: /images/ministries/serve.jpg
+  emailKey: info
+  form: groups
+  lead: Equipping people to serve.
+  description: >-
+    School of Ministry at Calvary Chapel Frederick. Email us to ask about the
+    next class. Downtown Frederick, MD.
+  scripture:
+    text: >-
+      All Scripture is breathed out by God and profitable for teaching, for
+      reproof, for correction, and for training in righteousness.
+    ref: 2 Timothy 3:16
+  paragraphs:
+    - >-
+      School of Ministry is how we equip people to serve. Use the form below or
+      email {{infoEmail}} and we will share the next opening. We do not list a
+      public class calendar here until the church publishes dates.
+  facts:
+    - label: Contact
+      value: "{{infoEmail}}"
+
+- slug: sonshine
+  title: SonShine LC
+  text: Preschool ministry of Calvary Chapel Frederick.
+  image: /images/ministries/preschool.jpg
+  video: ""
+  poster: /images/ministries/preschool.jpg
+  emailKey: sonshine
+  lead: A preschool ministry of Calvary Chapel Frederick.
+  description: >-
+    SonShine Learning Center is the preschool ministry of Calvary Chapel
+    Frederick. Quality education and care with a Biblical foundation.
+  scripture:
+    text: >-
+      Train up a child in the way he should go, and when he is old he will not
+      depart from it.
+    ref: Proverbs 22:6
+  paragraphs:
+    - >-
+      SonShine Learning Center is a preschool ministry of Calvary Chapel
+      Frederick. Its purpose is quality education and tender care, with
+      Christian character from a Biblical perspective.
+    - >-
+      Enrollment and camp details live on the SonShine site. Email
+      {{sonshineEmail}} or visit sonshinelc.com.
+  facts:
+    - label: Ministry of
+      value: Calvary Chapel Frederick
+    - label: Contact
+      value: "{{sonshineEmail}}"
+    - label: Website
+      value: sonshinelc.com
+  externalUrl: https://www.sonshinelc.com/
+
+- slug: discipleship
+  title: Discipleship
+  text: Grow as a follower of Jesus.
+  image: /images/ministries/groups.jpg
+  video: ""
+  poster: /images/ministries/groups.jpg
+  emailKey: info
+  form: groups
+  lead: Grow as a follower of Jesus.
+  description: >-
+    Discipleship at Calvary Chapel Frederick. Email us to get connected.
+    Downtown Frederick, MD.
+  scripture:
+    text: >-
+      Go therefore and make disciples of all nations, baptizing them in the
+      name of the Father and of the Son and of the Holy Spirit.
+    ref: Matthew 28:19
+  paragraphs:
+    - >-
+      We want people to grow as followers of Jesus — in the Word, in prayer,
+      and with others. Use the form below or email {{infoEmail}} and we will
+      help you take a next step.
+  facts:
     - label: Contact
       value: "{{infoEmail}}"

@@ -1,28 +1,35 @@
 ---
 interface Props {
-  src: string;
+  src?: string;
   poster?: string;
   label?: string;
 }
 
-const { src, poster, label = 'Ministry video' } = Astro.props;
+const { src = '', poster, label = 'Ministry video' } = Astro.props;
+const videoSrc = src.trim();
 ---
 
 <figure class="frame">
   <div class="frame__mat">
-    <video
-      class="frame__video"
-      data-frame-video
-      muted
-      loop
-      playsinline
-      autoplay
-      preload="metadata"
-      poster={poster}
-      aria-label={label}
-    >
-      <source src={src} type="video/mp4" />
-    </video>
+    {
+      videoSrc ? (
+        <video
+          class="frame__video"
+          data-frame-video
+          muted
+          loop
+          playsinline
+          autoplay
+          preload="metadata"
+          poster={poster}
+          aria-label={label}
+        >
+          <source src={videoSrc} type="video/mp4" />
+        </video>
+      ) : (
+        poster && <img class="frame__video" src={poster} alt="" width="1600" height="900" />
+      )
+    }
   </div>
 </figure>
 

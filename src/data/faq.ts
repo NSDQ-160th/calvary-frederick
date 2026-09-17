@@ -7,7 +7,7 @@ const wednesday = formatServiceTime(church.services.wednesday);
 export const visitFaqs = [
   {
     q: 'What time is church at Calvary Chapel Frederick?',
-    a: `Sunday services are at ${sunday}. Midweek Bible study is Wednesday at ${wednesday}. Midday prayer is ${church.services.middayPrayer.days} from ${formatServiceTime(church.services.middayPrayer.start)} to ${formatServiceTime(church.services.middayPrayer.end)}.`,
+    a: `Sunday services are at ${sunday}. Wednesday fellowship dinner is at ${formatServiceTime(church.services.fellowshipDinner.time)}, then midweek Bible study at ${wednesday}. Midday prayer is ${church.services.middayPrayer.days} from ${formatServiceTime(church.services.middayPrayer.start)} to ${formatServiceTime(church.services.middayPrayer.end)}.`,
   },
   {
     q: 'Where is Calvary Chapel Frederick located?',
@@ -39,7 +39,7 @@ export const siteFaqs = [
   },
   {
     q: 'How do I give to Calvary Chapel Frederick?',
-    a: `The church does not pass a plate. Give in the sanctuary offering boxes, online at calvaryfrederick.com/give, or by bill-pay and check to ${church.address.line}, ${church.address.city}, ${church.address.region} ${church.address.postal}.`,
+    a: `${church.giving.lead} ${church.giving.boxes} Give online at calvaryfrederick.com/give, or by bill-pay and check to ${church.address.line}, ${church.address.city}, ${church.address.region} ${church.address.postal}.`,
   },
   {
     q: 'How do I contact Calvary Chapel Frederick?',

@@ -1,4 +1,5 @@
 ---
+import { church } from '../data/church';
 import Logo from './Logo.astro';
 
 interface Props {
@@ -6,12 +7,14 @@ interface Props {
 }
 
 const { current } = Astro.props;
+const liveHref = church.live.url || church.media.youtube;
 
 const links = [
-  { href: '/visit', id: 'visit', label: 'Visit' },
-  { href: '/ministries', id: 'ministries', label: 'Ministries' },
-  { href: '/media', id: 'media', label: 'Media' },
-  { href: '/give', id: 'give', label: 'Give' },
+  { href: '/visit', id: 'visit', label: 'Visit', external: false },
+  { href: liveHref, id: 'live', label: 'Watch live', external: true },
+  { href: '/ministries', id: 'ministries', label: 'Ministries', external: false },
+  { href: '/media', id: 'media', label: 'Media', external: false },
+  { href: '/give', id: 'give', label: 'Give', external: false },
 ] as const;
 ---
 
@@ -21,13 +24,17 @@ const links = [
     <nav class="header__nav" aria-label="Primary">
       {
         links.map((link) => (
-          <a href={link.href} aria-current={current === link.id ? 'page' : undefined}>
+          <a
+            href={link.href}
+            aria-current={current === link.id ? 'page' : undefined}
+            target={link.external ? '_blank' : undefined}
+            rel={link.external ? 'noreferrer' : undefined}
+          >
             {link.label}
           </a>
         ))
       }
     </nav>
-    <a class="btn btn--primary header__cta" href="/visit#plan">Plan Your Visit</a>
     <button
       class="header__toggle"
       type="button"
@@ -44,12 +51,17 @@ const links = [
     <nav class="sheet__nav" aria-label="Mobile">
       {
         links.map((link) => (
-          <a href={link.href} aria-current={current === link.id ? 'page' : undefined}>
+          <a
+            href={link.href}
+            aria-current={current === link.id ? 'page' : undefined}
+            target={link.external ? '_blank' : undefined}
+            rel={link.external ? 'noreferrer' : undefined}
+          >
             {link.label}
           </a>
         ))
       }
-      <a class="btn btn--primary" href="/visit#plan">Plan Your Visit</a>
+      <a class="btn btn--primary" href="/visit#plan">Are you new?</a>
     </nav>
   </div>
 </header>
@@ -84,7 +96,7 @@ const links = [
     display: flex;
     align-items: center;
     gap: var(--space-6);
-    min-height: 4.75rem;
+    min-height: 5.25rem;
   }
 
   .header__nav {
@@ -108,10 +120,6 @@ const links = [
 
   .header__nav a[aria-current='page'] {
     box-shadow: inset 0 -2px 0 currentColor;
-  }
-
-  .header__cta {
-    display: none;
   }
 
   .header.is-solid :global(.btn--primary) {
@@ -183,8 +191,7 @@ const links = [
   }
 
   @media (min-width: 900px) {
-    .header__nav,
-    .header__cta {
+    .header__nav {
       display: inline-flex;
     }
 

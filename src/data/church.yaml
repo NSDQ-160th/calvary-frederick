@@ -5,11 +5,11 @@
 name: Calvary Chapel Frederick
 tagline: Simply Teaching The Word Simply
 
-# Replace public/videos/hero.mp4 with any MP4 to change the homepage hero.
-# Leave video empty to fall back to the still.
+# Drop a local MP4 here (downtown Frederick, Gambrill, church) when the church
+# provides it. Empty uses the still. Do not restore the ocean clip.
 hero:
-  video: /videos/hero.mp4
-  poster: /images/hero-poster.jpg
+  video: ""
+  poster: /images/hero-frederick.jpg
 vision: >-
   A community where you will encounter the love of Jesus,
   be equipped for life in Jesus, and engage a lost world with Jesus.
@@ -27,6 +27,7 @@ emails:
   youth: youth@calvaryfrederick.com
   women: women@calvaryfrederick.com
   men: men@calvaryfrederick.com
+  sonshine: sonshinelc@calvaryfrederick.com
 
 services:
   sunday: ["09:00", "11:00"]
@@ -38,6 +39,12 @@ services:
     days: Mon, Wed, Fri
     start: "12:15"
     end: "12:45"
+  fellowshipDinner:
+    time: "18:00"
+    note: >-
+      Wednesday fellowship dinners are at 6:00 PM before the midweek service.
+      The church provides the main dish; please bring something to share and
+      sign up at the Welcome Center.
 
 youth:
   sunday: Middle school at 9:00, youth room
@@ -71,7 +78,14 @@ men:
 
 giving:
   platePassed: false
-  boxes: Sanctuary offering boxes
+  lead: >-
+    If you have visited us you may have noticed that we do not receive an
+    offering as part of our worship service.
+  boxes: >-
+    Offering boxes are in the sanctuary. There is also a box at the front of
+    the church by the book wall.
+  cashEnvelopes: >-
+    When cash envelopes are available, they are preferred for cash gifts.
   subsplashEmbed: https://wallet.subsplash.com/ui/embed/ZZ5DWR
   fees:
     card: 2.3% + $0.30
@@ -100,8 +114,9 @@ podcasts:
 flags:
   israel2027: false
   vbs2026: false
+  sundayPrayerLunch: false
 
 live:
-  url: ""
+  url: https://www.youtube.com/channel/UCZG6R1UGPL4Eo07ghop7gJA
   start: null
   end: null

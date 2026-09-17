@@ -13,6 +13,14 @@ export type MinistryFact = {
   value: string;
 };
 
+export type MinistryArea = {
+  id: string;
+  title: string;
+  text: string;
+};
+
+export type MinistryForm = 'groups' | 'volunteer';
+
 export type Ministry = {
   slug: string;
   title: string;
@@ -26,16 +34,19 @@ export type Ministry = {
   scripture: { text: string; ref: string };
   paragraphs: string[];
   facts: MinistryFact[];
+  form?: MinistryForm;
+  areas: MinistryArea[];
+  externalUrl?: string;
 };
 
-type EmailKey = 'info' | 'youth' | 'women' | 'men';
+type EmailKey = 'info' | 'youth' | 'women' | 'men' | 'sonshine';
 
 type MinistrySpec = {
   slug: string;
   title: string;
   text: string;
   image: string;
-  video: string;
+  video?: string;
   poster: string;
   emailKey: EmailKey;
   lead: string;
@@ -43,6 +54,9 @@ type MinistrySpec = {
   scripture: { text: string; ref: string };
   paragraphs: string[];
   facts: MinistryFact[];
+  form?: MinistryForm;
+  areas?: MinistryArea[];
+  externalUrl?: string;
 };
 
 const sunday = church.services.sunday.map(formatServiceTime).join(' and ');
@@ -61,6 +75,7 @@ const vars: Record<string, string> = {
   youthEmail: church.emails.youth,
   womenEmail: church.emails.women,
   menEmail: church.emails.men,
+  sonshineEmail: church.emails.sonshine,
 };
 
 function emailFor(key: EmailKey): string {
@@ -80,7 +95,7 @@ function hydrate(item: MinistrySpec): Ministry {
     title: item.title,
     text: fill(item.text, extra),
     image: item.image,
-    video: item.video,
+    video: item.video?.trim() ?? '',
     poster: item.poster,
     email,
     lead: fill(item.lead, extra),
@@ -91,6 +106,13 @@ function hydrate(item: MinistrySpec): Ministry {
       label: fact.label,
       value: fill(fact.value, extra),
     })),
+    form: item.form,
+    areas: (item.areas ?? []).map((area) => ({
+      id: area.id,
+      title: area.title,
+      text: fill(area.text, extra),
+    })),
+    externalUrl: item.externalUrl,
   };
 }
 

@@ -1,0 +1,146 @@
+---
+import { church, formatServiceTime } from '../data/church';
+
+interface Props {
+  gathering: 'sunday' | 'wednesday';
+}
+
+const { gathering } = Astro.props;
+const sunday = church.services.sunday.map(formatServiceTime).join(' & ');
+const wednesday = formatServiceTime(church.services.wednesday);
+const dinner = formatServiceTime(church.services.fellowshipDinner.time);
+
+const sundaySteps = [
+  {
+    title: 'Arrive',
+    body: `${church.address.line}, downtown Frederick. Come a few minutes early.`,
+  },
+  {
+    title: 'Kids',
+    body: `Children’s ministry is ${church.services.kidsSunday}. Middle school meets at 9:00 in the youth room. High school joins the main service.`,
+  },
+  {
+    title: 'Find a seat',
+    body: 'Greeters will help you in. Bring a Bible if you have one; extras are available.',
+  },
+  {
+    title: 'Worship and the Word',
+    body: 'We begin with prayer and worship, then the Bible taught verse by verse. Stay after for coffee and fellowship.',
+  },
+];
+
+const wednesdaySteps = [
+  {
+    title: 'Fellowship dinner',
+    body: `${dinner} before the study. The church provides the main dish; please bring something to share and sign up at the Welcome Center.`,
+  },
+  {
+    title: 'Kids',
+    body: `Children’s church is ${church.services.kidsWednesday}. Middle and high school meet together for Ignite.`,
+  },
+  {
+    title: 'Bible study',
+    body: `${wednesday}. Prayer, worship, and the Word taught verse by verse.`,
+  },
+  {
+    title: 'Stay after',
+    body: 'Introduce yourself to a greeter or to Pastor David and Michelle.',
+  },
+];
+
+const isSunday = gathering === 'sunday';
+const heading = isSunday ? 'Here’s what a Sunday is like' : 'Here’s what a Wednesday is like';
+const times = isSunday ? sunday : `${dinner} dinner · ${wednesday} study`;
+const steps = isSunday ? sundaySteps : wednesdaySteps;
+const headingId = isSunday ? 'sunday-like' : 'wednesday-like';
+---
+
+<section class:list={['look', { 'look--alt': !isSunday }]} aria-labelledby={headingId}>
+  <div class="wrap">
+    <p class="meta">{isSunday ? 'Sundays' : 'Wednesdays'}</p>
+    <h2 id={headingId}>{heading}</h2>
+    <p class="look__times">{times}</p>
+    <ol>
+      {
+        steps.map((step, index) => (
+          <li>
+            <span class="look__n">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+    {
+      isSunday && church.flags.sundayPrayerLunch && (
+        <p class="look__note">Monthly prayer lunch is after the second Sunday service. Ask at the Welcome Center for the next date.</p>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .look {
+    padding: var(--space-14) 0;
+    background: var(--paper);
+  }
+
+  .look--alt {
+    background: var(--cream);
+  }
+
+  .meta {
+    margin-bottom: var(--space-3);
+    color: var(--ink-soft);
+  }
+
+  h2 {
+    margin-bottom: var(--space-3);
+  }
+
+  .look__times {
+    margin-bottom: var(--space-10);
+    font-family: var(--font-display);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--forest);
+  }
+
+  ol {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  li {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .look__n {
+    font-family: var(--font-display);
+    letter-spacing: 0.16em;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+  }
+
+  .look__note {
+    margin-top: var(--space-8);
+    color: var(--ink-soft);
+  }
+
+  @media (min-width: 768px) {
+    ol {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+    }
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import MinistryGrid from '../../components/MinistryGrid.astro';
+import PlanVisitForm from '../../components/PlanVisitForm.astro';
 import VideoFrame from '../../components/VideoFrame.astro';
 import Base from '../../layouts/Base.astro';
 import { church } from '../../data/church';
@@ -38,9 +39,17 @@ const title = `${ministry.title} — Calvary Chapel Frederick`;
     </div>
   </header>
 
-  <div class="min-hero__frame wrap">
-    <VideoFrame src={ministry.video} poster={ministry.poster} label={`${ministry.title} at ${church.name}`} />
-  </div>
+  {
+    (ministry.video || ministry.poster) && (
+      <div class="min-hero__frame wrap">
+        <VideoFrame
+          src={ministry.video}
+          poster={ministry.poster}
+          label={`${ministry.title} at ${church.name}`}
+        />
+      </div>
+    )
+  }
 
   <article class="body wrap">
     <div class="body__copy">
@@ -49,10 +58,45 @@ const title = `${ministry.title} — Calvary Chapel Frederick`;
         <cite> — {ministry.scripture.ref}</cite>
       </p>
       {ministry.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      {
+        ministry.areas.length > 0 && (
+          <ul class="areas">
+            {ministry.areas.map((area) => (
+              <li>
+                <h3>{area.title}</h3>
+                <p>{area.text}</p>
+                <a class="btn btn--secondary" href={`#serve-${ministry.slug}`}>
+                  {area.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
       <p class="cta">
-        <a class="btn btn--primary" href={`mailto:${ministry.email}`}>Email {ministry.title.toLowerCase()}</a>
-        <a class="btn btn--secondary" href="/visit#plan">Plan a visit</a>
+        <a class="btn btn--primary" href={`mailto:${ministry.email}`}>
+          Email {ministry.title.toLowerCase()}
+        </a>
+        {ministry.externalUrl && (
+          <a class="btn btn--secondary" href={ministry.externalUrl} target="_blank" rel="noreferrer">
+            Visit website
+          </a>
+        )}
+        <a class="btn btn--secondary" href="/visit#plan">
+          Plan a visit
+        </a>
       </p>
+      {
+        ministry.form && (
+          <div class="body__form" id={`serve-${ministry.slug}`}>
+            <PlanVisitForm
+              id={`${ministry.slug}-form`}
+              kind={ministry.form}
+              areas={ministry.areas}
+            />
+          </div>
+        )
+      }
     </div>
     <dl class="facts">
       {
@@ -157,6 +201,36 @@ const title = `${ministry.title} — Calvary Chapel Frederick`;
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-3);
+    margin-top: var(--space-10);
+  }
+
+  .areas {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-10) 0 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .areas li {
+    padding: var(--space-6);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+  }
+
+  .areas h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 1.02rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .areas .btn {
+    margin-top: var(--space-4);
+  }
+
+  .body__form {
     margin-top: var(--space-10);
   }
 

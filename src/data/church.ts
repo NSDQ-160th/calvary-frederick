@@ -17,6 +17,7 @@ export type ChurchSpec = {
     youth: string;
     women: string;
     men: string;
+    sonshine: string;
   };
   services: {
     sunday: string[];
@@ -27,6 +28,10 @@ export type ChurchSpec = {
       days: string;
       start: string;
       end: string;
+    };
+    fellowshipDinner: {
+      time: string;
+      note: string;
     };
   };
   youth: {
@@ -59,7 +64,9 @@ export type ChurchSpec = {
   };
   giving: {
     platePassed: boolean;
+    lead: string;
     boxes: string;
+    cashEnvelopes: string;
     subsplashEmbed: string;
     fees: {
       card: string;
@@ -89,6 +96,7 @@ export type ChurchSpec = {
   flags: {
     israel2027: boolean;
     vbs2026: boolean;
+    sundayPrayerLunch: boolean;
   };
   routes: {
     give: boolean;

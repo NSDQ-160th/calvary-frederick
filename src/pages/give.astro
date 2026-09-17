@@ -11,9 +11,9 @@ const wallet = church.giving.subsplashEmbed;
 
 const ways: { icon: IconName; title: string; text: string }[] = [
   {
-    icon: 'heart',
-    title: 'Sanctuary boxes',
-    text: church.giving.boxes + '. We do not pass a plate.',
+    icon: 'gift',
+    title: 'Offering boxes',
+    text: church.giving.boxes + ' ' + church.giving.cashEnvelopes,
   },
   {
     icon: 'gift',
@@ -30,7 +30,7 @@ const ways: { icon: IconName; title: string; text: string }[] = [
 
 <Base
   title="Give — Calvary Chapel Frederick"
-  description="Give to Calvary Chapel Frederick. No plate is passed. Offering boxes in the sanctuary, online, or by bill-pay and check. Downtown Frederick, MD."
+  description="Give to Calvary Chapel Frederick. Offering boxes in the sanctuary and by the book wall, online, or by bill-pay and check. Downtown Frederick, MD."
   current="give"
   jsonLd={breadcrumbJsonLd([
     { name: 'Home', path: '/' },
@@ -40,7 +40,7 @@ const ways: { icon: IconName; title: string; text: string }[] = [
   <PageHero
     eyebrow={church.name}
     title="Give"
-    lead="We do not pass a plate. Giving is worship, between you and the Lord."
+    lead={church.giving.lead}
     image="/images/ministries/serve.jpg"
   />
 
@@ -59,6 +59,7 @@ const ways: { icon: IconName; title: string; text: string }[] = [
       Each one must give as he has decided in his heart, not reluctantly or under compulsion, for
       God loves a cheerful giver. — 2 Corinthians 9:7
     </p>
+    <p>{church.giving.lead}</p>
     <p>
       Jesus taught us to give in secret (Matthew 6:3–4). If you are visiting, please feel no
       pressure to give.
@@ -120,7 +121,7 @@ const ways: { icon: IconName; title: string; text: string }[] = [
 <style>
   .sub {
     position: sticky;
-    top: 4.75rem;
+    top: 5.25rem;
     z-index: 30;
     background: var(--cream);
     border-bottom: 1px solid var(--rule);

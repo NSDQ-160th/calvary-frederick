@@ -1,16 +1,44 @@
 ---
 import { church } from '../data/church';
+import type { MinistryArea } from '../data/ministries';
 
+interface Props {
+  id?: string;
+  kind?: 'visit' | 'groups' | 'volunteer';
+  areas?: MinistryArea[];
+}
+
+const { id = 'plan', kind = 'visit', areas = [] } = Astro.props;
 const basin = import.meta.env.PUBLIC_BASIN_VISIT as string | undefined;
+const copy =
+  kind === 'volunteer'
+    ? {
+        meta: 'Serve',
+        title: 'I would like to help',
+        intro: 'Choose an area. We will follow up. If that team uses an application, we will send it.',
+        ok: 'Thank you. We will be in touch.',
+      }
+    : kind === 'groups'
+      ? {
+          meta: 'Connect',
+          title: 'Tell us about you',
+          intro: 'We do not list street addresses here. Share a little and we will help you find a fit.',
+          ok: 'Thank you. We will be in touch.',
+        }
+      : {
+          meta: 'See you soon',
+          title: 'Plan your visit',
+          intro:
+            'Please feel welcome to join us any time — we would love to meet you. If you have a Bible you can bring it; if not, we have extras.',
+          ok: `We’ll look for you this Sunday. If you have questions before then, call ${church.phone.replace(/^\+1-/, '')}.`,
+        };
 ---
 
-<form class="form" id="plan" method="post" action={basin || undefined} data-plan-form>
-  <p class="meta">See you soon</p>
-  <h2>Plan a visit</h2>
-  <p class="form__intro">
-    Please feel welcome to join us any time — we would love to meet you. If you have a Bible you
-    can bring it; if not, we have extras.
-  </p>
+<form class="form" id={id} method="post" action={basin || undefined} data-plan-form>
+  <p class="meta">{copy.meta}</p>
+  <h2>{copy.title}</h2>
+  <p class="form__intro">{copy.intro}</p>
+  <input type="hidden" name="kind" value={kind} />
   <label>
     Name
     <input type="text" name="name" autocomplete="name" required />
@@ -19,37 +47,56 @@ const basin = import.meta.env.PUBLIC_BASIN_VISIT as string | undefined;
     Email
     <input type="email" name="email" autocomplete="email" required />
   </label>
-  <label>
-    Which service
-    <select name="service" required>
-      <option value="Sunday 9:00 AM">Sunday 9:00 AM</option>
-      <option value="Sunday 11:00 AM">Sunday 11:00 AM</option>
-      <option value="Wednesday 7:00 PM">Wednesday 7:00 PM</option>
-    </select>
-  </label>
-  <label>
-    Kids’ ages <span>(optional)</span>
-    <input type="text" name="kids" autocomplete="off" />
-  </label>
+  {
+    kind === 'visit' && (
+      <label>
+        Which service
+        <select name="service" required>
+          <option value="Sunday 9:00 AM">Sunday 9:00 AM</option>
+          <option value="Sunday 11:00 AM">Sunday 11:00 AM</option>
+          <option value="Wednesday 7:00 PM">Wednesday 7:00 PM</option>
+        </select>
+      </label>
+    )
+  }
+  {
+    kind === 'volunteer' && areas.length > 0 && (
+      <label>
+        Area of service
+        <select name="area" required>
+          {areas.map((area) => (
+            <option value={area.title}>{area.title}</option>
+          ))}
+        </select>
+      </label>
+    )
+  }
+  {
+    kind === 'visit' && (
+      <label>
+        Kids’ ages <span>(optional)</span>
+        <input type="text" name="kids" autocomplete="off" />
+      </label>
+    )
+  }
   <label>
     Notes
     <textarea name="notes" rows="3"></textarea>
   </label>
   <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
   <button class="btn btn--primary" type="submit">Send</button>
-  <p class="form__ok" hidden>
-    We’ll look for you this Sunday. If you have questions before then, call {church.phone.replace(/^\+1-/, '')}.
-  </p>
+  <p class="form__ok" hidden>{copy.ok}</p>
 </form>
 
 <script>
-  const form = document.querySelector<HTMLFormElement>('[data-plan-form]');
-  form?.addEventListener('submit', (event) => {
-    if (form.getAttribute('action')) return;
-    event.preventDefault();
-    const ok = form.querySelector<HTMLElement>('.form__ok');
-    if (ok) ok.hidden = false;
-    form.reset();
+  document.querySelectorAll<HTMLFormElement>('[data-plan-form]').forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      if (form.getAttribute('action')) return;
+      event.preventDefault();
+      const ok = form.querySelector<HTMLElement>('.form__ok');
+      if (ok) ok.hidden = false;
+      form.reset();
+    });
   });
 </script>
 
