@@ -103,7 +103,12 @@ const involved = [
   @media (min-width: 768px) {
     .band__grid {
       grid-template-columns: 1fr 1fr;
-      gap: var(--space-16);
+      gap: var(--space-12);
+    }
+
+    .band__col + .band__col {
+      border-left: 1px solid rgb(247 252 254 / 0.16);
+      padding-left: var(--space-12);
     }
   }
 </style>

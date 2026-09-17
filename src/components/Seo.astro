@@ -10,7 +10,7 @@ interface Props {
 const { title, description, jsonLd = [] } = Astro.props;
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const canonical = `${SITE_ORIGIN}${path === '/' ? '/' : `${path}/`}`;
-const ogImage = `${SITE_ORIGIN}/images/hero-poster.jpg`;
+const ogImage = `${SITE_ORIGIN}/images/hero-frederick.jpg`;
 const blocks = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
 ---
 

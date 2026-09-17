@@ -16,7 +16,13 @@ const calendars = [
     <h2 id="location-heading">Location & Services</h2>
     <div class="location__grid">
       <div class="location__place">
-        <img src="/images/hero-poster.jpg" alt="" width="1400" height="933" />
+        <img
+          class="media-frame"
+          src="/images/hero-frederick.jpg"
+          alt="Downtown Frederick, Maryland"
+          width="1400"
+          height="933"
+        />
         <div>
           <h3 class="meta">Location</h3>
           <p>
@@ -29,7 +35,7 @@ const calendars = [
           </p>
         </div>
       </div>
-      <div>
+      <div class="location__times">
         <h3 class="meta">Service times</h3>
         <p>Sunday {sunday}</p>
         <p>Wednesday {wednesday}</p>
@@ -81,6 +87,16 @@ const calendars = [
     width: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
+    object-position: center 40%;
+  }
+
+  .location__times {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: var(--space-8);
+    background: var(--cream);
+    border: 1px solid var(--rule);
   }
 
   h3 {
@@ -132,7 +148,7 @@ const calendars = [
     .location__grid {
       grid-template-columns: 1.15fr 1fr;
       gap: var(--space-12);
-      align-items: start;
+      align-items: stretch;
     }
   }
 </style>

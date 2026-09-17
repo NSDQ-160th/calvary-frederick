@@ -182,3 +182,16 @@ h3 {
   width: min(var(--page-max), calc(100% - (var(--page-margin) * 2)));
   margin-inline: auto;
 }
+
+.media-frame {
+  border: 8px solid var(--cream);
+  box-shadow:
+    0 0 0 1px var(--gold),
+    0 22px 48px rgb(10 48 64 / 0.16);
+}
+
+@media (max-width: 767px) {
+  .media-frame {
+    border-width: 5px;
+  }
+}

@@ -19,7 +19,7 @@ const { series, heading = 'Series', id = 'series-heading' } = Astro.props;
       {
         series.map((item) => (
           <li>
-            <a href={seriesPath(item)}>
+            <a class="media-frame" href={seriesPath(item)}>
               {item.cover ? (
                 <img src={item.cover} alt="" width="1400" height="788" />
               ) : (
@@ -141,7 +141,7 @@ const { series, heading = 'Series', id = 'series-heading' } = Astro.props;
 
   @media (min-width: 1024px) {
     ul {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
 

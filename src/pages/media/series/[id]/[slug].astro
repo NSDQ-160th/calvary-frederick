@@ -48,7 +48,7 @@ const description = series.teachings.length
     lead={
       series.teachings.length
         ? `${series.teachings.length}${series.more ? '+' : ''} published teachings in this series.`
-        : 'This series is in the church media library on Subsplash.'
+        : 'Watch or listen in the church media library.'
     }
     image={series.cover || '/images/ministries/prayer.jpg'}
   />
@@ -59,8 +59,8 @@ const description = series.teachings.length
         <TeachingList teachings={series.teachings} more={series.more} moreHref={moreHref} />
       ) : (
         <p>
-          This series is in the church library. Open it on Subsplash or the media site to watch
-          or listen.
+          Open this series to watch or listen. Sunday, midweek, and Truth with Grace are all in
+          the same library.
         </p>
       )
     }

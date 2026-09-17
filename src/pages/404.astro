@@ -4,44 +4,71 @@ import { church } from '../data/church';
 ---
 
 <Base title={`Page not found — ${church.name}`}>
-  <section class="missing wrap enter">
-    <p class="meta">{church.name}</p>
-    <h1>We cannot find that page.</h1>
-    <p class="lead">
-      It may have moved when we rebuilt the site. Try home, plan a visit, or a recent message.
-    </p>
-    <p class="missing__links">
-      <a class="btn btn--primary" href="/">Home</a>
-      <a class="btn btn--secondary" href="/visit">Visit</a>
-      <a class="btn btn--secondary" href="/ministries">Ministries</a>
-      <a class="btn btn--secondary" href="/media">Media</a>
-    </p>
+  <section class="missing" data-hero>
+    <div class="wrap enter">
+      <p class="meta">{church.name}</p>
+      <h1>We cannot find that page.</h1>
+      <p class="lead">
+        It may have moved when we rebuilt the site. Try home, plan a visit, or a recent message.
+      </p>
+      <p class="missing__links">
+        <a class="btn btn--primary" href="/">Home</a>
+        <a class="btn btn--secondary" href="/visit">Visit</a>
+        <a class="btn btn--secondary" href="/ministries">Ministries</a>
+        <a class="btn btn--secondary" href="/media">Media</a>
+      </p>
+    </div>
   </section>
 </Base>
 
 <style>
   .missing {
+    min-height: 70vh;
+    display: flex;
+    align-items: flex-end;
     padding: 8rem 0 var(--space-16);
-    max-width: 40rem;
+    background: var(--forest-deep);
+    color: var(--cream);
   }
 
   .meta {
     margin-bottom: var(--space-4);
-    color: var(--ink-soft);
+    color: var(--inverse-muted);
   }
 
   h1 {
     margin-bottom: var(--space-6);
+    max-width: 14ch;
   }
 
   .lead {
     margin-bottom: var(--space-8);
     max-width: 36rem;
+    letter-spacing: 0;
+    text-transform: none;
+    font-family: var(--font-ui);
   }
 
   .missing__links {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-3);
+  }
+
+  .missing :global(.btn--primary) {
+    background: var(--cream);
+    color: var(--forest-deep);
+    border-color: var(--cream);
+  }
+
+  .missing :global(.btn--secondary) {
+    color: var(--cream);
+    border-color: var(--cream);
+  }
+
+  .missing :global(.btn--secondary:hover),
+  .missing :global(.btn--secondary:focus-visible) {
+    background: var(--cream);
+    color: var(--forest-deep);
   }
 </style>

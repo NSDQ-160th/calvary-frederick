@@ -20,7 +20,7 @@ const recent = recentTeachings(4);
   <div class="wrap">
     <p class="meta">Watch our latest message</p>
     <div class="watch__feature">
-      <a class="watch__stage" href={snapTeachingUrl(latest)} target="_blank" rel="noreferrer">
+      <a class="watch__stage media-frame" href={snapTeachingUrl(latest)} target="_blank" rel="noreferrer">
         <img src={cover} alt="" width="1600" height="900" />
         <span class="watch__play" aria-hidden="true">
           <Icon name="play" />
@@ -47,7 +47,6 @@ const recent = recentTeachings(4);
           {recent.map((item) => (
             <li>
               <a href={snapTeachingUrl(item)} target="_blank" rel="noreferrer">
-                <img src={cover} alt="" width="800" height="450" />
                 <span class="watch__recent-title">{item.title}</span>
                 <span class="watch__recent-meta">{item.date}</span>
               </a>
@@ -161,16 +160,17 @@ const recent = recentTeachings(4);
   .watch__recent a {
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
+    gap: 0.35rem;
+    min-height: 100%;
+    padding: var(--space-5) 0;
+    border-top: 1px solid rgb(247 252 254 / 0.18);
     text-decoration: none;
     color: var(--cream);
   }
 
-  .watch__recent img {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    background: var(--forest);
+  .watch__recent a:hover .watch__recent-title,
+  .watch__recent a:focus-visible .watch__recent-title {
+    text-decoration: underline;
   }
 
   .watch__recent-title {

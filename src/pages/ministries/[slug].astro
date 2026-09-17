@@ -43,11 +43,17 @@ const title = `${ministry.title} — Calvary Chapel Frederick`;
   </div>
 
   <article class="body wrap">
-    <p class="scripture">
-      {ministry.scripture.text}
-      <cite> — {ministry.scripture.ref}</cite>
-    </p>
-    {ministry.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    <div class="body__copy">
+      <p class="scripture">
+        {ministry.scripture.text}
+        <cite> — {ministry.scripture.ref}</cite>
+      </p>
+      {ministry.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      <p class="cta">
+        <a class="btn btn--primary" href={`mailto:${ministry.email}`}>Email {ministry.title.toLowerCase()}</a>
+        <a class="btn btn--secondary" href="/visit#plan">Plan a visit</a>
+      </p>
+    </div>
     <dl class="facts">
       {
         ministry.facts.map((fact) => (
@@ -58,10 +64,6 @@ const title = `${ministry.title} — Calvary Chapel Frederick`;
         ))
       }
     </dl>
-    <p class="cta">
-      <a class="btn btn--primary" href={`mailto:${ministry.email}`}>Email {ministry.title.toLowerCase()}</a>
-      <a class="btn btn--secondary" href="/visit#plan">Plan a visit</a>
-    </p>
   </article>
 
   {
@@ -111,10 +113,12 @@ const title = `${ministry.title} — Calvary Chapel Frederick`;
 
   .body {
     padding-bottom: var(--space-16);
-    max-width: 40rem;
+    display: grid;
+    gap: var(--space-10);
+    align-items: start;
   }
 
-  .body p + p {
+  .body__copy p + p {
     margin-top: var(--space-5);
   }
 
@@ -128,9 +132,12 @@ const title = `${ministry.title} — Calvary Chapel Frederick`;
   }
 
   .facts {
-    margin: var(--space-10) 0;
+    margin: 0;
     display: grid;
     gap: var(--space-5);
+    padding: var(--space-8);
+    background: var(--paper);
+    border: 1px solid var(--rule);
   }
 
   .facts dt {
@@ -156,6 +163,13 @@ const title = `${ministry.title} — Calvary Chapel Frederick`;
   @media (min-width: 768px) {
     .min-hero__frame {
       margin-top: -3.75rem;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .body {
+      grid-template-columns: minmax(0, 1fr) 18.5rem;
+      gap: var(--space-14);
     }
   }
 </style>

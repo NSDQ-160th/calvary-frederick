@@ -21,7 +21,7 @@ const ministries = exclude
       {
         ministries.map((item) => (
           <li>
-            <a href={item.href}>
+            <a class="media-frame" href={item.href}>
               <img src={item.image} alt="" width="1400" height="933" />
               <span class="everyone__shade"></span>
               <span class="everyone__copy">
@@ -120,7 +120,7 @@ const ministries = exclude
 
   @media (min-width: 1024px) {
     ul {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
 

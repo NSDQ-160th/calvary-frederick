@@ -23,7 +23,7 @@ const { eyebrow, title, lead, image = '/images/hero-frederick.jpg' } = Astro.pro
 <style>
   .page-hero {
     position: relative;
-    min-height: 38vh;
+    min-height: min(52vh, 28rem);
     display: flex;
     align-items: flex-end;
     color: var(--cream);
@@ -46,13 +46,13 @@ const { eyebrow, title, lead, image = '/images/hero-frederick.jpg' } = Astro.pro
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgb(10 48 64 / 0.25), rgb(10 48 64 / 0.72));
+    background: linear-gradient(180deg, rgb(10 48 64 / 0.4) 0%, rgb(10 48 64 / 0.78) 100%);
   }
 
   .page-hero__inner {
     position: relative;
     z-index: 1;
-    padding: 7.25rem 0 2.75rem;
+    padding: 8rem 0 3.25rem;
   }
 
   .meta {
