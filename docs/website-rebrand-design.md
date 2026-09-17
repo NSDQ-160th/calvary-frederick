@@ -6,10 +6,10 @@
 | **Customer** | Calvary Chapel Frederick |
 | **Current site** | https://www.calvaryfrederick.com |
 | **Author** | [Design / engineering lead] |
-| **Date** | 16 August 2026 |
+| **Date** | 16 August 2026 (companion refreshed 3 September 2026) |
 | **Status** | Draft (rev 4 — user decisions incorporated) |
 | **Audience** | Implementing engineer + designer who have never been to Frederick, MD |
-| **Companion** | [Subsplash stay vs leave](./subsplash-stay-vs-leave.md) — keep Wallet/Media/App; how to push this brand into that dashboard |
+| **Companion** | [Subsplash stay vs leave](./subsplash-stay-vs-leave.md) — cannot import this Astro site into SnapPages; Option A vs B vs C; Vercel preview; volunteer `/admin` + Grok if `www` stays here |
 
 ---
 

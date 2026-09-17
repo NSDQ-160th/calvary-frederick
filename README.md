@@ -1,27 +1,36 @@
 # Calvary Chapel Frederick
 
-Marketing site for [calvaryfrederick.com](https://www.calvaryfrederick.com). Three pages (Home, Visit, Watch) plus thin `/give`. **Giving, sermons, and the church app stay on Subsplash.** This repo replaces the Squarespace shell only.
+Marketing site for [calvaryfrederick.com](https://www.calvaryfrederick.com). Home, Visit, eight ministry pages, Media, and Give. **Giving, sermons, and the church app stay on Subsplash.** This repo replaces the Squarespace shell only. It is not a SnapPages import — see [docs/subsplash-stay-vs-leave.md](docs/subsplash-stay-vs-leave.md).
+
+| | |
+| --- | --- |
+| Preview | https://calvary-frederick.vercel.app |
+| Host | Vercel project `calvary-frederick` (team `kairos-de62`). Church domain **not** attached. |
+| Git | Private repo: https://github.com/NSDQ-160th/calvary-frederick |
 
 | Doc | What it is |
 | --- | --- |
 | [docs/website-rebrand-design.md](docs/website-rebrand-design.md) | Full design (IA, tokens, cutover, PR plan) |
-| [docs/subsplash-stay-vs-leave.md](docs/subsplash-stay-vs-leave.md) | Why we keep Subsplash for media/give/app, and how to push this brand into that dashboard |
+| [docs/subsplash-stay-vs-leave.md](docs/subsplash-stay-vs-leave.md) | Can we push this site to Subsplash? A vs B vs C. How volunteers update the site if we stay off SnapPages. |
 | [docs/workshop.md](docs/workshop.md) | PR 0 content checklist (parking, skyline license, …) — fill as answers arrive |
 | [docs/search-visibility.md](docs/search-visibility.md) | SEO / AEO / GEO / AI-search plan |
 | [docs/holding-site-scan.md](docs/holding-site-scan.md) | Their SnapPages holding site — what is real vs template |
+| [docs/content-ops.md](docs/content-ops.md) | Three editor paths (volunteer `/admin`, Grok, GitHub) on the same files |
 
 ## Volunteer: weekly updates (this is the runbook)
 
-You need a GitHub login and access to this repository. You do **not** need to install anything.
+You need a GitHub login and access to this repository. You do **not** need to install anything. A staff form at `/admin` is planned; until then, use the GitHub web editor or ask someone to run the change in Grok Build.
+
+The **sermon video itself** is always uploaded in the **Subsplash dashboard**, same as today. Do not put Sunday’s mp4 in this repo.
 
 ### After Sunday — new message title
 
 1. Open [`src/data/church.yaml`](src/data/church.yaml) on GitHub.
 2. Click the pencil (**Edit**).
-3. Find `sermon:` and change `title:` to this week’s message title. Leave it empty to show “Latest Sunday message.” Leave `series:` as `Hebrews` until the series changes.
+3. Find `sermon:` and change `title:` to this week’s message title. Change `series:` and `image:` when the series changes.
 4. Commit directly to `main` (or open a pull request if that is how the church prefers).
 
-The video itself is uploaded in the **Subsplash dashboard**, same as today. The `/watch` page updates itself. Only the homepage card reads this YAML file.
+The `/media` page player updates itself from Subsplash. Only the homepage card reads this YAML file.
 
 ### New bulletin PDF
 
@@ -52,7 +61,7 @@ Times are 24-hour (`19:00` = 7:00 PM).
 
 ### Hero video
 
-Replace [`public/videos/hero.mp4`](public/videos/hero.mp4) with any MP4. Or set `hero.video` in `church.yaml`. Leave `hero.video` empty to use the still only.
+Replace [`public/videos/hero.mp4`](public/videos/hero.mp4) with any MP4. Or set `hero.video` in `church.yaml`. Leave `hero.video` empty to use the still only. These files are **website chrome**, not the teaching archive.
 
 ### What you do *not* edit here
 
@@ -62,8 +71,9 @@ Replace [`public/videos/hero.mp4`](public/videos/hero.mp4) with any MP4. Or set 
 | Recurring gifts, funds, card fees | [wallet.subsplash.com](https://wallet.subsplash.com/) |
 | Church app screenshots | Subsplash App Dashboard |
 | Prayer / visit form destinations | Basin (set up in PR 5) |
+| Wallet ID `ZZ5DWR`, org `+8361`, embed paths | Engineers only — do not change |
 
-More detail: [docs/subsplash-stay-vs-leave.md](docs/subsplash-stay-vs-leave.md).
+More detail: [docs/subsplash-stay-vs-leave.md](docs/subsplash-stay-vs-leave.md) and [docs/content-ops.md](docs/content-ops.md).
 
 ## Local development
 
@@ -72,12 +82,14 @@ npm install
 npm run dev
 ```
 
+Dev binds `127.0.0.1` (see `astro.config.ts`). Preview:
+
 ```bash
 npm run build
 npm run preview
 ```
 
-Node 22+. Preview deploys will live on `*.pages.dev` until `www` is attached after PR 8.
+Node 22+. Production preview is Vercel, not `*.pages.dev`.
 
 ## PR status
 
@@ -88,8 +100,14 @@ Node 22+. Preview deploys will live on `*.pages.dev` until `www` is attached aft
 - [x] PR 5 — Give + Visit + forms (presentation pass)
 - [x] Visit rebuild — two-column plan-a-visit + visual kids/ministries + FAQ
 - [x] Watch visual pass — cinema player, collection tiles, listen band
+- [x] Ministries — eight pages, framed looping heroes
+- [x] Media library — series catalog + Subsplash player
+- [x] Give rebuild — ways / wallet / fees
+- [x] FTL cyan/teal theme
+- [x] Vercel preview host
+- [ ] Content model + staff `/admin` (Keystatic) — GitHub remote required
 - [ ] PR 6 — headers + cutover doc
 - [x] PR 7 (started) — titles, schema, FAQ, sitemap, robots, llms.txt; 301s still open
 - [ ] PR 8 — a11y / performance / launch freeze
 
-PR 0 (workshop answers, DNS dump, `/s/` bulletin copy) can land anytime; it does not block PRs 1–5 chrome and pages.
+PR 0 (workshop answers, DNS dump, `/s/` bulletin copy) can land anytime; it does not block chrome and pages. **Do not attach calvaryfrederick.com until leadership picks SnapPages vs this host.**

@@ -1,5 +1,6 @@
 # src/data/church.yaml  — volunteer-editable
-# How to update: see the README in the repo root (GitHub web editor).
+# How to update: README.md, docs/content-ops.md, or Grok Build.
+# Do not change giving.subsplashEmbed, media.org, or embed IDs.
 
 name: Calvary Chapel Frederick
 tagline: Simply Teaching The Word Simply
