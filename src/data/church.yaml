@@ -5,11 +5,12 @@
 name: Calvary Chapel Frederick
 tagline: Simply Teaching The Word Simply
 
-# Drop a local MP4 here (downtown Frederick, Gambrill, church) when the church
-# provides it. Empty uses the still. Do not restore the ocean clip.
+# Placeholder loop: Pexels 19384325 (historic American downtown aerial, not
+# Frederick itself). Replace with church-shot footage of downtown / Gambrill /
+# the building when it arrives. Poster for first paint matches the clip.
 hero:
-  video: ""
-  poster: /images/hero-frederick.jpg
+  video: /videos/hero.mp4
+  poster: /images/hero-poster.jpg
 vision: >-
   A community where you will encounter the love of Jesus,
   be equipped for life in Jesus, and engage a lost world with Jesus.
