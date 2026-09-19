@@ -30,9 +30,6 @@ const poster = church.hero.poster;
     <p class="meta">{church.name}</p>
     <h1>{church.tagline}</h1>
     <p class="lead">A Calvary Chapel in downtown Frederick.</p>
-    <p class="hero__cta">
-      <a class="btn btn--primary btn--xl" href="/visit#plan">Are You New</a>
-    </p>
   </div>
   <a class="hero__scroll" href="#location" aria-label="Scroll to location and services">
     <span></span>
@@ -127,24 +124,11 @@ const poster = church.hero.poster;
 
   .lead {
     max-width: 26rem;
-    margin: 0 auto var(--space-8);
+    margin: 0 auto;
     letter-spacing: 0;
     text-transform: none;
     font-family: var(--font-ui);
     color: var(--inverse);
-  }
-
-  .hero :global(.btn--primary) {
-    background: var(--cream);
-    color: var(--forest-deep);
-    border-color: var(--cream);
-  }
-
-  .hero :global(.btn--primary:hover),
-  .hero :global(.btn--primary:focus-visible) {
-    background: transparent;
-    color: var(--cream);
-    border-color: var(--cream);
   }
 
   .hero__scroll {
