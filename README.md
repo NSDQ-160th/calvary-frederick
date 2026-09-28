@@ -19,7 +19,7 @@ Marketing site for [calvaryfrederick.com](https://www.calvaryfrederick.com). Hom
 
 ## Volunteer: weekly updates (this is the runbook)
 
-You need a GitHub login and access to this repository. You do **not** need to install anything. The office guide is [docs/staff-cms-guide.md](docs/staff-cms-guide.md). The same files can still be edited in Grok Build or on GitHub.
+The office edits words in Tina. The guide is [docs/staff-cms-guide.md](docs/staff-cms-guide.md). The same files can still be edited in Grok Build or on GitHub.
 
 The **sermon video itself** is always uploaded in the **Subsplash dashboard**, same as today. Do not put Sunday’s mp4 in this repo.
 
