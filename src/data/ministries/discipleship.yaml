@@ -1,0 +1,21 @@
+title: Discipleship
+text: Grow as a follower of Jesus.
+image: /images/ministries/groups.jpg
+video: ""
+poster: /images/ministries/groups.jpg
+emailKey: info
+form: groups
+lead: Grow as a follower of Jesus.
+description: Discipleship at Calvary Chapel Frederick. Email us to get connected. Downtown Frederick, MD.
+scripture:
+  text: >-
+    Go therefore and make disciples of all nations, baptizing them in the name of the Father and of
+    the Son and of the Holy Spirit.
+  ref: Matthew 28:19
+paragraphs:
+  - >-
+    We want people to grow as followers of Jesus — in the Word, in prayer, and with others. Use the
+    form below or email {{infoEmail}} and we will help you take a next step.
+facts:
+  - label: Contact
+    value: "{{infoEmail}}"

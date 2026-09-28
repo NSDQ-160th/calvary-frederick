@@ -1,0 +1,25 @@
+title: Students
+text: Middle and high school — Sunday and Ignite midweek.
+image: /images/ministries/youth.jpg
+video: /videos/ministries/students.mp4
+poster: /images/ministries/youth.jpg
+emailKey: youth
+lead: Middle and high school — Sunday and Ignite midweek.
+description: >-
+  Student ministry at Calvary Chapel Frederick. {{youthSunday}}. Midweek Ignite for middle and high
+  school. Email {{youthEmail}}.
+scripture:
+  text: >-
+    Let no one despise you for your youth, but set the believers an example in speech, in conduct,
+    in love, in faith, in purity.
+  ref: 1 Timothy 4:12
+paragraphs:
+  - "{{youthSunday}}. High school attends the main service."
+  - Midweek, middle and high school meet together for Ignite at {{wednesday}}.
+facts:
+  - label: Sunday
+    value: "{{youthSunday}}"
+  - label: High school Sunday
+    value: "{{highSchoolSunday}}"
+  - label: Midweek
+    value: "{{youthWednesday}}"

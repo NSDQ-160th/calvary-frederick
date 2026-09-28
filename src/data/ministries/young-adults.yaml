@@ -1,0 +1,25 @@
+title: Young Adults
+text: Growing in the Word with others in this season.
+image: /images/ministries/young-adults.jpg
+video: /videos/ministries/young-adults.mp4
+poster: /images/ministries/young-adults.jpg
+emailKey: info
+lead: Growing in the Word with others in this season.
+description: >-
+  Young adults at Calvary Chapel Frederick grow in the Word together. Join us Sunday or Wednesday in
+  downtown Frederick, MD.
+scripture:
+  text: Iron sharpens iron, and one man sharpens another.
+  ref: Proverbs 27:17
+paragraphs:
+  - >-
+    Young adults are welcome in the Sunday and Wednesday gatherings as we teach the Bible verse by
+    verse.
+  - >-
+    Come Sunday at {{sunday}} or Wednesday at {{wednesday}}, then email us if you want to connect
+    with others in this season.
+facts:
+  - label: Sunday
+    value: "{{sunday}}"
+  - label: Wednesday
+    value: "{{wednesday}}"

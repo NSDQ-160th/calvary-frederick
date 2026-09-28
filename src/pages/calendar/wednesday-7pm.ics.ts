@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { icsResponse, serviceIcs } from '../../lib/ics';
 
+export const prerender = true;
+
 export const GET: APIRoute = () =>
   icsResponse(
     serviceIcs({

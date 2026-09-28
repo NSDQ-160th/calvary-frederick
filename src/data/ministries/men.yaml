@@ -1,0 +1,19 @@
+title: Men
+text: Inductive study in Mark — 2nd and 4th Thursdays.
+image: /images/ministries/men.jpg
+video: /videos/ministries/men.mp4
+poster: /images/ministries/men.jpg
+emailKey: men
+lead: Inductive study in the Gospel of Mark.
+description: Men’s ministry at Calvary Chapel Frederick. {{menBlurb}} Email {{menEmail}}.
+scripture:
+  text: Be watchful, stand firm in the faith, act like men, be strong.
+  ref: 1 Corinthians 16:13
+paragraphs:
+  - "{{menBlurb}}"
+  - Email {{menEmail}} to join a Thursday study.
+facts:
+  - label: When
+    value: 2nd and 4th Thursday · 10:00 AM or 7:00 PM
+  - label: Study
+    value: Inductive study — Gospel of Mark

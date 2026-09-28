@@ -1,0 +1,47 @@
+title: Volunteer
+text: Worship, kids, coffee, greeting, ushering, and more.
+image: /images/ministries/serve.jpg
+video: /videos/ministries/volunteer.mp4
+poster: /images/ministries/serve.jpg
+emailKey: info
+form: volunteer
+lead: A place to serve.
+description: >-
+  Volunteer at Calvary Chapel Frederick. Serve in worship, children’s ministry, coffee, greeting,
+  ushering, and more. Downtown Frederick, MD.
+scripture:
+  text: >-
+    There are diversities of gifts, but the same Spirit. There are differences of ministries, but
+    the same Lord. And there are diversities of activities, but it is the same God who works all in
+    all.
+  ref: 1 Corinthians 12:4–6
+paragraphs:
+  - >-
+    There is a place to serve. Choose an area below, or use the form and we will follow up. Stay
+    after a service and introduce yourself to a greeter.
+facts:
+  - label: Teams
+    value: Worship, children’s, coffee, greeting, ushering, A/V
+  - label: Contact
+    value: "{{infoEmail}}"
+areas:
+  - id: worship
+    title: Worship
+    text: Serve with the worship team. Tell us if you sing or play, and we will follow up.
+  - id: children
+    title: Children’s ministry
+    text: >-
+      Teachers, helpers, and substitutes for Sunday and Wednesday. Teachers must be at least 18;
+      helpers at least 13 with a parent’s permission. Curriculum and training are provided.
+  - id: coffee
+    title: Coffee
+    text: Help with coffee and fellowship after we gather.
+  - id: greeting
+    title: Greeting
+    text: Welcome people at the door and help first-time guests find a seat.
+  - id: ushering
+    title: Ushering
+    text: Help people find a seat and keep the gathering orderly.
+  - id: av
+    title: A/V
+    text: Sound, screens, and recording. Training is available.

@@ -1,0 +1,27 @@
+title: Preschool
+text: Little ones are welcome when we gather.
+image: /images/ministries/preschool.jpg
+video: /videos/ministries/preschool.mp4
+poster: /images/ministries/preschool.jpg
+emailKey: info
+lead: Little ones are welcome when we gather.
+description: >-
+  Preschool at Calvary Chapel Frederick. Sunday children’s ministry is {{kidsSunday}}. Wednesday
+  children’s church {{kidsWednesday}}. Downtown Frederick, MD.
+scripture:
+  text: >-
+    Jesus said, “Let the little children come to me and do not hinder them, for to such belongs the
+    kingdom of heaven.”
+  ref: Matthew 19:14
+paragraphs:
+  - >-
+    The youngest children are part of Sunday children’s ministry — {{kidsSunday}}. Come any Sunday
+    at {{sunday}}.
+  - >-
+    On Wednesday at {{wednesday}}, children’s church is {{kidsWednesday}}. We would love to meet
+    your family.
+facts:
+  - label: Sunday
+    value: "{{sunday}} · {{kidsSunday}}"
+  - label: Wednesday
+    value: "{{wednesday}} · children’s church {{kidsWednesday}}"

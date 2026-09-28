@@ -4,7 +4,7 @@
 | --- | --- |
 | **Date** | 3 September 2026 |
 | **Depends on** | [Subsplash stay vs leave](./subsplash-stay-vs-leave.md) |
-| **Status** | Option A runbook. Staff `/admin` needs a GitHub remote (none yet). |
+| **Status** | Option A runbook. Staff admin is Keystatic at `/keystatic`. Saves go to `content/…` branches. |
 
 Three editors, one set of files. Do not fork copy into Subsplash *and* this repo for the marketing site. Sermon *video* stays in Subsplash only.
 
@@ -16,7 +16,7 @@ Three editors, one set of files. Do not fork copy into Subsplash *and* this repo
 | Sunday video / audio | No | No | No | **Yes — always** |
 | Bulletin PDF | Yes | Yes | `public/files/` + YAML | No |
 | Service times, flags, men’s blurb | Yes | Yes | `church.yaml` | No |
-| Ministry page paragraphs | Yes | Yes | `ministries.yaml` | No |
+| Ministry page paragraphs | Yes | Yes | `src/data/ministries/<slug>.yaml` | No |
 | Website hero / ministry looping videos | Files in `public/videos/` | Yes | Yes | No |
 | Give funds, fees, receipts | No | No (copy fees into YAML only) | No | **Wallet** |
 | App screenshots, push, live | No | No | No | **App** |
@@ -28,7 +28,7 @@ Three editors, one set of files. Do not fork copy into Subsplash *and* this repo
 | File | Volunteers may edit | Engineers only |
 | --- | --- | --- |
 | `src/data/church.yaml` | `sermon.title` / `series` / `image`, `bulletin`, `services`, `men.blurb`, `flags`, `hero` | `giving.subsplashEmbed`, `media.*` IDs, `podcasts`, org `+8361` |
-| `src/data/ministries.yaml` | `title`, `text`, `lead`, `paragraphs`, `scripture`, `facts` labels/values | `slug`, asset paths unless replacing a file |
+| `src/data/ministries/<slug>.yaml` | `title`, `text`, `lead`, `paragraphs`, `scripture`, `facts` labels/values | `slug` (the filename), asset paths unless replacing a file |
 | `src/data/media-catalog.json` | No — snapshot; prefer Subsplash API later | Refresh scrape / API pull |
 | `public/files/` | New bulletin PDFs | — |
 | `public/images/` | Homepage sermon still, ministry posters | — |
@@ -53,4 +53,4 @@ Tell Grok the change in plain language (“homepage title is Acts 21:26–36, bu
 
 ## `/admin` (not shipped)
 
-Keystatic (or Decap fallback) on `/admin`, GitHub OAuth, collections mapped to `church.yaml` + `ministries.yaml` + bulletin files. Blocked until this repo has a GitHub remote so saves can commit.
+Keystatic at `/keystatic`, GitHub login, collections mapped to `church.yaml` and `src/data/ministries/*.yaml`. Saves commit to a `content/…` branch. Merge that branch to publish.

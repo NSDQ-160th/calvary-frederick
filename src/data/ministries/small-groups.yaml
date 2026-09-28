@@ -1,0 +1,29 @@
+title: Small Groups
+text: Grow in faith and community through the week.
+image: /images/ministries/groups.jpg
+video: /videos/ministries/small-groups.mp4
+poster: /images/ministries/groups.jpg
+emailKey: info
+form: groups
+lead: Grow in faith and community through the week.
+description: >-
+  Small groups at Calvary Chapel Frederick. Grow in faith and community through the week. Downtown
+  Frederick, MD.
+scripture:
+  text: >-
+    And let us consider how to stir up one another to love and good works, not neglecting to meet
+    together.
+  ref: Hebrews 10:24–25
+paragraphs:
+  - >-
+    Small groups meet in homes and around town through the week. We do not list street addresses
+    here — if you want to join a group, tell us a little about yourself and we will help you find a
+    fit.
+  - Expect Bible study, prayer, and fellowship. Use the form below or email {{infoEmail}}.
+facts:
+  - label: Where
+    value: Homes and around Frederick — ask us for the next opening
+  - label: What to expect
+    value: Word, prayer, and fellowship
+  - label: Contact
+    value: "{{infoEmail}}"

@@ -1,6 +1,8 @@
 # Calvary Chapel Frederick
 User-agent: *
 Allow: /
+Disallow: /keystatic
+Disallow: /api/keystatic
 
 User-agent: Googlebot
 Allow: /

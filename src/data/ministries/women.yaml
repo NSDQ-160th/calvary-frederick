@@ -1,0 +1,19 @@
+title: Women
+text: Women growing together in the Word.
+image: /images/ministries/women.jpg
+video: /videos/ministries/women.mp4
+poster: /images/ministries/women.jpg
+emailKey: women
+lead: Women growing together in the Word.
+description: >-
+  Women’s ministry at Calvary Chapel Frederick. Women growing together in the Word. Email
+  {{womenEmail}}. Downtown Frederick, MD.
+scripture:
+  text: Your word is a lamp to my feet and a light to my path.
+  ref: Psalm 119:105
+paragraphs:
+  - Women at Calvary Chapel Frederick grow together in the Word.
+  - Email {{womenEmail}} to ask about the next gathering.
+facts:
+  - label: Contact
+    value: "{{womenEmail}}"

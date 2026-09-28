@@ -5,7 +5,7 @@ Marketing site for Calvary Chapel Frederick. Astro 5, static, Vercel preview htt
 ## Before you edit
 
 - Read `docs/content-ops.md` and `src/data/church.yaml`.
-- Do not invent church facts. If it is not in `church.yaml`, `ministries.yaml`, `docs/workshop.md`, or a published church page, do not write it on the site. Kids ages are Sunday infants–5th / Wednesday 3–11. Israel 2027 stays hidden (`flags.israel2027: false`).
+- Do not invent church facts. If it is not in `church.yaml`, `src/data/ministries/*.yaml`, `docs/workshop.md`, or a published church page, do not write it on the site. Kids ages are Sunday infants–5th / Wednesday 3–11. Israel 2027 stays hidden (`flags.israel2027: false`).
 - Do not copy lorem from `calvarychapelfrederick1.snappages.site` (9:30, Ballard, fake staff).
 
 ## Weekly / copy changes
@@ -15,7 +15,7 @@ Marketing site for Calvary Chapel Frederick. Astro 5, static, Vercel preview htt
 | Homepage latest teaching title | `src/data/church.yaml` → `sermon` |
 | Bulletin | `public/files/` + `church.yaml` `bulletin.file` |
 | Times, prayer, men’s study, flags | `church.yaml` |
-| Ministry page text | `src/data/ministries.yaml` (placeholders `{{sunday}}` etc. come from `church.yaml`) |
+| Ministry page text | `src/data/ministries/<slug>.yaml` (placeholders `{{sunday}}` etc. come from `church.yaml`) |
 | Website hero clip | `public/videos/hero.mp4` or `church.yaml` `hero.video` |
 
 Do **not** put Sunday sermon mp4s in this repo. Upload those in the Subsplash dashboard.

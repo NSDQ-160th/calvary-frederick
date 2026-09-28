@@ -1,5 +1,4 @@
 import { church, formatServiceTime } from './church';
-import spec from './ministries.yaml';
 
 export type MinistryTile = {
   href: string;
@@ -116,7 +115,41 @@ function hydrate(item: MinistrySpec): Ministry {
   };
 }
 
-export const ministries: Ministry[] = (spec as MinistrySpec[]).map(hydrate);
+const ministryFiles = import.meta.glob('./ministries/*.yaml', {
+  eager: true,
+  import: 'default',
+}) as Record<string, Omit<MinistrySpec, 'slug'> & { slug?: string; form?: MinistryForm | 'none' }>;
+
+const ministryOrder = [
+  'preschool',
+  'children',
+  'students',
+  'young-adults',
+  'women',
+  'men',
+  'small-groups',
+  'volunteer',
+  'school-of-ministry',
+  'sonshine',
+  'discipleship',
+];
+
+function slugFromPath(filePath: string): string {
+  return filePath.split('/').pop()?.replace(/\.yaml$/, '') ?? '';
+}
+
+const ministrySpecs: MinistrySpec[] = Object.entries(ministryFiles)
+  .map(([filePath, data]) => {
+    const form = data.form === 'none' || data.form === undefined ? undefined : data.form;
+    return { ...data, slug: slugFromPath(filePath), form };
+  })
+  .sort((a, b) => {
+    const ai = ministryOrder.indexOf(a.slug);
+    const bi = ministryOrder.indexOf(b.slug);
+    return (ai === -1 ? ministryOrder.length : ai) - (bi === -1 ? ministryOrder.length : bi);
+  });
+
+export const ministries: Ministry[] = ministrySpecs.map(hydrate);
 
 export const ministryTiles: MinistryTile[] = ministries.map((item) => ({
   href: `/ministries/${item.slug}`,

@@ -1,0 +1,28 @@
+title: SonShine LC
+text: Preschool ministry of Calvary Chapel Frederick.
+image: /images/ministries/preschool.jpg
+video: ""
+poster: /images/ministries/preschool.jpg
+emailKey: sonshine
+lead: A preschool ministry of Calvary Chapel Frederick.
+description: >-
+  SonShine Learning Center is the preschool ministry of Calvary Chapel Frederick. Quality education
+  and care with a Biblical foundation.
+scripture:
+  text: Train up a child in the way he should go, and when he is old he will not depart from it.
+  ref: Proverbs 22:6
+paragraphs:
+  - >-
+    SonShine Learning Center is a preschool ministry of Calvary Chapel Frederick. Its purpose is
+    quality education and tender care, with Christian character from a Biblical perspective.
+  - >-
+    Enrollment and camp details live on the SonShine site. Email {{sonshineEmail}} or visit
+    sonshinelc.com.
+facts:
+  - label: Ministry of
+    value: Calvary Chapel Frederick
+  - label: Contact
+    value: "{{sonshineEmail}}"
+  - label: Website
+    value: sonshinelc.com
+externalUrl: https://www.sonshinelc.com/

@@ -1,0 +1,25 @@
+title: Children
+text: Bible teaching for infants through 5th grade.
+image: /images/ministries/children.jpg
+video: /videos/ministries/children.mp4
+poster: /images/ministries/children.jpg
+emailKey: info
+lead: Bible teaching for infants through 5th grade.
+description: >-
+  Children’s ministry at Calvary Chapel Frederick. Sunday {{kidsSunday}}. Wednesday children’s
+  church {{kidsWednesday}}. Downtown Frederick, MD.
+scripture:
+  text: >-
+    Jesus said, “Let the little children come to me and do not hinder them, for to such belongs the
+    kingdom of heaven.”
+  ref: Matthew 19:14
+paragraphs:
+  - >-
+    Sunday children’s ministry is {{kidsSunday}}. We teach the Bible with crafts and games at their
+    age.
+  - Wednesday children’s church is {{kidsWednesday}}, during the {{wednesday}} Bible study.
+facts:
+  - label: Sunday
+    value: "{{sunday}} · {{kidsSunday}}"
+  - label: Wednesday
+    value: "{{wednesday}} · children’s church {{kidsWednesday}}"

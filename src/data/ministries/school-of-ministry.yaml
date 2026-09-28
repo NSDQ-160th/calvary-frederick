@@ -1,0 +1,24 @@
+title: School of Ministry
+text: Equipping people to serve.
+image: /images/ministries/serve.jpg
+video: ""
+poster: /images/ministries/serve.jpg
+emailKey: info
+form: groups
+lead: Equipping people to serve.
+description: >-
+  School of Ministry at Calvary Chapel Frederick. Email us to ask about the next class. Downtown
+  Frederick, MD.
+scripture:
+  text: >-
+    All Scripture is breathed out by God and profitable for teaching, for reproof, for correction,
+    and for training in righteousness.
+  ref: 2 Timothy 3:16
+paragraphs:
+  - >-
+    School of Ministry is how we equip people to serve. Use the form below or email {{infoEmail}}
+    and we will share the next opening. We do not list a public class calendar here until the church
+    publishes dates.
+facts:
+  - label: Contact
+    value: "{{infoEmail}}"
