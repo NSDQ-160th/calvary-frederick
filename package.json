@@ -8,8 +8,8 @@
     "node": ">=22"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "tinacms dev -c \"astro dev --host 127.0.0.1 --port 4321\"",
+    "build": "tinacms build --local --skip-cloud-checks -c \"astro build\"",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -18,12 +18,15 @@
     "@astrojs/vercel": "^8.2.11",
     "@keystatic/astro": "^6.0.0",
     "@keystatic/core": "^0.6.9",
+    "@tinacms/astro": "^0.7.1",
     "astro": "^5.13.0",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react-dom": "^19.3.0",
+    "tinacms": "^3.14.1"
   },
   "devDependencies": {
     "@rollup/plugin-yaml": "^4.1.2",
+    "@tinacms/cli": "^3.1.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "typescript": "^5.9.2"

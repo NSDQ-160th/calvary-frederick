@@ -1,14 +1,25 @@
 ---
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
 import ConnectBand from '../components/ConnectBand.astro';
 import GatheringLook from '../components/GatheringLook.astro';
 import Hero from '../components/Hero.astro';
 import HomeExtras from '../components/HomeExtras.astro';
+import HomePreview from '../components/tina/HomePreview.astro';
 import MinistryGrid from '../components/MinistryGrid.astro';
 import SermonCard from '../components/SermonCard.astro';
 import ServiceTimesCard from '../components/ServiceTimesCard.astro';
 import Base from '../layouts/Base.astro';
 import { faqJsonLd } from '../data/schema';
 import { siteFaqs } from '../data/faq';
+import { islands } from '../lib/tina-islands';
+import { getChurch } from '../lib/tina-data';
+
+let churchEdit: Record<string, unknown> | null = null;
+try {
+  churchEdit = ((await getChurch()).data?.church as Record<string, unknown> | undefined) ?? null;
+} catch (error) {
+  console.warn('Tina homepage edit data is unavailable.', error);
+}
 
 const description =
   'Calvary Chapel Frederick is a Bible-teaching church in downtown Frederick, MD. Sunday 9:00 & 11:00 AM, Wednesday 7:00 PM. Verse-by-verse teaching. Plan a visit.';
@@ -20,8 +31,18 @@ const description =
   current="home"
   jsonLd={faqJsonLd(siteFaqs)}
 >
-  <Hero />
-  <ServiceTimesCard />
+  {
+    churchEdit ? (
+      <TinaIsland name="home" wrapper={islands.home.wrapper} primary>
+        <HomePreview data={churchEdit} />
+      </TinaIsland>
+    ) : (
+      <>
+        <Hero />
+        <ServiceTimesCard />
+      </>
+    )
+  }
   <GatheringLook gathering="sunday" />
   <GatheringLook gathering="wednesday" />
   <ConnectBand />

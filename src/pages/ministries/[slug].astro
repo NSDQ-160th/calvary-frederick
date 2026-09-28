@@ -1,8 +1,12 @@
 ---
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
 import MinistryGrid from '../../components/MinistryGrid.astro';
+import MinistryHeader from '../../components/tina/MinistryHeader.astro';
 import PlanVisitForm from '../../components/PlanVisitForm.astro';
 import VideoFrame from '../../components/VideoFrame.astro';
 import Base from '../../layouts/Base.astro';
+import { islands } from '../../lib/tina-islands';
+import { getMinistry } from '../../lib/tina-data';
 import { church } from '../../data/church';
 import { ministries, ministryBySlug, otherMinistries } from '../../data/ministries';
 import { breadcrumbJsonLd } from '../../data/schema';
@@ -19,6 +23,14 @@ if (!ministry) {
 
 const others = otherMinistries(ministry.slug);
 const title = `${ministry.title} — Calvary Chapel Frederick`;
+let ministryEdit: { title?: string | null; lead?: string | null } | null = null;
+try {
+  ministryEdit =
+    ((await getMinistry(ministry.slug)).data?.ministry as { title?: string | null; lead?: string | null } | undefined) ??
+    null;
+} catch (error) {
+  console.warn(`Tina ministry edit data is unavailable for ${ministry.slug}.`, error);
+}
 ---
 
 <Base
@@ -31,13 +43,26 @@ const title = `${ministry.title} — Calvary Chapel Frederick`;
     { name: ministry.title, path: `/ministries/${ministry.slug}` },
   ])}
 >
-  <header class="min-hero" data-hero>
-    <div class="wrap min-hero__copy">
-      <p class="meta">Ministries</p>
-      <h1>{ministry.title}</h1>
-      <p class="lead">{ministry.lead}</p>
-    </div>
-  </header>
+  {
+    ministryEdit ? (
+      <TinaIsland
+        name="ministry"
+        wrapper={islands.ministry.wrapper}
+        params={{ slug: ministry.slug }}
+        primary
+      >
+        <MinistryHeader data={ministryEdit} />
+      </TinaIsland>
+    ) : (
+      <header class="min-hero" data-hero>
+        <div class="wrap min-hero__copy">
+          <p class="meta">Ministries</p>
+          <h1>{ministry.title}</h1>
+          <p class="lead">{ministry.lead}</p>
+        </div>
+      </header>
+    )
+  }
 
   {
     (ministry.video || ministry.poster) && (

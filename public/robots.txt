@@ -3,6 +3,8 @@ User-agent: *
 Allow: /
 Disallow: /keystatic
 Disallow: /api/keystatic
+Disallow: /admin
+Disallow: /tina-island
 
 User-agent: Googlebot
 Allow: /

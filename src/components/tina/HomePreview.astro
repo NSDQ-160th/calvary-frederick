@@ -1,0 +1,13 @@
+---
+import Hero from '../Hero.astro';
+import ServiceTimesCard from '../ServiceTimesCard.astro';
+
+interface Props {
+  data?: Record<string, unknown> | null;
+}
+
+const { data } = Astro.props;
+---
+
+<Hero data={data} />
+<ServiceTimesCard data={data} />

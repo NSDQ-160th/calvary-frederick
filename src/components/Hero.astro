@@ -1,8 +1,20 @@
 ---
+import { tinaField } from '@tinacms/astro/tina-field';
 import { church } from '../data/church';
 
-const videoSrc = church.hero.video.trim();
-const poster = church.hero.poster;
+interface Props {
+  data?: {
+    name?: string | null;
+    tagline?: string | null;
+    hero?: { video?: string | null; poster?: string | null } | null;
+  } | null;
+}
+
+const { data } = Astro.props;
+const name = data?.name || church.name;
+const tagline = data?.tagline || church.tagline;
+const videoSrc = (data?.hero?.video || church.hero.video).trim();
+const poster = data?.hero?.poster || church.hero.poster;
 ---
 
 <section class="hero" data-hero>
@@ -27,8 +39,8 @@ const poster = church.hero.poster;
     }
   </div>
   <div class="hero__inner wrap">
-    <p class="meta">{church.name}</p>
-    <h1>{church.tagline}</h1>
+    <p class="meta" data-tina-field={data ? tinaField(data, 'name') : undefined}>{name}</p>
+    <h1 data-tina-field={data ? tinaField(data, 'tagline') : undefined}>{tagline}</h1>
     <p class="lead">A Calvary Chapel in downtown Frederick.</p>
   </div>
   <a class="hero__scroll" href="#location" aria-label="Scroll to location and services">

@@ -1,0 +1,15 @@
+---
+import { tinaField } from '@tinacms/astro/tina-field';
+
+interface Props {
+  data?: { title?: string | null; lead?: string | null } | null;
+}
+
+const { data } = Astro.props;
+---
+
+<div class="wrap min-hero__copy">
+  <p class="meta">Ministries</p>
+  <h1 data-tina-field={data ? tinaField(data, 'title') : undefined}>{data?.title}</h1>
+  <p class="lead" data-tina-field={data ? tinaField(data, 'lead') : undefined}>{data?.lead}</p>
+</div>

@@ -1,8 +1,26 @@
 ---
+import { tinaField } from '@tinacms/astro/tina-field';
 import { church, formatServiceTime, mapsUrl } from '../data/church';
 
-const sunday = church.services.sunday.map(formatServiceTime).join(' & ');
-const wednesday = formatServiceTime(church.services.wednesday);
+interface Props {
+  data?: {
+    services?: {
+      sunday?: string[] | null;
+      wednesday?: string | null;
+      kidsSunday?: string | null;
+      kidsWednesday?: string | null;
+      middayPrayer?: { days?: string | null; start?: string | null; end?: string | null } | null;
+      fellowshipDinner?: { time?: string | null } | null;
+    } | null;
+  } | null;
+}
+
+const { data } = Astro.props;
+const services = data?.services ?? church.services;
+const sunday = (services.sunday ?? []).map(formatServiceTime).join(' & ');
+const wednesday = formatServiceTime(services.wednesday ?? church.services.wednesday);
+const dinner = formatServiceTime(services.fellowshipDinner?.time ?? church.services.fellowshipDinner.time);
+const prayer = services.middayPrayer ?? church.services.middayPrayer;
 const calendars = [
   { href: '/calendar/sunday-9am.ics', label: 'Sunday 9:00 AM' },
   { href: '/calendar/sunday-11am.ics', label: 'Sunday 11:00 AM' },
@@ -37,19 +55,19 @@ const calendars = [
       </div>
       <div class="location__times">
         <h3 class="meta">Service times</h3>
-        <p>Sunday {sunday}</p>
-        <p>
-          Wednesday {formatServiceTime(church.services.fellowshipDinner.time)} fellowship dinner,
+        <p data-tina-field={data?.services ? tinaField(data.services, 'sunday') : undefined}>Sunday {sunday}</p>
+        <p data-tina-field={data?.services ? tinaField(data.services, 'wednesday') : undefined}>
+          Wednesday {dinner} fellowship dinner,
           {' '}
           {wednesday} Bible study
         </p>
         <p>
-          Prayer {church.services.middayPrayer.days}
+          Prayer {prayer.days}
           {' '}
-          {formatServiceTime(church.services.middayPrayer.start)}–{formatServiceTime(church.services.middayPrayer.end)}
+          {formatServiceTime(prayer.start ?? '')}–{formatServiceTime(prayer.end ?? '')}
         </p>
         <p class="location__kids">
-          Kids: Sunday {church.services.kidsSunday}; Wednesday children’s church {church.services.kidsWednesday}.
+          Kids: Sunday {services.kidsSunday}; Wednesday children’s church {services.kidsWednesday}.
         </p>
         <p class="location__cal-label meta">Add to calendar</p>
         <p class="location__cal">

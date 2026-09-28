@@ -1,6 +1,8 @@
 # build
 dist/
 .astro/
+tina/__generated__
+public/admin
 
 # deps
 node_modules/
